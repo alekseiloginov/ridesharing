@@ -19,6 +19,11 @@ public class User {
     private String phone;
     private String email;
     private String password;
+    private Integer inOfficeHour;
+    private Integer fromOfficeHour;
+    private boolean driver;
+    private boolean active;
+    private Date created;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -33,18 +38,10 @@ public class User {
     @Cascade(CascadeType.PERSIST)
     private Address office;
 
-    private Integer inOfficeHour;
-    private Integer fromOfficeHour;
-
-    private boolean driver;
-
     @ManyToOne
     @JoinColumn(name = "CAR_ID")
     @Cascade(CascadeType.PERSIST)
     private Car car;
-
-    private boolean active;
-    private Date created;
 
     public void setCreated(Date created) {
         this.created = created != null ? created : new Date();
