@@ -16,12 +16,4 @@ public class Car {
     private String id;
 
     private Integer freeSeats;
-
-    public Integer getFreeSeats() {
-        return freeSeats;
-    }
-
-    public void setFreeSeats(Integer freeSeats) {
-        this.freeSeats = freeSeats;
-    }
 }
