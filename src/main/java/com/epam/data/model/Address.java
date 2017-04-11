@@ -14,9 +14,9 @@ public class Address {
 
     @Enumerated(EnumType.STRING)
     private Type type;
+    private String address;
     private String latitude;
     private String longitude;
-    private String address;
 
     public enum Type {
         HOME, OFFICE

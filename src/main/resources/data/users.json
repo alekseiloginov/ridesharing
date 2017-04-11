@@ -1,0 +1,47 @@
+[
+  {
+    "_class": "com.epam.data.model.User",
+    "name": "Aleksei Loginov",
+    "phone": "+7 904 556-82-17",
+    "email": "Aleksei_Loginov@epam.com",
+    "password": "P@ssw0rd",
+    "inOfficeHour": 12,
+    "fromOfficeHour": 20,
+    "driver": false,
+    "active": true,
+    "role": "ADMIN",
+    "home": {
+      "type": "HOME",
+      "address": "Koroleva, 34k1, SPB, RU",
+      "latitude": "60.014477",
+      "longitude": "30.259579"
+    },
+    "office": {
+      "id": "1"
+    }
+  },
+  {
+    "_class": "com.epam.data.model.User",
+    "name": "Maksim Zagorodskii",
+    "phone": "+7 963 328-06-36",
+    "email": "Maksim_Zagorodskii@epam.com",
+    "password": "P@ssw0rd",
+    "inOfficeHour": 10,
+    "fromOfficeHour": 20,
+    "driver": true,
+    "active": true,
+    "role": "USER",
+    "home": {
+      "type": "HOME",
+      "address": "Kommunarov, 114, SPB, RU",
+      "latitude": "59.784330",
+      "longitude": "30.147422"
+    },
+    "office": {
+      "id": "1"
+    },
+    "car": {
+      "freeSeats": 3
+    }
+  }
+]
