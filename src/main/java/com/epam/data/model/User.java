@@ -35,7 +35,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "OFFICE_ADDRESS_ID")
-    @Cascade(CascadeType.PERSIST)
+    @Cascade(CascadeType.MERGE) // to avoid db duplicates
     private Address office;
 
     @ManyToOne
