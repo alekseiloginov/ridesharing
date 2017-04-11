@@ -9,6 +9,7 @@
     "fromOfficeHour": 20,
     "driver": false,
     "active": true,
+    "created": null,
     "role": "ADMIN",
     "home": {
       "type": "HOME",
@@ -30,6 +31,7 @@
     "fromOfficeHour": 20,
     "driver": true,
     "active": true,
+    "created": null,
     "role": "USER",
     "home": {
       "type": "HOME",
