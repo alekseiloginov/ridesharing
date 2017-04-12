@@ -2,8 +2,6 @@ package com.epam.data.model;
 
 import lombok.Getter;
 import lombok.ToString;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,16 +24,13 @@ public class User extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne // cause based on unique coordinates rater than on address
-    @Cascade(CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL}) // cause based on unique coordinates rater than on address
     private Address home;
 
-    @ManyToOne
-    @Cascade(CascadeType.MERGE) // to avoid dupes in db
+    @ManyToOne(cascade = {CascadeType.MERGE}) // to avoid dupes in db
     private Address office;
 
-    @OneToOne
-    @Cascade(CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.ALL})
     private Car car;
 
     public void setCreated(Date created) {
