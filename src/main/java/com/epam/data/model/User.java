@@ -24,13 +24,13 @@ public class User extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = {CascadeType.ALL}) // cause based on unique coordinates rater than on address
+    @OneToOne(cascade = CascadeType.ALL) // cause based on unique coordinates rater than on address
     private Address home;
 
-    @ManyToOne(cascade = {CascadeType.MERGE}) // to avoid dupes in db
+    @ManyToOne(cascade = CascadeType.MERGE) // to avoid dupes in db
     private Address office;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = CascadeType.ALL)
     private Car car;
 
     public void setCreated(Date created) {
