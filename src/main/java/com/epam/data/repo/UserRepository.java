@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Custom Spring Data repository for User entity.
  */
-public interface UserRepository extends PagingAndSortingRepository<User, String> {
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     List<User> findByEmail(@Param("email") String email);
 

@@ -18,7 +18,7 @@
       "longitude": "30.259579"
     },
     "office": {
-      "id": "1"
+      "id": 1
     }
   },
   {
@@ -40,7 +40,7 @@
       "longitude": "30.147422"
     },
     "office": {
-      "id": "1"
+      "id": 1
     },
     "car": {
       "freeSeats": 3

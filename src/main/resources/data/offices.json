@@ -1,7 +1,7 @@
 [
   {
     "_class": "com.epam.data.model.Address",
-    "id": "1",
+    "id": 1,
     "type": "OFFICE",
     "address": "Voronezhskaya, 5, SPB, RU",
     "latitude": "59.917985",
@@ -9,7 +9,7 @@
   },
   {
     "_class": "com.epam.data.model.Address",
-    "id": "2",
+    "id": 2,
     "type": "OFFICE",
     "address": "nab. Chyornoy rechki, 41, SPB, RU",
     "latitude": "59.985629",
@@ -17,7 +17,7 @@
   },
   {
     "_class": "com.epam.data.model.Address",
-    "id": "3",
+    "id": 3,
     "type": "OFFICE",
     "address": "Pevcheskiy, 12, SPB, RU",
     "latitude": "59.960085",
@@ -25,7 +25,7 @@
   },
   {
     "_class": "com.epam.data.model.Address",
-    "id": "4",
+    "id": 4,
     "type": "OFFICE",
     "address": "Zastavskaya, 22, SPB, RU",
     "latitude": "59.888679",

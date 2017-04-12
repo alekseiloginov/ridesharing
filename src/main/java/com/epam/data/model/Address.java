@@ -1,16 +1,16 @@
 package com.epam.data.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-@Data
 @Entity
-public class Address {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+@Getter
+@ToString
+public class Address extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     private Type type;

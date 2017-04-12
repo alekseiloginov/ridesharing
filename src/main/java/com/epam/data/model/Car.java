@@ -1,19 +1,14 @@
 package com.epam.data.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Data
 @Entity
-public class Car {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+@Getter
+@ToString
+public class Car extends AbstractEntity {
 
     private Integer freeSeats;
 }

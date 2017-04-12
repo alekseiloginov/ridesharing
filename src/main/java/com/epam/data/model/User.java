@@ -1,6 +1,6 @@
 package com.epam.data.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -9,13 +9,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
 @ToString(exclude = "password")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+public class User extends AbstractEntity {
 
     private String name;
     private String phone;
