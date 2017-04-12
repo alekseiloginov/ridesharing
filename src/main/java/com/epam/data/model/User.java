@@ -1,14 +1,16 @@
 package com.epam.data.model;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
 @Entity
+@Data
+@ToString(exclude = "password")
 public class User {
 
     @Id
