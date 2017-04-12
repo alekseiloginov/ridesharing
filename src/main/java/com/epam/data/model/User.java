@@ -26,19 +26,16 @@ public class User extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "HOME_ADDRESS_ID")
-    @Cascade(CascadeType.PERSIST)
+    @OneToOne // cause based on unique coordinates rater than on address
+    @Cascade(CascadeType.ALL)
     private Address home;
 
     @ManyToOne
-    @JoinColumn(name = "OFFICE_ADDRESS_ID")
-    @Cascade(CascadeType.MERGE) // to avoid db duplicates
+    @Cascade(CascadeType.MERGE) // to avoid dupes in db
     private Address office;
 
-    @ManyToOne
-    @JoinColumn(name = "CAR_ID")
-    @Cascade(CascadeType.PERSIST)
+    @OneToOne
+    @Cascade(CascadeType.ALL)
     private Car car;
 
     public void setCreated(Date created) {
