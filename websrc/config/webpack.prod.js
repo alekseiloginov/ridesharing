@@ -17,6 +17,7 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -311,6 +312,23 @@ module.exports = function (env) {
        *
        * See: https://github.com/th0r/webpack-bundle-analyzer
        */
+
+      /*
+       * Plugin: HtmlWebpackPlugin
+       * Description: Simplifies creation of HTML files to serve your webpack bundles.
+       * This is especially useful for webpack bundles that include a hash in the filename
+       * which changes every compilation.
+       *
+       * See: https://github.com/ampedandwired/html-webpack-plugin
+       */
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        title: METADATA.title,
+        chunksSortMode: 'dependency',
+        metadata: METADATA,
+        inject: 'head',
+        filename: 'index.jsp'
+      }),
 
     ],
 

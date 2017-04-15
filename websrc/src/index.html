@@ -14,9 +14,16 @@
   <%= webpackConfig.htmlElements.headTags %>
   <% } %>
 
-  <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-
+  <!--
+      baseUrl comes by default from webpack's METADATA in webpack.common.js
+      <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+    -->
+    	<% if (htmlWebpackPlugin.options.metadata.isDevServer) { %>
+            <base href="/">
+        <% } %>
+        <% if (htmlWebpackPlugin.options.metadata.isDevServer !== true) { %>
+            <%= "<base href='${baseContext}/'>" %>
+        <% } %>
 
 </head>
 

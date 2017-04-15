@@ -16,7 +16,6 @@ const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const HtmlElementsPlugin = require('./html-elements-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const ngcWebpack = require('ngc-webpack');
@@ -179,7 +178,7 @@ module.exports = function (options) {
           exclude: [helpers.root('src/index.html')]
         },
 
-        /* 
+        /*
          * File loader for supporting images, for example, in CSS files.
          */
         {
@@ -189,7 +188,7 @@ module.exports = function (options) {
 
         /* File loader for supporting fonts, for example, in CSS files.
         */
-        { 
+        {
           test: /\.(eot|woff2?|svg|ttf)([\?]?.*)$/,
           use: 'file-loader'
         }
@@ -269,22 +268,6 @@ module.exports = function (options) {
         { from: 'src/meta'}
       ]),
 
-
-      /*
-       * Plugin: HtmlWebpackPlugin
-       * Description: Simplifies creation of HTML files to serve your webpack bundles.
-       * This is especially useful for webpack bundles that include a hash in the filename
-       * which changes every compilation.
-       *
-       * See: https://github.com/ampedandwired/html-webpack-plugin
-       */
-      new HtmlWebpackPlugin({
-        template: 'src/index.html',
-        title: METADATA.title,
-        chunksSortMode: 'dependency',
-        metadata: METADATA,
-        inject: 'head'
-      }),
 
       /*
        * Plugin: ScriptExtHtmlWebpackPlugin
