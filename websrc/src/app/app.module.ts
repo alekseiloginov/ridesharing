@@ -25,6 +25,7 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
+import { HomeService } from './home/home.service';
 import { CompanionsModule } from './companions';
 import { ProfileModule } from './profile';
 import { AdminModule } from './admin';
@@ -36,7 +37,8 @@ import '../styles/headings.css';
 // Application wide providers
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS,
-    AppState
+    AppState,
+    HomeService
 ];
 
 type StoreType = {
