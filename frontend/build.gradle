@@ -1,0 +1,43 @@
+plugins {
+    id "com.moowork.node" version "1.1.1"
+}
+
+node {
+    version = '7.9.0'
+    yarnVersion = '0.23.2'
+    download = true
+    workDir = file("${project.buildDir}/nodejs")
+    npmWorkDir = file("${project.buildDir}/npm")
+    yarnWorkDir = file("${project.buildDir}/yarn")
+    nodeModulesDir = file("${project.projectDir}")
+}
+
+task nodeClean(type: Delete) {
+    delete "${project.buildDir}"
+    delete "${project.projectDir}/node_modules"
+}
+
+task clean {}
+clean.dependsOn(nodeClean)
+
+task createYarnScript {
+    doLast {
+        def scriptFile = file("y.cmd")
+        scriptFile.text = """@SETLOCAL
+                            |@SET YARN_PATH=./build/yarn/yarn-v${node.yarnVersion}
+                            |@SET NODE_PATH=./build/nodejs/node-v${node.version}-win-x64
+                            |@SET PATH=%YARN_PATH%;%NODE_PATH%;%PATH%
+                            |@SET YARN=%YARN_PATH%/yarn
+                            |%YARN% %*
+                            |""".replaceAll('/', '\\\\').stripMargin()
+    }
+}
+
+task devSetup {}
+devSetup.dependsOn([yarn, createYarnScript])
+createYarnScript.shouldRunAfter yarn
+
+task devCleanSetup {}
+devCleanSetup.dependsOn([clean, devSetup])
+devSetup.shouldRunAfter clean
+
