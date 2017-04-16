@@ -64,7 +64,7 @@ type StoreType = {
         CompanionsModule,
         ProfileModule,
         AdminModule,
-        RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+        RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
