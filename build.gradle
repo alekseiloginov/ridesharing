@@ -4,3 +4,21 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '3.5'
 }
 
+def targetFrontendDir = 'backend/src/main/resources/META-INF/resources/'
+
+task copyFrontend(type: Copy) {
+	from 'frontend/dist/'
+	into targetFrontendDir
+}
+
+task cleanWebapp(type: Delete) {
+	delete targetFrontendDir
+}
+
+task buildProd {}
+
+buildProd.dependsOn([cleanWebapp, ':frontend:buildProd', copyFrontend, ':backend:build'])
+tasks.getByPath(':frontend:buildProd').shouldRunAfter cleanWebapp
+copyFrontend.shouldRunAfter ':frontend:buildProd'
+tasks.getByPath(':backend:build').shouldRunAfter copyFrontend
+

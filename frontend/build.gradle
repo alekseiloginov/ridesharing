@@ -75,3 +75,15 @@ task devCleanSetup {}
 devCleanSetup.dependsOn([clean, devSetup])
 devSetup.shouldRunAfter clean
 
+task yarnCleanDist(type: YarnTask) {
+    args = ['run', 'clean:dist']
+}
+
+task yarnBuildProd(type: YarnTask) {
+    args = ['run', 'build:prod']
+}
+
+task buildProd {}
+buildProd.dependsOn([yarn, yarnCleanDist, yarnBuildProd])
+yarnCleanDist.shouldRunAfter yarn
+yarnBuildProd.shouldRunAfter yarnCleanDist
