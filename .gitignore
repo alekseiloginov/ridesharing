@@ -1,6 +1,7 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+backend/src/main/resources/META-INF/resources
 
 ### STS ###
 .apt_generated
