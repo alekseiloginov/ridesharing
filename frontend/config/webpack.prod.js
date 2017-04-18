@@ -327,7 +327,7 @@ module.exports = function (env) {
         chunksSortMode: 'dependency',
         metadata: METADATA,
         inject: 'head',
-        filename: 'index.jsp'
+        filename: 'index.html'
       }),
 
     ],
