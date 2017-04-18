@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class MainController {
     @RequestMapping(value = "/rsapp/**")
-    public String handleMainUserInterfaceEntryPoint(HttpServletRequest request, Model model) {
-        model.addAttribute("baseContext", request.getContextPath());
-        return "index";
+    public String handleMainUserInterfaceEntryPoint() {
+        return "/index.html";
     }
 }
