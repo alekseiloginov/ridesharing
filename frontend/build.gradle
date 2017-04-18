@@ -33,6 +33,7 @@ def generateHelperScript(String script, Closure pattern) {
     def nodeBase = file(nodeFile).parent
     def res = pattern(nodeBase, yarnBase, yarnFile).stripMargin()
     file(script).text = res
+    file(script).executable = true
 }
 
 task createYarnScriptForWin {
