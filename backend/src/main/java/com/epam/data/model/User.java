@@ -1,5 +1,6 @@
 package com.epam.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ public class User extends AbstractEntity {
     private String name;
     private String phone;
     private String email;
+    @JsonIgnore
     private String password;
     private Integer inOfficeHour;
     private Integer fromOfficeHour;
