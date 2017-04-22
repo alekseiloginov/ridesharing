@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true)
 public class Address extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
