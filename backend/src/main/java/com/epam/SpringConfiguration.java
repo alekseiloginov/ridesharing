@@ -19,7 +19,7 @@ public class SpringConfiguration extends RepositoryRestMvcConfiguration {
 
     @Override
     public RepositoryRestConfiguration config() {
-        return super.config().exposeIdsFor(Address.class, User.class, Car.class);
+        return super.config().exposeIdsFor(Address.class, User.class, Car.class).setBasePath("/api");
     }
 
     @Bean

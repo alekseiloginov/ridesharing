@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Getter
-@ToString(exclude = "password")
+@ToString(exclude = "password", callSuper = true)
 public class User extends AbstractEntity {
 
     private String name;

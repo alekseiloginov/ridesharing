@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true)
 public class Car extends AbstractEntity {
 
     private Integer freeSeats;
