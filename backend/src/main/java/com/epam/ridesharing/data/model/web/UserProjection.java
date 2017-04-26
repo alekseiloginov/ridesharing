@@ -1,7 +1,7 @@
-package com.epam.data.model.web;
+package com.epam.ridesharing.data.model.web;
 
-import com.epam.data.model.Address;
-import com.epam.data.model.User;
+import com.epam.ridesharing.data.model.Address;
+import com.epam.ridesharing.data.model.User;
 import org.springframework.data.rest.core.config.Projection;
 
 /**

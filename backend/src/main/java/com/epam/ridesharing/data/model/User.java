@@ -1,4 +1,4 @@
-package com.epam.data.model;
+package com.epam.ridesharing.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

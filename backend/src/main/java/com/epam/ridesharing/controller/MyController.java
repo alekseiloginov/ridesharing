@@ -1,4 +1,4 @@
-package com.epam.controller;
+package com.epam.ridesharing.controller;
 
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.web.bind.annotation.GetMapping;

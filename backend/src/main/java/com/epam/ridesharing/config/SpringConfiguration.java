@@ -1,8 +1,8 @@
-package com.epam;
+package com.epam.ridesharing.config;
 
-import com.epam.data.model.Address;
-import com.epam.data.model.Car;
-import com.epam.data.model.User;
+import com.epam.ridesharing.data.model.Address;
+import com.epam.ridesharing.data.model.Car;
+import com.epam.ridesharing.data.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;

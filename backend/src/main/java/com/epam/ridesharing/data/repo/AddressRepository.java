@@ -1,6 +1,6 @@
-package com.epam.data.repo;
+package com.epam.ridesharing.data.repo;
 
-import com.epam.data.model.Address;
+import com.epam.ridesharing.data.model.Address;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
