@@ -1,6 +1,6 @@
 [
   {
-    "_class": "com.epam.data.model.User",
+    "_class": "com.epam.ridesharing.data.model.User",
     "name": "Aleksei Loginov",
     "phone": "+7 904 556-82-17",
     "email": "Aleksei_Loginov@epam.com",
@@ -22,7 +22,7 @@
     }
   },
   {
-    "_class": "com.epam.data.model.User",
+    "_class": "com.epam.ridesharing.data.model.User",
     "name": "Maksim Zagorodskii",
     "phone": "+7 963 328-06-36",
     "email": "Maksim_Zagorodskii@epam.com",

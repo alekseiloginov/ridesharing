@@ -1,6 +1,6 @@
 [
   {
-    "_class": "com.epam.data.model.Address",
+    "_class": "com.epam.ridesharing.data.model.Address",
     "id": 1,
     "type": "OFFICE",
     "address": "Voronezhskaya, 5, SPB, RU",
@@ -8,7 +8,7 @@
     "longitude": "30.348642"
   },
   {
-    "_class": "com.epam.data.model.Address",
+    "_class": "com.epam.ridesharing.data.model.Address",
     "id": 2,
     "type": "OFFICE",
     "address": "nab. Chyornoy rechki, 41, SPB, RU",
@@ -16,7 +16,7 @@
     "longitude": "30.307862"
   },
   {
-    "_class": "com.epam.data.model.Address",
+    "_class": "com.epam.ridesharing.data.model.Address",
     "id": 3,
     "type": "OFFICE",
     "address": "Pevcheskiy, 12, SPB, RU",
@@ -24,7 +24,7 @@
     "longitude": "30.324927"
   },
   {
-    "_class": "com.epam.data.model.Address",
+    "_class": "com.epam.ridesharing.data.model.Address",
     "id": 4,
     "type": "OFFICE",
     "address": "Zastavskaya, 22, SPB, RU",
