@@ -1,0 +1,37 @@
+# You can specify multiple profile-specific YAML documents in a single file by using a spring.profiles key
+# to indicate when the document applies.
+
+spring:
+    profiles.active: DEV
+
+---
+spring:
+    profiles: DEV
+    jpa.hibernate.ddl-auto: create # to create schema on-the-fly from annotations
+# comment this 4 lines to use default in-mem DB, uncomment to use disc-based DB
+#    datasource:
+#        url: jdbc:h2:/opt/h2/ridesharing
+#        username: SA
+#        password: SA
+server:
+    address: 127.0.0.1
+    port: 5000
+debug: true
+
+---
+spring:
+    profiles: PROD
+server:
+    address: http://sample-env-2.ucqmtaxisy.eu-central-1.elasticbeanstalk.com
+    port: 5000 # default port for aws beanstalk (if not provided, it's 8080)
+logging: # spring boot considers either file or path property, not both.
+    file: rsa-spring.log
+#    path: logs/spring-boot/
+
+---
+# 'security.user.password' is only available in the "default" profile:
+spring:
+    profiles: default
+security:
+    user:
+        password: pwd

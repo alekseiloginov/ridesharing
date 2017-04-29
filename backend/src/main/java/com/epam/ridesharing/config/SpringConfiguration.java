@@ -5,6 +5,7 @@ import com.epam.ridesharing.data.model.Car;
 import com.epam.ridesharing.data.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.repository.init.Jackson2RepositoryPopulatorFactoryBean;
@@ -22,6 +23,7 @@ public class SpringConfiguration extends RepositoryRestMvcConfiguration {
         return super.config().exposeIdsFor(Address.class, User.class, Car.class).setBasePath("/api");
     }
 
+    @Profile("DEV")
     @Bean
     public Jackson2RepositoryPopulatorFactoryBean repositoryPopulator() {
         Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
