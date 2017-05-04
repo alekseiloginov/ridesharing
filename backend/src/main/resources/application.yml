@@ -7,7 +7,10 @@ spring:
 ---
 spring:
     profiles: DEV
-    jpa.hibernate.ddl-auto: create # to create schema on-the-fly from annotations
+    jpa:
+        hibernate.ddl-auto: create # to create schema on-the-fly from annotations
+        properties.hibernate:
+            format_sql: true
 # comment this 4 lines to use default in-mem DB, uncomment to use disc-based DB
 #    datasource:
 #        url: jdbc:h2:/opt/h2/ridesharing
@@ -17,6 +20,8 @@ server:
     address: 127.0.0.1
     port: 5000
 debug: true
+logging.level.org.hibernate: DEBUG
+logging.level.org.hibernate.type: TRACE
 
 ---
 spring:
