@@ -3,6 +3,9 @@ package com.epam.ridesharing.config;
 import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.Car;
 import com.epam.ridesharing.data.model.User;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -26,7 +29,11 @@ public class SpringConfiguration extends RepositoryRestMvcConfiguration {
     @Profile("DEV")
     @Bean
     public Jackson2RepositoryPopulatorFactoryBean repositoryPopulator() {
+        ObjectMapper mapper = new ObjectMapper()
+                .disable(MapperFeature.USE_ANNOTATIONS)
+                .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         Jackson2RepositoryPopulatorFactoryBean factory = new Jackson2RepositoryPopulatorFactoryBean();
+        factory.setMapper(mapper);
         Resource[] sourceData = new Resource[]{
                 new ClassPathResource("data/offices.json"),
                 new ClassPathResource("data/users.json")};
