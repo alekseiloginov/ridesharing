@@ -1,0 +1,22 @@
+<div class="welcome">
+    WELCOME to CORP RIDE SHARING
+</div>
+
+<div [formGroup]="loginForm" class="loginForm">
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput placeholder="Login" [formControl]="loginForm.get('email')">
+        </md-input-container>
+    </div>
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput type="password" [formControl]="loginForm.get('password')">
+        </md-input-container>
+    </div>
+    <div class="formRow">
+        <md-checkbox [formControl]="loginForm.get('rememberMe')">Remember me!</md-checkbox>
+    </div>
+    <div class="formRow">
+        <button md-raised-button [disabled]="loginForm.invalid" (click)="login()">Login Me In!</button>
+    </div>
+</div>

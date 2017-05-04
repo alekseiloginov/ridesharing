@@ -1,4 +1,3 @@
-// Angular 2
 import {
     enableDebugTools,
     disableDebugTools
@@ -7,9 +6,24 @@ import {
     ApplicationRef,
     enableProdMode
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { Http, RequestOptions, XHRBackend } from '@angular/http';
+
+import { AuthenticationService, AuthStateService, HttpInterceptor } from './auth';
+
 // Environment Providers
 let PROVIDERS: any[] = [
     // common env directives
+    AuthStateService,
+    {
+        provide: Http,
+        useFactory: (xhrBackend: XHRBackend,
+            requestOptions: RequestOptions,
+            router: Router,
+            authStateService: AuthStateService) =>
+            new HttpInterceptor(xhrBackend, requestOptions, router, authStateService),
+        deps: [XHRBackend, RequestOptions, Router, AuthStateService]
+    }
 ];
 
 // Angular debug tools in the dev console

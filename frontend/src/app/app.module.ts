@@ -14,6 +14,7 @@ import {
     RouterModule,
     PreloadAllModules
 } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -31,6 +32,8 @@ import { CompanionsModule } from './companions';
 import { ProfileModule } from './profile';
 import { AdminModule } from './admin';
 import { NoContentComponent } from './no-content';
+import { AuthenticationService } from './auth';
+import { LoginModule } from './login';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -39,7 +42,8 @@ import '../styles/headings.css';
 const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS,
     AppState,
-    HomeService
+    HomeService,
+    AuthenticationService
 ];
 
 type StoreType = {
@@ -59,10 +63,12 @@ type StoreType = {
         NoContentComponent
     ],
     imports: [ // import Angular's modules
+        BrowserAnimationsModule,
         BrowserModule,
         RsAppModule,
         FormsModule,
         HttpModule,
+        LoginModule,
         CompanionsModule,
         ProfileModule,
         AdminModule,
