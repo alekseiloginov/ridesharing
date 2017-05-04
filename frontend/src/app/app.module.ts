@@ -24,6 +24,7 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
+import { RsAppModule } from './rs-app';
 import { HomeComponent } from './home';
 import { HomeService } from './home/home.service';
 import { CompanionsModule } from './companions';
@@ -59,6 +60,7 @@ type StoreType = {
     ],
     imports: [ // import Angular's modules
         BrowserModule,
+        RsAppModule,
         FormsModule,
         HttpModule,
         CompanionsModule,

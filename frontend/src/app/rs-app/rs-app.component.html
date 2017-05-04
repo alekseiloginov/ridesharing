@@ -1,0 +1,22 @@
+<nav>
+    <a [routerLink]=" ['/rsapp'] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Home
+      </a>
+    <a [routerLink]=" ['/rsapp/companions'] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Companions
+      </a>
+    <a [routerLink]=" ['/rsapp/profile'] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Profile
+      </a>
+    <a [routerLink]=" ['/rsapp/admin'] " routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Admin
+      </a>
+</nav>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<footer>
+    <span>Ride Sharing App made by volonteers</span>
+</footer>
