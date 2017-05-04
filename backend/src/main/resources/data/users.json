@@ -23,6 +23,28 @@
   },
   {
     "_class": "com.epam.ridesharing.data.model.User",
+    "name": "Aleksei Egorov",
+    "phone": "+7 921 111-11-11",
+    "email": "Aleksei_Egorov@epam.com",
+    "password": "$2a$10$POJ9JbGRLTQaKoktySlD9.ZOLgBPYzRjD/WBEIfpNgwFdjog/1hv6",
+    "inOfficeHour": 10,
+    "fromOfficeHour": 19,
+    "driver": false,
+    "active": true,
+    "created": null,
+    "role": "ADMIN",
+    "home": {
+      "type": "HOME",
+      "address": "Petergofskoe av, 45",
+      "latitude": "59.849097",
+      "longitude": "30.152099"
+    },
+    "office": {
+      "id": 1
+    }
+  },
+  {
+    "_class": "com.epam.ridesharing.data.model.User",
     "name": "Maksim Zagorodskii",
     "phone": "+7 963 328-06-36",
     "email": "Maksim_Zagorodskii@epam.com",
