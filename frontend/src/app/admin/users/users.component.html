@@ -1,3 +1,7 @@
+<md-toolbar>
+    <button md-raised-button color="primary" (click)="openCreateUserDialog()"><md-icon>person_add</md-icon> New User</button>
+</md-toolbar>
+
 <table class="table table-striped" [rtList]="getUsers" #list="rtList">
     <thead>
         <tr>
@@ -18,9 +22,11 @@
                 <md-icon *ngIf="!user.active">check_box_outline_blank</md-icon>
             </td>
             <td>
-                <a md-icon-button><md-icon>person_pin_circle</md-icon></a>
-                <a md-icon-button><md-icon>mode_edit</md-icon></a>
-                <button md-icon-button color="warn"><md-icon>delete</md-icon></button>
+                <a md-icon-button>
+                    <md-icon>person_pin_circle</md-icon>
+                </a>
+                <button md-icon-button (click)="openEditUserDialog(user)"><md-icon>mode_edit</md-icon></button>
+                <button md-icon-button color="warn" (click)="openDeleteConfirm(user)"><md-icon>delete</md-icon></button>
             </td>
         </tr>
     </tbody>

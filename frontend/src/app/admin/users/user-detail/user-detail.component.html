@@ -1,0 +1,9 @@
+<h1 md-dialog-title>{{data.title}}</h1>
+<div md-dialog-content>
+    <i>TBD</i>
+
+</div>
+<div md-dialog-actions>
+    <button md-raised-button color="primary" (click)="dialogRef.close(data.user)">{{data.primaryButtonLabel}}</button>
+    <button md-raised-button (click)="dialogRef.close(false)">Cancel</button>
+</div>

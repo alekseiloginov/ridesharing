@@ -1,0 +1,6 @@
+<h1 md-dialog-title>Are You Sure?</h1>
+<div md-dialog-content>Are you sure you want to delete user {{data.user.name}}?</div>
+<div md-dialog-actions>
+    <button md-raised-button color="warn" (click)="dialogRef.close(true)">Yes</button>
+    <button md-raised-button (click)="dialogRef.close(false)">Cancel</button>
+</div>
