@@ -1509,6 +1509,10 @@ duplexer@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
 
+e2e4@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/e2e4/-/e2e4-2.1.0.tgz#b7ef9246b66bde8d7b86cacd86425cff19612391"
+
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -4630,6 +4634,12 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
+right-angled@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/right-angled/-/right-angled-1.2.0.tgz#087414d9246b3496a466575b1f0414d32bc5dfeb"
+  dependencies:
+    e2e4 "^2.1.0"
+
 rimraf@2, rimraf@^2.2.8, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.5.2, rimraf@^2.5.4, rimraf@^2.6.0, rimraf@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
@@ -4640,9 +4650,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rxjs@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.2.tgz#cc6513756daa93cab4085c1b5a19a3e28fb6c6bf"
+rxjs@5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.3.tgz#fc8bdf464ebf938812748e4196788f392fef9754"
   dependencies:
     symbol-observable "^1.0.1"
 

@@ -1,3 +1,4 @@
+import { NavLink } from '../rs-components/tabs/tabs.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,6 +13,13 @@ import { LOGIN_PATH } from '../app.routes.constants';
 export class RsAppComponent implements OnInit {
 
     user: User;
+
+    navLinks: NavLink[] = [
+        { label: 'Home', link: 'home' },
+        { label: 'Companions', link: 'companions' },
+        { label: 'Profile', link: 'profile' },
+        { label: 'Admin', link: 'admin' },
+    ];
 
     constructor(private authenticationService: AuthenticationService, private authStateService: AuthStateService,
         private router: Router) { }
