@@ -3,7 +3,6 @@ package com.epam.ridesharing.auth.controller;
 import com.epam.ridesharing.auth.service.AuthService;
 import com.epam.ridesharing.auth.uimodel.LoginDto;
 import com.epam.ridesharing.auth.uimodel.UserDto;
-import com.epam.ridesharing.data.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.web.bind.annotation.PostMapping;
