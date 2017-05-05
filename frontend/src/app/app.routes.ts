@@ -5,7 +5,7 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { CompanionsComponent } from './companions';
 import { ProfileComponent } from './profile';
-import { AdminComponent } from './admin';
+import { ADMIN_ROUTES } from './admin';
 import { NoContentComponent } from './no-content';
 
 import { LOGIN_PATH } from './app.routes.constants';
@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
             { path: '', component: HomeComponent },
             { path: 'companions', component: CompanionsComponent },
             { path: 'profile', component: ProfileComponent },
-            { path: 'admin', component: AdminComponent },
+            ...ADMIN_ROUTES,
             { path: '**', component: NoContentComponent },
         ]
     },
