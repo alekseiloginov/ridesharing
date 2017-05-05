@@ -15,10 +15,10 @@ export class RsAppComponent implements OnInit {
     user: User;
 
     navLinks: NavLink[] = [
-        {label: 'Home', link: 'home'},
-        {label: 'Companions', link: 'companions'},
-        {label: 'Profile', link: 'profile'},
-        {label: 'Admin', link: 'admin'},
+        { label: 'Home', link: 'home' },
+        { label: 'Companions', link: 'companions' },
+        { label: 'Profile', link: 'profile' },
+        { label: 'Admin', link: 'admin' },
     ];
 
     constructor(private authenticationService: AuthenticationService, private authStateService: AuthStateService,
