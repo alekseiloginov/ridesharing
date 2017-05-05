@@ -16,6 +16,8 @@ import {
 } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RTModule } from 'right-angled';
+
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -68,6 +70,7 @@ type StoreType = {
         RsAppModule,
         FormsModule,
         HttpModule,
+        RTModule,
         LoginModule,
         CompanionsModule,
         ProfileModule,
