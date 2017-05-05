@@ -6,7 +6,7 @@ plugins {
 
 node {
     version = '7.9.0'
-    yarnVersion = '0.23.2'
+    yarnVersion = '0.23.4'
     download = true
     workDir = file("${project.buildDir}/nodejs")
     npmWorkDir = file("${project.buildDir}/npm")
