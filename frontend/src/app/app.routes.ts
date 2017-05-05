@@ -16,7 +16,8 @@ export const ROUTES: Routes = [
     { path: LOGIN_PATH, component: LoginComponent },
     {
         path: 'rsapp', component: RsAppComponent, children: [
-            { path: '', component: HomeComponent },
+            { path: '', pathMatch: 'full', redirectTo: 'home' },
+            { path: 'home', component: HomeComponent },
             { path: 'companions', component: CompanionsComponent },
             { path: 'profile', component: ProfileComponent },
             ...ADMIN_ROUTES,
