@@ -4640,9 +4640,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rxjs@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.2.tgz#cc6513756daa93cab4085c1b5a19a3e28fb6c6bf"
+rxjs@5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.0.3.tgz#fc8bdf464ebf938812748e4196788f392fef9754"
   dependencies:
     symbol-observable "^1.0.1"
 
