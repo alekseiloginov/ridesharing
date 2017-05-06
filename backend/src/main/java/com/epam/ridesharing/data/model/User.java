@@ -1,6 +1,8 @@
 package com.epam.ridesharing.data.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.epam.ridesharing.auth.uimodel.BCryptPasswordDeserializer;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -15,8 +17,11 @@ public class User extends AbstractEntity {
     private String name;
     private String phone;
     private String email;
-    @JsonIgnore
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonDeserialize(using = BCryptPasswordDeserializer.class)
     private String password;
+
     private Integer inOfficeHour;
     private Integer fromOfficeHour;
     private boolean driver;
