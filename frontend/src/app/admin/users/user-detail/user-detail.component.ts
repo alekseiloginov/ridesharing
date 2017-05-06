@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
-import { User } from '../users.service';
+import { ROLES, User } from '../users.service';
 
 @Component({
     selector: 'app-user-detail',
@@ -13,10 +13,7 @@ export class UserDetailComponent implements OnInit {
 
     userForm: FormGroup;
 
-    readonly roles = [
-        {value: 'ADMIN', label: 'Administrator'},
-        {value: 'USER', label: 'User'},
-    ];
+    ROLES = ROLES;
 
     constructor(public dialogRef: MdDialogRef<UserDetailComponent>,
         @Inject(MD_DIALOG_DATA) public data: { user?: User, primaryButtonLabel: string, title: string },

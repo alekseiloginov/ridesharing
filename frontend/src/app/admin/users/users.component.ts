@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
-import { User, UsersService } from './users.service';
+import { ROLES, User, UsersService } from './users.service';
 import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component';
 import { UserDetailComponent } from './user-detail';
 
@@ -15,6 +15,14 @@ export class UsersComponent implements OnInit {
 
     @ViewChild('list')
     usersListTable;
+
+    ROLES = ROLES.reduce(
+        (acc, cur, i) => {
+            acc[cur.value] = cur;
+            return acc;
+        },
+        {}
+    );
 
     constructor(private usersService: UsersService,
         private dialog: MdDialog,

@@ -24,7 +24,7 @@
         </div>
         <div class="formRow">
             <md-select placeholder="Role" [formControl]="userForm.get('role')">
-                <md-option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</md-option>
+                <md-option *ngFor="let role of ROLES" [value]="role.value">{{ role.label }}</md-option>
             </md-select>
 
     </div>

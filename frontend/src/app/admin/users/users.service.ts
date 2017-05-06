@@ -35,3 +35,8 @@ export interface User {
     email: string;
     active: boolean;
 }
+
+export const ROLES = [
+    { value: 'ADMIN', label: 'Administrator' },
+    { value: 'USER', label: 'User' },
+];

@@ -16,7 +16,7 @@
         <tr *ngFor="let user of list.items">
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
-            <td><i>TBD</i></td>
+            <td>{{ROLES[user.role].label}}</td>
             <td>
                 <md-icon *ngIf="user.active">check_box</md-icon>
                 <md-icon *ngIf="!user.active">check_box_outline_blank</md-icon>
