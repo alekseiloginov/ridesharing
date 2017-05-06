@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result: User) => {
             if (result) {
                 this.usersService.updateUser(result).subscribe(res => {
-                    this.snackBar.open('User has been updated.');
+                    this.snackBar.open('User has been updated.', 'OK');
                     this.usersListTable.reloadData();
                 });
             }
@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
         dialogRef.afterClosed().subscribe((user: User) => {
             if (user) {
                 this.usersService.createUser(user).subscribe(res => {
-                    this.snackBar.open('User has been created.');
+                    this.snackBar.open('User has been created.', 'OK');
                     this.usersListTable.reloadData();
                 });
             }
