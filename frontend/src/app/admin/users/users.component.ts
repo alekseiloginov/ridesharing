@@ -1,10 +1,10 @@
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { User, UsersService } from './users.service';
 import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component';
+import { UserDetailComponent } from './user-detail';
 
 @Component({
     selector: 'app-users',
@@ -13,7 +13,12 @@ import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component'
 })
 export class UsersComponent implements OnInit {
 
-    constructor(private usersService: UsersService, private dialog: MdDialog) { }
+    @ViewChild('list')
+    usersListTable;
+
+    constructor(private usersService: UsersService,
+        private dialog: MdDialog,
+        private snackBar: MdSnackBar) { }
 
     ngOnInit() { }
 
@@ -32,6 +37,7 @@ export class UsersComponent implements OnInit {
 
     openEditUserDialog(user: User) {
         const dialogRef = this.dialog.open(UserDetailComponent, {
+            width: '400px',
             data: {
                 user,
                 primaryButtonLabel: 'Update',
@@ -40,22 +46,29 @@ export class UsersComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe((result: User) => {
             if (result) {
-                this.usersService.updateUser(result);
+                this.usersService.updateUser(result).subscribe(res => {
+                    this.snackBar.open('User has been updated.');
+                    this.usersListTable.reloadData();
+                });
             }
         });
     }
 
     openCreateUserDialog() {
         const dialogRef = this.dialog.open(UserDetailComponent, {
+            width: '400px',
             data: {
                 user: null,
                 primaryButtonLabel: 'Create',
                 title: 'Create User'
             }
         });
-        dialogRef.afterClosed().subscribe((result: User) => {
-            if (result) {
-                this.usersService.createUser(result);
+        dialogRef.afterClosed().subscribe((user: User) => {
+            if (user) {
+                this.usersService.createUser(user).subscribe(res => {
+                    this.snackBar.open('User has been created.');
+                    this.usersListTable.reloadData();
+                });
             }
         });
     }
