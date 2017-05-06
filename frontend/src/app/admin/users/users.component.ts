@@ -63,9 +63,12 @@ export class UsersComponent implements OnInit {
                 title: 'Create User'
             }
         });
-        dialogRef.afterClosed().subscribe((result: User) => {
-            if (result) {
-                this.usersService.createUser(result);
+        dialogRef.afterClosed().subscribe((user: User) => {
+            if (user) {
+                this.usersService.createUser(user).subscribe(res => {
+                    this.snackBar.open('User has been created.');
+                    this.usersListTable.reloadData();
+                });
             }
         });
     }

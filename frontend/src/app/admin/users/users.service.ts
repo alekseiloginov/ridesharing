@@ -17,14 +17,14 @@ export class UsersService {
         console.log('TODO: remove user on backend: ', user);
     }
 
-    updateUser(user: User) {
+    updateUser(user: User): Observable<Response> {
         return this.http.patch(`api/users/${user.id}`, user)
             .map(resp => resp.json());
     }
 
-    createUser(user: User) {
-        // TODO: ...
-        console.log('TODO: create user on backend: ', user);
+    createUser(user: User): Observable<Response> {
+        return this.http.post(`api/users/`, user)
+            .map(resp => resp.json());
     }
 
 }
