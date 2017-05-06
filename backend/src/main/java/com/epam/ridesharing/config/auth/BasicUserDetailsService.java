@@ -17,6 +17,6 @@ class BasicUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("unknown user");
         }
-        return new SecurityUser(user.getEmail(), user.getPassword());
+        return new SecurityUser(user);
     }
 }

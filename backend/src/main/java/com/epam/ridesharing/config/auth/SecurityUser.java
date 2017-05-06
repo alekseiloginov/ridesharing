@@ -4,9 +4,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class SecurityUser extends User {
-    public SecurityUser(String username, String password) {
-        super(username, password, Arrays.asList(new SimpleGrantedAuthority(("ROLE_USER"))));
+    public SecurityUser(com.epam.ridesharing.data.model.User user) {
+        super(user.getEmail(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority(("ROLE_" + user.getRole().name()))));
     }
 }

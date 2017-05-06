@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdCheckboxModule, MdSelectModule } from '@angular/material';
 
 import { UserDetailComponent } from './user-detail.component';
 
@@ -11,6 +11,7 @@ import { UserDetailComponent } from './user-detail.component';
         ReactiveFormsModule,
         MdButtonModule,
         MdInputModule,
+        MdSelectModule,
         MdCheckboxModule
     ],
     exports: [

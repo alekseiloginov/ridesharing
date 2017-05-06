@@ -13,6 +13,11 @@ export class UserDetailComponent implements OnInit {
 
     userForm: FormGroup;
 
+    readonly roles = [
+        {value: 'ADMIN', label: 'Administrator'},
+        {value: 'USER', label: 'User'},
+    ];
+
     constructor(public dialogRef: MdDialogRef<UserDetailComponent>,
         @Inject(MD_DIALOG_DATA) public data: { user?: User, primaryButtonLabel: string, title: string },
         fb: FormBuilder) {
@@ -28,7 +33,8 @@ export class UserDetailComponent implements OnInit {
             doSetPassword: [true],
             password: ['', Validators.required],
             repeatPassword: '',
-            active: [false]
+            active: [false],
+            role: ['', Validators.required]
         });
         let passwordControl = this.userForm.get('password');
         let repeatPasswordControl = this.userForm.get('repeatPassword');

@@ -22,6 +22,11 @@
         <div class="formRow">
             <md-checkbox [formControl]="userForm.get('active')">Is Active</md-checkbox>
         </div>
+        <div class="formRow">
+            <md-select placeholder="Role" [formControl]="userForm.get('role')">
+                <md-option *ngFor="let role of roles" [value]="role.value">{{ role.label }}</md-option>
+            </md-select>
+
     </div>
 </div>
 <div md-dialog-actions>
