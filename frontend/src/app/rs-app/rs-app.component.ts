@@ -30,7 +30,8 @@ export class RsAppComponent implements OnInit {
 
     logout() {
         this.authenticationService.logout();
-        this.router.navigate([LOGIN_PATH]);
+        // this.router.navigate([LOGIN_PATH]);
+        location.href = '/api/logout';
     }
 
 }

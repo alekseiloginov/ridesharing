@@ -21,7 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .authenticationEntryPoint(getEntryPoint())
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .logout()
+                .logoutUrl("/api/logout");
     }
 
     private Http401AuthenticationEntryPoint getEntryPoint() {
