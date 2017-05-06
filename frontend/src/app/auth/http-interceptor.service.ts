@@ -35,6 +35,11 @@ export class HttpInterceptor extends Http {
         return this.intercept(super.request(url, options));
     }
 
+    patch(url: string, body: string, defaultOpts?: RequestOptionsArgs): Observable<Response> {
+        const options = this.getRequestOptionArgs(RequestMethod.Patch, defaultOpts, body);
+        return this.intercept(super.request(url, options));
+    }
+
     put(url: string, body: string, defaultOpts?: RequestOptionsArgs): Observable<Response> {
         const options = this.getRequestOptionArgs(RequestMethod.Put, defaultOpts, body);
         return this.intercept(super.request(url, options));

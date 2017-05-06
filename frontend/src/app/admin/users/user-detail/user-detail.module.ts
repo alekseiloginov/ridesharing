@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdButtonModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MdButtonModule, MdInputModule, MdCheckboxModule } from '@angular/material';
 
 import { UserDetailComponent } from './user-detail.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        MdButtonModule
+        ReactiveFormsModule,
+        MdButtonModule,
+        MdInputModule,
+        MdCheckboxModule
     ],
     exports: [
         UserDetailComponent

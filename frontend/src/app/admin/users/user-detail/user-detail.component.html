@@ -1,9 +1,30 @@
 <h1 md-dialog-title>{{data.title}}</h1>
 <div md-dialog-content>
-    <i>TBD</i>
-
+    <div [formGroup]="userForm">
+        <div class="formRow">
+            <md-input-container>
+                <input mdInput placeholder="Email" [formControl]="userForm.get('email')">
+            </md-input-container>
+        </div>
+        <div *ngIf="userForm.get('id').value" class="formRow">
+            <md-checkbox [formControl]="userForm.get('doSetPassword')">Change Password</md-checkbox>
+        </div>
+        <div *ngIf="userForm.get('doSetPassword').value" class="formRow">
+            <md-input-container>
+                <input mdInput type="password" placeholder="Password" [formControl]="userForm.get('password')">
+            </md-input-container>
+        </div>
+        <div *ngIf="userForm.get('doSetPassword').value" class="formRow">
+            <md-input-container>
+                <input mdInput type="password" placeholder="Repeat Password" [formControl]="userForm.get('repeatPassword')">
+            </md-input-container>
+        </div>
+        <div class="formRow">
+            <md-checkbox [formControl]="userForm.get('active')">Is Active</md-checkbox>
+        </div>
+    </div>
 </div>
 <div md-dialog-actions>
-    <button md-raised-button color="primary" (click)="dialogRef.close(data.user)">{{data.primaryButtonLabel}}</button>
+    <button md-raised-button color="primary" [disabled]="userForm.invalid" (click)="dialogRef.close(userForm.value)">{{data.primaryButtonLabel}}</button>
     <button md-raised-button (click)="dialogRef.close(false)">Cancel</button>
 </div>
