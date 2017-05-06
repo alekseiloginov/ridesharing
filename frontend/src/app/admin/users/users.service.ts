@@ -12,9 +12,9 @@ export class UsersService {
             .map(resp => resp.json()._embedded.users);
     }
 
-    removeUser(user: User) {
-        // TODO: ...
-        console.log('TODO: remove user on backend: ', user);
+    removeUser(user: User): Observable<Response> {
+        return this.http.delete(`api/users/${user.id}`)
+            .map(resp => resp.json());
     }
 
     updateUser(user: User): Observable<Response> {

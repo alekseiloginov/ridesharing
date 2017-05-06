@@ -30,7 +30,10 @@ export class UsersComponent implements OnInit {
         const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, { data: { user } });
         dialogRef.afterClosed().subscribe((result: boolean) => {
             if (result) {
-                this.usersService.removeUser(user);
+                this.usersService.removeUser(user).subscribe(res => {
+                    this.snackBar.open('User has been removed.', 'OK');
+                    this.usersListTable.reloadData();
+                });
             }
         });
     }
