@@ -10,8 +10,8 @@ import { NavLink } from '../rs-components/tabs';
 export class AdminComponent implements OnInit {
 
     navLinks: NavLink[] = [
-        { label: 'Offices', link: 'offices' },
-        { label: 'Users', link: 'users' },
+        { label: 'Offices', link: 'offices', requiredRole: 'ADMIN' },
+        { label: 'Users', link: 'users', requiredRole: 'ADMIN' },
     ];
 
     constructor() { }

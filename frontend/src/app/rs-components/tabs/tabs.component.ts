@@ -18,4 +18,5 @@ export class TabsComponent implements OnInit {
 export interface NavLink {
     label: string;
     link: string;
+    requiredRole?: string;
 }

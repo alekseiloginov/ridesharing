@@ -18,7 +18,7 @@ export class RsAppComponent implements OnInit {
         { label: 'Home', link: 'home' },
         { label: 'Companions', link: 'companions' },
         { label: 'Profile', link: 'profile' },
-        { label: 'Admin', link: 'admin' },
+        { label: 'Admin', link: 'admin', requiredRole: 'ADMIN' },
     ];
 
     constructor(private authenticationService: AuthenticationService, private authStateService: AuthStateService,
