@@ -1,5 +1,6 @@
 package com.epam.ridesharing.auth.uimodel;
 
+import com.epam.ridesharing.data.model.User;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,4 +9,5 @@ import lombok.Data;
 public class UserDto {
     private String email;
     private String name;
+    private User.Role role;
 }

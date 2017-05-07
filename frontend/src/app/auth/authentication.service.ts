@@ -11,7 +11,7 @@ export class AuthenticationService {
     constructor(private http: Http, private authStateService: AuthStateService) { }
 
     login(loginForm: LoginForm): Observable<boolean> {
-        let user = { ...loginForm, name: 'unknown' };
+        let user = { ...loginForm, name: 'unknown', role: 'unknown' };
         this.authStateService.updateCurrentUser(user, loginForm.rememberMe);
         return this.http.post('/api/auth/login', user)
             .map(resp => {

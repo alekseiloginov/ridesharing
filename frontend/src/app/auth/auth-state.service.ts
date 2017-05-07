@@ -24,6 +24,10 @@ export class AuthStateService {
         return this.currentUser;
     }
 
+    userHasRole(role: string): boolean {
+        return !role || role.indexOf(this.getUser().role) !== -1;
+    }
+
     updateCurrentUser(user: User, rememberMe: boolean = false) {
         this.currentUser = user;
         if (rememberMe && this.currentUser) {
@@ -43,6 +47,7 @@ export interface User {
     email: string;
     name: string;
     password: string;
+    role: string;
 }
 
 interface LocalStorageUser {
