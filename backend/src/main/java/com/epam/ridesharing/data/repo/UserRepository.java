@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ import java.util.List;
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     @Override
+    @RolesAllowed("ADMIN")
     @EntityGraph(attributePaths = {"home", "office", "car"})
         // fetches relations in one query instead of n+1
     Page<User> findAll(Pageable pageable);
