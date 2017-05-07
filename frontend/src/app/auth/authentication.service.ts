@@ -17,7 +17,8 @@ export class AuthenticationService {
             .map(resp => {
                 let resultUser = resp.json() as User;
                 if (resultUser) {
-                    this.authStateService.updateCurrentUser(resultUser, loginForm.rememberMe);
+                    const userToStore = { ...resultUser, password: loginForm.password };
+                    this.authStateService.updateCurrentUser(userToStore, loginForm.rememberMe);
                     return true;
                 } else {
                     this.authStateService.updateCurrentUser(null);
