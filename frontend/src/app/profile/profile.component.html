@@ -10,6 +10,11 @@
         </md-input-container>
     </div>
     <div class="formRow">
+        <md-select placeholder="Office" [formControl]="profileForm.get('office')">
+            <md-option *ngFor="let office of offices" [value]="'api/addresses/' + office.id">{{ office.address }}</md-option>
+        </md-select>
+    </div>
+    <div class="formRow">
         <app-address-control [formControl]="profileForm.get('home')"></app-address-control>
     </div>
     <div class="formRow">

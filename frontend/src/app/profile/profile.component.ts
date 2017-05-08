@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
 import { Profile, ProfileService } from './profile.service';
+import { Office } from './offices.service';
 
 @Component({
     selector: 'profile',
@@ -13,6 +14,7 @@ import { Profile, ProfileService } from './profile.service';
 export class ProfileComponent implements OnInit {
 
     profileForm: FormGroup;
+    offices: Office[];
 
     constructor(fb: FormBuilder,
         private profileService: ProfileService,
@@ -21,13 +23,15 @@ export class ProfileComponent implements OnInit {
         this.profileForm = fb.group({
             name: '',
             phone: '',
+            office: '',
             home: ''
         });
     }
 
     ngOnInit() {
-        this.activatedRoute.data.forEach((data: { profile: Profile }) => {
+        this.activatedRoute.data.forEach((data: { profile: Profile, offices: Office[] }) => {
             this.profileForm.patchValue(data.profile);
+            this.offices = data.offices;
         });
     }
 

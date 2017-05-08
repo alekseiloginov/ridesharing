@@ -2,6 +2,7 @@ package com.epam.ridesharing.data.model.web;
 
 import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 /**
@@ -12,4 +13,7 @@ public interface ProfileProjection {
     String getName();
     String getPhone();
     Address getHome();
+
+    @Value("api/addresses/#{target.office.id}")
+    String getOffice();
 }

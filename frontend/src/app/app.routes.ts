@@ -4,7 +4,7 @@ import { RsAppComponent } from './rs-app';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { CompanionsComponent } from './companions';
-import { ProfileComponent, ProfileResolver } from './profile';
+import { ProfileComponent, ProfileResolver, OfficesResolver } from './profile';
 import { ADMIN_ROUTES } from './admin';
 import { NoContentComponent } from './no-content';
 import { CanActivateRsappRouteGuardService } from './auth';
@@ -24,7 +24,8 @@ export const ROUTES: Routes = [
                 path: 'profile',
                 component: ProfileComponent,
                 resolve: {
-                    profile: ProfileResolver
+                    profile: ProfileResolver,
+                    offices: OfficesResolver
                 }
             },
             ...ADMIN_ROUTES,
