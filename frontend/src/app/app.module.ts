@@ -34,7 +34,7 @@ import { CompanionsModule } from './companions';
 import { ProfileModule } from './profile';
 import { AdminModule } from './admin';
 import { NoContentComponent } from './no-content';
-import { AuthenticationService } from './auth';
+import { AuthenticationService, CanActivateRsappRouteGuardService } from './auth';
 import { LoginModule } from './login';
 import { AgmCoreModule } from '@agm/core';
 
@@ -46,7 +46,8 @@ const APP_PROVIDERS = [
     ...APP_RESOLVER_PROVIDERS,
     AppState,
     HomeService,
-    AuthenticationService
+    AuthenticationService,
+    CanActivateRsappRouteGuardService
 ];
 
 type StoreType = {
