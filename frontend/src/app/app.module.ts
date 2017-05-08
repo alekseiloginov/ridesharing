@@ -36,6 +36,7 @@ import { AdminModule } from './admin';
 import { NoContentComponent } from './no-content';
 import { AuthenticationService } from './auth';
 import { LoginModule } from './login';
+import { AgmCoreModule } from '@agm/core';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -75,7 +76,8 @@ type StoreType = {
         CompanionsModule,
         ProfileModule,
         AdminModule,
-        RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules })
+        RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
+        AgmCoreModule.forRoot({ apiKey: 'AIzaSyDJTnsuCu4wGQ8TVAsUQLVwrdHREkriQn8' })
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,
