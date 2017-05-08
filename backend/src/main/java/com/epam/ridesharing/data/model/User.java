@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,14 +16,18 @@ import java.util.Date;
 @ToString(exclude = "password", callSuper = true)
 public class User extends AbstractEntity {
 
-    private String name;
-    private String phone;
+    @Email
+    @NotBlank
+    @Column(unique = true)
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = BCryptPasswordDeserializer.class)
+    @NotBlank
     private String password;
 
+    private String name;
+    private String phone;
     private Integer inOfficeHour;
     private Integer fromOfficeHour;
     private boolean driver;
