@@ -20,6 +20,11 @@ public class AuthServiceImpl implements AuthService {
         if (user == null) {
             throw new ResourceNotFoundException(email);
         }
-        return UserDto.builder().email(user.getEmail()).name(user.getName()).role(user.getRole()).build();
+        return UserDto.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .name(user.getName())
+                .role(user.getRole())
+                .build();
     }
 }

@@ -1,0 +1,19 @@
+<agm-map (mapClick)="mapClick($event)" [usePanning]="true" (mapReady)="mapReady($event)" [zoom]="15">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+<div [formGroup]="addressForm">
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')">
+        </md-input-container>
+    </div>
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput placeholder="Latitude" [formControl]="addressForm.get('latitude')">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Longitude" [formControl]="addressForm.get('longitude')">
+        </md-input-container>
+    </div>
+</div>
