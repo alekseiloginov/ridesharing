@@ -18,11 +18,9 @@ public class Address extends AbstractEntity {
     @NotNull
     private Type type;
 
-    @NotBlank
-    private String latitude;
+    private double latitude;
 
-    @NotBlank
-    private String longitude;
+    private double longitude;
 
     private String address;
 
