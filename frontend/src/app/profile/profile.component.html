@@ -1,3 +1,18 @@
-<h1>Profile</h1>
-
-Page TBD
+<div [formGroup]="profileForm">
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput placeholder="Name" [formControl]="profileForm.get('name')">
+        </md-input-container>
+    </div>
+    <div class="formRow">
+        <md-input-container>
+            <input mdInput placeholder="Phone" [formControl]="profileForm.get('phone')">
+        </md-input-container>
+    </div>
+    <div class="formRow">
+        <app-address-control [formControl]="profileForm.get('home')"></app-address-control>
+    </div>
+    <div class="formRow">
+        <button md-raised-button [disabled]="profileForm.invalid" (click)="updateProfile()">Update</button>
+    </div>
+</div>
