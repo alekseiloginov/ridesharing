@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class AuthStateService {
 
     private static readonly CUR_USER_KEY = 'currentUser';
-    private static readonly SERIAL_VERSION = '1';
+    private static readonly SERIAL_VERSION = '2';
 
     private currentUser: User;
 
