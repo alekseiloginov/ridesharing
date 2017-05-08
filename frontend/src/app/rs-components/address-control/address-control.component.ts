@@ -41,20 +41,18 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             latitude: '',
             longitude: ''
         });
+        this.addressForm.valueChanges.subscribe(() => {
+            this.propagateChange(this.addressForm.value);
+        });
         this.addressForm.get('latitude').valueChanges.subscribe(newLat => {
             if (newLat) {
                 this.setCoords(this.lng, newLat);
             }
-            this.propagateChange(this.addressForm.value);
         });
         this.addressForm.get('longitude').valueChanges.subscribe(newLng => {
             if (newLng) {
                 this.setCoords(newLng, this.lat);
             }
-            this.propagateChange(this.addressForm.value);
-        });
-        this.addressForm.get('address').valueChanges.subscribe(newValue => {
-            this.propagateChange(this.addressForm.value);
         });
     }
 
