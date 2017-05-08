@@ -70,6 +70,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         this.setCoords($event.coords.lng, $event.coords.lat);
         this.addressForm.get('latitude').setValue(this.lat);
         this.addressForm.get('longitude').setValue(this.lng);
+        this.propagateChange(this.addressForm.value);
     }
 
     setCoords(lng, lat) {
@@ -99,7 +100,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 }
 
 export interface Address {
-    latitude: string;
-    longitude: string;
+    id: string;
+    latitude: number;
+    longitude: number;
     address: string;
 }
