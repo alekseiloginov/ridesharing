@@ -1,0 +1,269 @@
+databaseChangeLog:
+# ADDRESSES
+- changeSet:
+    id: 1
+    author: aloginov
+    changes:
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: address
+            value: Zastavskaya, 22, SPB, RU
+        - column:
+            name: latitude
+            valueNumeric: 59.888679
+        - column:
+            name: longitude
+            valueNumeric: 30.327674
+        - column:
+            name: type
+            value: OFFICE
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 2
+        - column:
+            name: address
+            value: nab. Chyornoy rechki, 41, SPB, RU
+        - column:
+            name: latitude
+            valueNumeric: 59.985629
+        - column:
+            name: longitude
+            valueNumeric: 30.307862
+        - column:
+            name: type
+            value: OFFICE
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 3
+        - column:
+            name: address
+            value: Pevcheskiy, 12, SPB, RU
+        - column:
+            name: latitude
+            valueNumeric: 59.960085
+        - column:
+            name: longitude
+            valueNumeric: 30.324927
+        - column:
+            name: type
+            value: OFFICE
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 4
+        - column:
+            name: address
+            value: Koroleva, 34k1, SPB, RU
+        - column:
+            name: latitude
+            valueNumeric: 60.014477
+        - column:
+            name: longitude
+            valueNumeric: 30.259579
+        - column:
+            name: type
+            value: HOME
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 5
+        - column:
+            name: address
+            value: Petergofskoe av, 45
+        - column:
+            name: latitude
+            valueNumeric: 59.849097
+        - column:
+            name: longitude
+            valueNumeric: 30.152099
+        - column:
+            name: type
+            value: HOME
+    - insert:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            valueNumeric: 6
+        - column:
+            name: address
+            value: Kommunarov, 114, SPB, RU
+        - column:
+            name: latitude
+            valueNumeric: 59.78433
+        - column:
+            name: longitude
+            valueNumeric: 30.147422
+        - column:
+            name: type
+            value: HOME
+
+# CARS
+- changeSet:
+    id: 2
+    author: aloginov
+    changes:
+    - insert:
+        tableName: car
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: free_seats
+            valueNumeric: 3
+
+# USERS
+- changeSet:
+    id: 3
+    author: aloginov
+    changes:
+    - insert:
+        tableName: app_user
+        columns:
+        - column:
+            name: id
+            valueNumeric: 1
+        - column:
+            name: active
+            valueBoolean: true
+        - column:
+            name: created
+            valueDate: now()
+        - column:
+            name: driver
+            valueBoolean: false
+        - column:
+            name: email
+            value: Aleksei_Loginov@epam.com
+        - column:
+            name: from_office_hour
+            valueNumeric: 20
+        - column:
+            name: in_office_hour
+            valueNumeric: 12
+        - column:
+            name: name
+            value: Aleksei Loginov
+        - column:
+            name: password
+            value: $2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C
+        - column:
+            name: phone
+            value: +7 904 556-82-17
+        - column:
+            name: role
+            value: ADMIN
+        - column:
+            name: car_id
+        - column:
+            name: home_id
+            valueNumeric: 4
+        - column:
+            name: office_id
+            valueNumeric: 1
+    - insert:
+        tableName: app_user
+        columns:
+        - column:
+            name: id
+            valueNumeric: 2
+        - column:
+            name: active
+            valueBoolean: true
+        - column:
+            name: created
+            valueDate: now()
+        - column:
+            name: driver
+            valueBoolean: false
+        - column:
+            name: email
+            value: Aleksei_Egorov@epam.com
+        - column:
+            name: from_office_hour
+            valueNumeric: 19
+        - column:
+            name: in_office_hour
+            valueNumeric: 10
+        - column:
+            name: name
+            value: Aleksei Egorov
+        - column:
+            name: password
+            value: $2a$10$POJ9JbGRLTQaKoktySlD9.ZOLgBPYzRjD/WBEIfpNgwFdjog/1hv6
+        - column:
+            name: phone
+            value: +7 921 111-11-11
+        - column:
+            name: role
+            value: ADMIN
+        - column:
+            name: car_id
+        - column:
+            name: home_id
+            valueNumeric: 5
+        - column:
+            name: office_id
+            valueNumeric: 1
+    - insert:
+        tableName: app_user
+        columns:
+        - column:
+            name: id
+            valueNumeric: 3
+        - column:
+            name: active
+            valueBoolean: true
+        - column:
+            name: created
+            valueDate: now()
+        - column:
+            name: driver
+            valueBoolean: true
+        - column:
+            name: email
+            value: Maksim_Zagorodskii@epam.com
+        - column:
+            name: from_office_hour
+            valueNumeric: 20
+        - column:
+            name: in_office_hour
+            valueNumeric: 10
+        - column:
+            name: name
+            value: Maksim Zagorodskii
+        - column:
+            name: password
+            value: $2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C
+        - column:
+            name: phone
+            value: +7 963 328-06-36
+        - column:
+            name: role
+            value: USER
+        - column:
+            name: car_id
+            valueNumeric: 1
+        - column:
+            name: home_id
+            valueNumeric: 6
+        - column:
+            name: office_id
+            valueNumeric: 1
+

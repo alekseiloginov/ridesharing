@@ -1,0 +1,20 @@
+# Default file that is looked up by Spring Boot for Liquibase change log configuration
+databaseChangeLog:
+
+  # YAML
+  - include:
+      file: classpath:/db/changelog/schema.yaml
+  - include:
+      file: classpath:/db/changelog/data.yaml
+
+  # SQL - Postgres (make sure that the right profile is active)
+#  - include:
+#      file: classpath:/db/changelog/sql-backup/schema.postgresql.sql
+#  - include:
+#      file: classpath:/db/changelog/sql-backup/data.sql
+
+  # SQL - H2 (make sure that the right profile is active)
+#  - include:
+#      file: classpath:/db/changelog/sql-backup/schema.h2.sql
+#  - include:
+#      file: classpath:/db/changelog/sql-backup/data.sql

@@ -1,0 +1,196 @@
+databaseChangeLog:
+# TABLES
+- changeSet:
+    id: 1
+    author: aloginov
+    changes:
+    - createTable:
+        tableName: address
+        columns:
+        - column:
+            name: id
+            type: BIGINT
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: address_pkey
+        - column:
+            name: type
+            type: VARCHAR(255)
+            constraints:
+              nullable: false
+        - column:
+            name: address
+            type: VARCHAR(255)
+        - column:
+            name: latitude
+            type: DOUBLE
+            constraints:
+              nullable: false
+        - column:
+            name: longitude
+            type: DOUBLE
+            constraints:
+              nullable: false
+- changeSet:
+    id: 2
+    author: aloginov
+    changes:
+    - createTable:
+        tableName: car
+        columns:
+        - column:
+            name: id
+            type: BIGINT
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: car_pkey
+        - column:
+            name: free_seats
+            type: INT
+- changeSet:
+    id: 3
+    author: aloginov
+    changes:
+    - createTable:
+        tableName: app_user
+        columns:
+        - column:
+            name: id
+            type: BIGINT
+            autoIncrement: true
+            constraints:
+              primaryKey: true
+              primaryKeyName: app_user_pkey
+        - column:
+            name: active
+            type: BOOLEAN
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: email
+            type: VARCHAR(255)
+            constraints:
+              nullable: false
+        - column:
+            name: role
+            type: VARCHAR(255)
+        - column:
+            name: phone
+            type: VARCHAR(255)
+        - column:
+            name: driver
+            type: BOOLEAN
+            constraints:
+              nullable: false
+        - column:
+            name: in_office_hour
+            type: INT
+        - column:
+            name: from_office_hour
+            type: INT
+        - column:
+            name: office_id
+            type: BIGINT
+        - column:
+            name: home_id
+            type: BIGINT
+        - column:
+            name: car_id
+            type: BIGINT
+        - column:
+            name: created
+            type: TIMESTAMP
+        - column:
+            name: password
+            type: VARCHAR(255)
+            constraints:
+              nullable: false
+# UK
+- changeSet:
+    id: 4
+    author: aloginov
+    changes:
+    - addUniqueConstraint:
+        constraintName: uk_user_email
+        tableName: app_user
+        columnNames: email
+# FK INDEXES
+- changeSet:
+    id: 5
+    author: aloginov
+    changes:
+    - createIndex:
+        indexName: fk_user_car_index
+        tableName: app_user
+        columns:
+        - column:
+            name: car_id
+- changeSet:
+    id: 6
+    author: aloginov
+    changes:
+    - createIndex:
+        indexName: fk_user_home_address_index
+        tableName: app_user
+        columns:
+        - column:
+            name: home_id
+- changeSet:
+    id: 7
+    author: aloginov
+    changes:
+    - createIndex:
+        indexName: fk_user_office_address_index
+        tableName: app_user
+        columns:
+        - column:
+            name: office_id
+# FK
+- changeSet:
+    id: 8
+    author: aloginov
+    changes:
+    - addForeignKeyConstraint:
+        constraintName: fk_user_home_address
+        baseTableName: app_user
+        baseColumnNames: home_id
+        referencedTableName: address
+        referencedColumnNames: id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: SET NULL
+        onUpdate: CASCADE
+- changeSet:
+    id: 9
+    author: aloginov
+    changes:
+    - addForeignKeyConstraint:
+        constraintName: fk_user_office_address
+        baseTableName: app_user
+        baseColumnNames: office_id
+        referencedTableName: address
+        referencedColumnNames: id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: SET NULL
+        onUpdate: CASCADE
+- changeSet:
+    id: 10
+    author: aloginov
+    changes:
+    - addForeignKeyConstraint:
+        constraintName: fk_user_car
+        baseTableName: app_user
+        baseColumnNames: car_id
+        referencedTableName: car
+        referencedColumnNames: id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: SET NULL
+        onUpdate: CASCADE
+
