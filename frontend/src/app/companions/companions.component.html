@@ -1,3 +1,32 @@
-<h1>Search for companions</h1>
+<md-toolbar>
+    <div [formGroup]="filterForm">
+        <div class="formRow">
+            <md-select placeholder="Office" [formControl]="filterForm.get('officeId')">
+                <md-option *ngFor="let office of offices" [value]="office.id">{{ office.address }}</md-option>
+            </md-select>
+            <md-input-container>
+                <input mdInput type="number" placeholder="Max Distance from Start (km)" [formControl]="filterForm.get('distanceKm')">
+            </md-input-container>
+        </div>
+        <div class="formRow">
+            <button md-raised-button (click)="search()">Search</button>
+        </div>
+    </div>
+</md-toolbar>
 
-Page TBD
+<table class="table table-striped" [rtList]="getUsers" #list="rtList">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Home</th>
+            <th>Office</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of list.items">
+            <td>{{user.name}}</td>
+            <td>{{user.home.address}}</td>
+            <td>{{officesById[user.officeId].address}}</td>
+        </tr>
+    </tbody>
+</table>

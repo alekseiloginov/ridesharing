@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MdSnackBar } from '@angular/material';
 
+import { Office } from '../rs-services/offices';
 import { Profile, ProfileService } from './profile.service';
-import { Office } from './offices.service';
 
 @Component({
     selector: 'profile',

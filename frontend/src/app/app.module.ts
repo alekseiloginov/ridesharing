@@ -25,7 +25,6 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { RsAppModule } from './rs-app';
 import { HomeComponent } from './home';
@@ -37,17 +36,20 @@ import { NoContentComponent } from './no-content';
 import { AuthenticationService, CanActivateRsappRouteGuardService } from './auth';
 import { LoginModule } from './login';
 import { AgmCoreModule } from '@agm/core';
+import { OfficesResolver, OfficesService, CurrentUserOfficeResolver } from './rs-services/offices';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
 const APP_PROVIDERS = [
-    ...APP_RESOLVER_PROVIDERS,
+    CurrentUserOfficeResolver,
     AppState,
     HomeService,
     AuthenticationService,
-    CanActivateRsappRouteGuardService
+    CanActivateRsappRouteGuardService,
+    OfficesService,
+    OfficesResolver
 ];
 
 type StoreType = {

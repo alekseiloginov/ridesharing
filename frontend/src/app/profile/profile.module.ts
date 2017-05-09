@@ -7,8 +7,6 @@ import { ProfileResolver } from './profile.resolver';
 import { AddressControlModule } from '../rs-components/address-control';
 import { ProfileService } from './profile.service';
 import { ProfileComponent } from './profile.component';
-import { OfficesResolver } from './offices.resolver';
-import { OfficesService } from './offices.service';
 
 @NgModule({
     imports: [
@@ -26,9 +24,7 @@ import { OfficesService } from './offices.service';
     ],
     providers: [
         ProfileService,
-        ProfileResolver,
-        OfficesService,
-        OfficesResolver
+        ProfileResolver
     ],
 })
 export class ProfileModule { }
