@@ -36,13 +36,14 @@ import { NoContentComponent } from './no-content';
 import { AuthenticationService, CanActivateRsappRouteGuardService } from './auth';
 import { LoginModule } from './login';
 import { AgmCoreModule } from '@agm/core';
-import { OfficesResolver, OfficesService } from './rs-services/offices';
+import { OfficesResolver, OfficesService, CurrentUserOfficeResolver } from './rs-services/offices';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
 // Application wide providers
 const APP_PROVIDERS = [
+    CurrentUserOfficeResolver,
     AppState,
     HomeService,
     AuthenticationService,
