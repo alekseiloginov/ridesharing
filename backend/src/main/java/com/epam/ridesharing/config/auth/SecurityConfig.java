@@ -23,7 +23,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .logout()
-                .logoutUrl("/api/logout");
+                .logoutUrl("/api/logout")
+                .and()
+                .headers().frameOptions().disable();
     }
 
     private Http401AuthenticationEntryPoint getEntryPoint() {
