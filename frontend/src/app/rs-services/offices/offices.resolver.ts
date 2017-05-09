@@ -7,9 +7,9 @@ import { Office, OfficesService } from './offices.service';
 @Injectable()
 export class OfficesResolver implements Resolve<Office[]> {
 
-    constructor(private officesServie: OfficesService) { }
+    constructor(private officesService: OfficesService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Office[]> {
-        return this.officesServie.getOffices();
+        return this.officesService.getOffices();
     }
 }

@@ -37,6 +37,7 @@ import { NoContentComponent } from './no-content';
 import { AuthenticationService, CanActivateRsappRouteGuardService } from './auth';
 import { LoginModule } from './login';
 import { AgmCoreModule } from '@agm/core';
+import { OfficesResolver, OfficesService } from './rs-services/offices';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -47,7 +48,9 @@ const APP_PROVIDERS = [
     AppState,
     HomeService,
     AuthenticationService,
-    CanActivateRsappRouteGuardService
+    CanActivateRsappRouteGuardService,
+    OfficesService,
+    OfficesResolver
 ];
 
 type StoreType = {
