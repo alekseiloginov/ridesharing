@@ -11,7 +11,6 @@ import { CanActivateRsappRouteGuardService } from './auth';
 import { OfficesResolver } from './rs-services/offices';
 
 import { LOGIN_PATH } from './app.routes.constants';
-import { DataResolver } from './app.resolver';
 
 export const ROUTES: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'rsapp' },
