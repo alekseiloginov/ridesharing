@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Entity(name = "app_user")
 @Getter
 @ToString(exclude = "password", callSuper = true)
 public class User extends AbstractEntity {
