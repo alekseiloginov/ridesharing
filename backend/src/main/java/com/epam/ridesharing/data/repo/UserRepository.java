@@ -31,7 +31,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     List<User> findByOfficeTypeAndOfficeAddress(@Param("type") Address.Type type, @Param("address") String address);
 
-    @Query(value = "SELECT * FROM user WHERE id IN" +
+    @Query(value = "SELECT * FROM app_user WHERE id IN" +
             "(" +
             "	SELECT user_id" +
             "	FROM" +
@@ -56,16 +56,16 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "			SELECT u.id AS user_id," +
             "			 latitude as lat1," +
             "			 longitude as lon1" +
-            "			FROM USER u, ADDRESS a" +
+            "			FROM app_user u, ADDRESS a" +
             "			WHERE a.type = 'HOME' and a.id = u.home_id and u.id != ?#{ principal?.id } and u.office_id = :officeId" +
             "		   )" +
             "		   OUTER JOIN" +
             "		   (" +
             "			SELECT longitude AS lon2," +
             "			 latitude AS lat2" +
-            "			FROM user" +
-            "			JOIN address a ON a.id = user.home_id" +
-            "			WHERE user.id = ?#{ principal?.id }" +
+            "			FROM app_user" +
+            "			JOIN address a ON a.id = app_user.home_id" +
+            "			WHERE app_user.id = ?#{ principal?.id }" +
             "		   )" +
             "		  )" +
             "		 )" +
