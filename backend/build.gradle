@@ -33,10 +33,12 @@ dependencies {
 	compile('javax.annotation:jsr250-api:1.0')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.data:spring-data-rest-hal-browser')
+	compile('org.liquibase:liquibase-core')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')
+	runtime('org.postgresql:postgresql')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
