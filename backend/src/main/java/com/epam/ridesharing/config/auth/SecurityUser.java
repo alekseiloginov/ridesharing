@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Data
 public class SecurityUser extends User {
