@@ -1,0 +1,12 @@
+<h1 md-dialog-title>{{data.title}}</h1>
+<div md-dialog-content>
+    <div [formGroup]="mainForm">
+        <div class="formRow">
+            <app-address-control [formControl]="mainForm.get('address')"></app-address-control>
+        </div>
+    </div>
+</div>
+<div md-dialog-actions>
+    <button md-raised-button color="primary" [disabled]="mainForm.invalid" (click)="dialogRef.close(mainForm.get('address').value)">{{data.primaryButtonLabel}}</button>
+    <button md-raised-button (click)="dialogRef.close(false)">Cancel</button>
+</div>

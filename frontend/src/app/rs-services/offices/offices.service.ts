@@ -14,6 +14,16 @@ export class OfficesService {
             .map(resp => resp.json()._embedded.addresses);
     }
 
+    remove(office: Office): Observable<Response> {
+        return this.http.delete(`api/addresses/${office.id}`)
+            .map(resp => resp.json());
+    }
+
+    update(office: Office): Observable<Response> {
+        return this.http.patch(`api/addresses/${office.id}`, office)
+            .map(resp => resp.json());
+    }
+
     getCurrentUserOffice(): Observable<string> {
         const userId = this.authStateService.getUser().id;
         return this.http.get(`api/users/${userId}/office`)
@@ -24,4 +34,6 @@ export class OfficesService {
 export interface Office {
     id: string;
     address: string;
+    latitude: number;
+    longitude: number;
 }

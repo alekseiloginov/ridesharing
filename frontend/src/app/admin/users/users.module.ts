@@ -4,10 +4,10 @@ import { MdIconModule, MdButtonModule, MdDialogModule, MdToolbarModule, MdSnackB
 
 import { RTListsModule } from 'right-angled';
 
+import { DeleteConfirmDialogModule } from '../../rs-components/delete-confirm-dialog';
 import { UserDetailModule } from './user-detail';
 import { UsersService } from './users.service';
 import { UsersComponent } from './users.component';
-import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component';
 
 @NgModule({
     imports: [
@@ -18,20 +18,17 @@ import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component'
         MdDialogModule,
         MdToolbarModule,
         MdSnackBarModule,
-        UserDetailModule
+        UserDetailModule,
+        DeleteConfirmDialogModule
     ],
     exports: [
         UsersComponent
     ],
     declarations: [
-        UsersComponent,
-        DeleteConfirmDialogComponent
+        UsersComponent
     ],
     providers: [
         UsersService
-    ],
-    entryComponents: [
-        DeleteConfirmDialogComponent
     ]
 })
 export class UsersModule { }

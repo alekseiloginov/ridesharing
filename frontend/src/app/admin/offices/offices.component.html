@@ -1,3 +1,23 @@
-<p>
-    offices works!
-</p>
+<md-toolbar>
+    <button md-raised-button color="primary" (click)="openCreateOfficeDialog()"><md-icon>add</md-icon> New Office</button>
+</md-toolbar>
+
+<table class="table table-striped" [rtList]="getOffices" #list="rtList">
+    <thead>
+        <tr>
+            <th>Address</th>
+            <th>Geo Coords</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let office of list.items">
+            <td>{{office.address}}</td>
+            <td>{{office.latitude}}, {{office.longitude}}</td>
+            <td>
+                <button md-icon-button (click)="openEditOfficeDialog(office)"><md-icon>mode_edit</md-icon></button>
+                <button md-icon-button color="warn" (click)="openDeleteConfirm(office)"><md-icon>delete</md-icon></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

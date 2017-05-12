@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MdDialog, MdSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
+import { DeleteConfirmDialogComponent } from '../../rs-components/delete-confirm-dialog';
 import { ROLES, User, UsersService } from './users.service';
-import { DeleteConfirmDialogComponent } from './delete-confirm-dialog.component';
 import { UserDetailComponent } from './user-detail';
 
 @Component({
@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
     }
 
     openDeleteConfirm(user: User) {
-        const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, { data: { user } });
+        const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, { data: { label: user.name } });
         dialogRef.afterClosed().subscribe((result: boolean) => {
             if (result) {
                 this.usersService.removeUser(user).subscribe(res => {
