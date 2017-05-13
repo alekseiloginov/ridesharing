@@ -13,7 +13,7 @@ class BasicUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmailIgnoreCaseAndActiveIsTrue(username);
+        User user = userRepository.findByEmailIgnoreCaseAndDisabledIsFalse(username);
         if (user == null) {
             throw new UsernameNotFoundException("unknown user");
         }
