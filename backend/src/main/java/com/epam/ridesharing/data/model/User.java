@@ -1,6 +1,6 @@
 package com.epam.ridesharing.data.model;
 
-import com.epam.ridesharing.auth.uimodel.BCryptPasswordDeserializer;
+import com.epam.ridesharing.auth.BCryptPasswordDeserializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;

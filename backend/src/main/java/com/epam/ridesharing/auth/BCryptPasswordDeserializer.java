@@ -1,4 +1,4 @@
-package com.epam.ridesharing.auth.uimodel;
+package com.epam.ridesharing.auth;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;

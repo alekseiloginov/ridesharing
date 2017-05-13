@@ -1,7 +1,7 @@
 package com.epam.ridesharing.auth.service;
 
-import com.epam.ridesharing.auth.uimodel.UserDto;
+import com.epam.ridesharing.data.projections.AuthProjection;
 
 public interface AuthService {
-    UserDto getUser(String email);
+    AuthProjection getUser(String email);
 }
