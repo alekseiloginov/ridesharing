@@ -1,14 +1,14 @@
 # Default file that is looked up by Spring Boot for Liquibase change log configuration
 databaseChangeLog:
 
-  # SQL - Postgres (make sure that the right profile is active)
+  # SQL - Postgres (make sure that the right DB profile is active)
 #  - include:
-#      file: classpath:/db/changelog/sql-backup/schema.postgresql.sql
+#      file: classpath:/db/changelog/00-init_schema.postgresql.sql
 #  - include:
-#      file: classpath:/db/changelog/sql-backup/data.sql
+#      file: classpath:/db/changelog/01-init_data.sql
 
-  # SQL - H2 (make sure that the right profile is active)
+  # SQL - H2 (make sure that the right DB profile is active)
   - include:
-      file: classpath:/db/changelog/sql-backup/schema.h2.sql
+      file: classpath:/db/changelog/00-init_schema.h2.sql
   - include:
-      file: classpath:/db/changelog/sql-backup/data.sql
+      file: classpath:/db/changelog/01-init_data.sql
