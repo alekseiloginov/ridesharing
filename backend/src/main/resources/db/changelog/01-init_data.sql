@@ -19,20 +19,23 @@ INSERT INTO car (id, free_seats) VALUES (1, 3);
 
 --changeset aloginov:3
 INSERT INTO app_user (
-  id, active, name, email, role, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
+  id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
 VALUES (
-  1, TRUE, 'Aleksei Loginov', 'Aleksei_Loginov@epam.com', 'ADMIN', '+7 904 556-82-17', FALSE, 12, 20, 1, 4, NULL, now(),
+  1, FALSE, 'Aleksei Loginov', 'Aleksei_Loginov@epam.com', 'ADMIN', TRUE, '+7 904 556-82-17', FALSE, 12, 20, 1, 4, NULL,
+  now(),
   '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
 INSERT INTO app_user (
-  id, active, name, email, role, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
+  id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
 VALUES (
-  2, TRUE, 'Aleksei Egorov', 'Aleksei_Egorov@epam.com', 'ADMIN', '+7 921 111-11-11', FALSE, 10, 19, 1, 5, NULL, now(),
+  2, FALSE, 'Aleksei Egorov', 'Aleksei_Egorov@epam.com', 'ADMIN', TRUE, '+7 921 111-11-11', FALSE, 10, 19, 1, 5, NULL,
+  now(),
   '$2a$10$POJ9JbGRLTQaKoktySlD9.ZOLgBPYzRjD/WBEIfpNgwFdjog/1hv6');
 
 INSERT INTO app_user (
-  id, active, name, email, role, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
+  id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
 VALUES (
-  3, TRUE, 'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', '+7 963 328-06-36', TRUE, 10, 20, 1, 6, 1,
+  3, FALSE, 'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', TRUE, '+7 963 328-06-36', TRUE, 10, 20, 1, 6,
+  1,
   now(), '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 

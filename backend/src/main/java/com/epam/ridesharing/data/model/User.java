@@ -32,6 +32,7 @@ public class User extends AbstractEntity {
     private Integer fromOfficeHour;
     private boolean driver;
     private boolean active;
+    private boolean disabled;
     private Date created;
 
     @Enumerated(EnumType.STRING)
