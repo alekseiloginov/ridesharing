@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Custom Spring Data repository for User entity.
@@ -23,7 +24,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
         // fetches relations in one query instead of n+1
     Page<User> findAll(Pageable pageable);
 
-    User findByEmailIgnoreCaseAndActiveIsTrue(@Param("email") String email);
+    Optional<User> findByEmailIgnoreCaseAndDisabledIsFalse(@Param("email") String email);
 
     List<User> findByDriver(@Param("driver") boolean driver);
 

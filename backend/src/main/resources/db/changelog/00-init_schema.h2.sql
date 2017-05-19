@@ -13,10 +13,11 @@ CREATE TABLE ADDRESS (
 --changeset aloginov:2
 CREATE TABLE APP_USER (
   ID               BIGINT (19) AUTO_INCREMENT NOT NULL,
-  ACTIVE           BOOLEAN (1) NOT NULL,
+  DISABLED         BOOLEAN      NOT NULL,
   NAME             VARCHAR(255),
   EMAIL            VARCHAR(255) NOT NULL,
   ROLE             VARCHAR(255),
+  ACTIVE           BOOLEAN (1) NOT NULL,
   PHONE            VARCHAR(255),
   DRIVER           BOOLEAN (1) NOT NULL,
   IN_OFFICE_HOUR   INT(10),
