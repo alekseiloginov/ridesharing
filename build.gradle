@@ -22,3 +22,7 @@ tasks.getByPath(':frontend:buildProd').shouldRunAfter cleanWebapp
 copyFrontend.shouldRunAfter ':frontend:buildProd'
 tasks.getByPath(':backend:build').shouldRunAfter copyFrontend
 
+task runTests {
+}
+runTests.dependsOn(':backend:test', ':backend:integrationTest')
+
