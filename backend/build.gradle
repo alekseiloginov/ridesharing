@@ -56,7 +56,8 @@ dependencies {
 			'org.springframework.data:spring-data-rest-hal-browser',
 			'org.liquibase:liquibase-core',
 			'org.springframework.boot:spring-boot-starter-web',
-			'org.springframework.boot:spring-boot-starter-actuator'
+			'org.springframework.boot:spring-boot-starter-actuator',
+			'org.modelmapper:modelmapper:0.7.8'
 
 	runtime 'org.springframework.boot:spring-boot-devtools',
 			'com.h2database:h2',
