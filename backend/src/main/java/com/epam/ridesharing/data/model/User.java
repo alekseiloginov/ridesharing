@@ -18,30 +18,35 @@ public class User extends AbstractEntity {
 
     @Email
     @NotBlank
-    @Column(unique = true)
+    @Column(unique = true, nullable = false) // for db constraint @NotBlank is not enough
     private String email;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonDeserialize(using = BCryptPasswordDeserializer.class)
     @NotBlank
+    @Column(nullable = false) // for db constraint @NotBlank is not enough
     private String password;
 
     private String name;
     private String phone;
-    private Integer inOfficeHour;
-    private Integer fromOfficeHour;
     private boolean driver;
     private boolean active;
     private boolean disabled;
     private Date created;
 
+    @Column(name = "in_office_hour") // explicitly state the column name
+    private Integer inOfficeHour;
+
+    @Column(name = "from_office_hour") // explicitly state the column name
+    private Integer fromOfficeHour;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL) // cause based on unique coordinates rater than on address
+    @OneToOne(cascade = CascadeType.ALL) // CascadeType.ALL cause based on unique coordinates rater than on address
     private Address home;
 
-    @ManyToOne(cascade = CascadeType.MERGE) // to avoid dupes in db
+    @ManyToOne(cascade = CascadeType.MERGE) // CascadeType.MERGE to avoid duplicates in db
     private Address office;
 
     @OneToOne(cascade = CascadeType.ALL)
