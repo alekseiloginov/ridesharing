@@ -59,18 +59,18 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "			 longitude as lon1" +
             "			FROM app_user u, ADDRESS a" +
             "			WHERE a.type = 'HOME' and a.id = u.home_id and u.id != ?#{ principal?.id } and u.office_id = :officeId" +
-            "		   )" +
-            "		   OUTER JOIN" +
+            "		   ) as l1" +
+            "		   JOIN" +
             "		   (" +
             "			SELECT longitude AS lon2," +
             "			 latitude AS lat2" +
             "			FROM app_user" +
             "			JOIN address a ON a.id = app_user.home_id" +
             "			WHERE app_user.id = ?#{ principal?.id }" +
-            "		   )" +
-            "		  )" +
-            "		 )" +
-            "		)" +
+            "		   ) as l2 ON lon1 != lon2 AND lat1 != lat2" +
+            "		  ) as l" +
+            "		 ) as ll" +
+            "		) as lll" +
             "	) res" +
             "	WHERE res.distance < :distanceKm" +
             ")",
