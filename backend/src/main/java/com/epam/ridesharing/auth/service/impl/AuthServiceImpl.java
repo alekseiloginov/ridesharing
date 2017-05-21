@@ -20,7 +20,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public UserDto getUser(String email) {
         // TODO: is it possible to make this extraction more elegant with spring data projections?
-        User user = userRepository.findByEmailIgnoreCaseAndDisabledIsFalse(email)
+        User user = userRepository.findByEmailIgnoreCaseAndDisabledFalse(email)
                 .orElseThrow(() -> new ResourceNotFoundException(email));
 
         UserDto userDto = modelMapper.map(user, UserDto.class);

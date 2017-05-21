@@ -14,7 +14,7 @@ class BasicUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmailIgnoreCaseAndDisabledIsFalse(username)
+        User user = userRepository.findByEmailIgnoreCaseAndDisabledFalse(username)
                 .orElseThrow(() -> new ResourceNotFoundException("unknown user"));
         return new SecurityUser(user);
     }

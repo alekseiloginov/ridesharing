@@ -24,7 +24,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
         // fetches relations in one query instead of n+1
     Page<User> findAll(Pageable pageable);
 
-    Optional<User> findByEmailIgnoreCaseAndDisabledIsFalse(@Param("email") String email);
+    Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
 
     List<User> findByDriver(@Param("driver") boolean driver);
 
