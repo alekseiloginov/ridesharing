@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -23,6 +24,30 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @EntityGraph(attributePaths = {"home", "office", "car"})
         // fetches relations in one query instead of n+1
     Page<User> findAll(Pageable pageable);
+
+    @Override
+    @PreAuthorize("(#user?.email == principal.username and hasRole('USER')) or hasRole('ADMIN')")
+    User save(@Param("user") User user);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    <S extends User> Iterable<S> save(Iterable<S> entities);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(Long aLong);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(@Param("user") User user);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(Iterable<? extends User> entities);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    void deleteAll();
 
     Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
 
