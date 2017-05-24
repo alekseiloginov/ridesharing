@@ -15,6 +15,10 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     List<Address> findByType(@Param("type") Address.Type type);
 
     @Override
+    @PreAuthorize("(isOwnerAuthenticates(#address) and hasRole('USER')) or hasRole('ADMIN')")
+    <S extends Address> S save(@Param("address") S address);
+
+    @Override
     @PreAuthorize("hasRole('ADMIN')")
     <S extends Address> Iterable<S> save(Iterable<S> entities);
 

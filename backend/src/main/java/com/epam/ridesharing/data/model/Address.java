@@ -3,10 +3,7 @@ package com.epam.ridesharing.data.model;
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,6 +19,10 @@ public class Address extends AbstractEntity {
     private double longitude;
 
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    private User user;
 
     public enum Type {
         HOME, OFFICE
