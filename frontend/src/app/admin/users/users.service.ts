@@ -34,6 +34,7 @@ export interface User {
     name: string;
     email: string;
     active: boolean;
+    driver: boolean;
 }
 
 export const ROLES = [

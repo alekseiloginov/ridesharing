@@ -20,6 +20,9 @@
             </md-input-container>
         </div>
         <div class="formRow">
+            <md-checkbox [formControl]="userForm.get('driver')">Is Driver</md-checkbox>
+        </div>
+        <div class="formRow">
             <md-checkbox [formControl]="userForm.get('active')">Is Active</md-checkbox>
         </div>
         <div class="formRow">

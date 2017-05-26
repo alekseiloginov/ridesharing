@@ -8,6 +8,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Roles</th>
+            <th>Driver</th>
             <th>Active</th>
             <th>Action</th>
         </tr>
@@ -17,6 +18,10 @@
             <td>{{user.name}}</td>
             <td>{{user.email}}</td>
             <td>{{ROLES[user.role].label}}</td>
+            <td>
+                <md-icon *ngIf="user.driver">check_box</md-icon>
+                <md-icon *ngIf="!user.driver">check_box_outline_blank</md-icon>
+            </td>
             <td>
                 <md-icon *ngIf="user.active">check_box</md-icon>
                 <md-icon *ngIf="!user.active">check_box_outline_blank</md-icon>

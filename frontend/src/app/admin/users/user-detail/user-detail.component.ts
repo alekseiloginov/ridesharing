@@ -30,6 +30,7 @@ export class UserDetailComponent implements OnInit {
             doSetPassword: [true],
             password: ['', Validators.required],
             repeatPassword: '',
+            driver: [false],
             active: [false],
             role: ['', Validators.required]
         });
