@@ -83,7 +83,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "			 latitude as lat1," +
             "			 longitude as lon1" +
             "			FROM app_user u, ADDRESS a" +
-            "			WHERE a.type = 'HOME' and a.id = u.home_id and u.id != ?#{ principal?.id } and u.office_id = :officeId" +
+            "			WHERE a.type = 'HOME' and a.id = u.home_id and u.id != ?#{ principal?.id } and u.office_id = ?2" +
             "		   ) as l1" +
             "		   JOIN" +
             "		   (" +
@@ -97,7 +97,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "		 ) as ll" +
             "		) as lll" +
             "	) res" +
-            "	WHERE res.distance < :distanceKm" +
+            "	WHERE res.distance < ?1" +
             ")",
             nativeQuery = true)
     List<User> findByDistanceFromHomeAndOffice(@Param("distanceKm") double distanceKm, @Param("officeId") long officeId);
