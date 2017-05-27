@@ -1,6 +1,5 @@
 package com.epam.ridesharing.data.repo;
 
-import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.security.RolesAllowed;
 import java.util.List;
@@ -17,45 +17,10 @@ import java.util.Optional;
 /**
  * Custom Spring Data repository for User entity.
  */
+@Transactional(readOnly = true) // override it for modifying methods
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    @Override
-    @RolesAllowed("ADMIN")
-    @EntityGraph(attributePaths = {"home", "office", "car"})
-        // fetches relations in one query instead of n+1
-    Page<User> findAll(Pageable pageable);
-
-    @Override
-    @PreAuthorize("(#user?.email == principal.username and hasRole('USER')) or hasRole('ADMIN')")
-    User save(@Param("user") User user);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    <S extends User> Iterable<S> save(Iterable<S> entities);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    void delete(Long aLong);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    void delete(@Param("user") User user);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    void delete(Iterable<? extends User> entities);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    void deleteAll();
-
     Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
-
-    List<User> findByDriver(@Param("driver") boolean driver);
-
-    List<User> findByActive(@Param("active") boolean active);
-
-    List<User> findByOfficeTypeAndOfficeAddress(@Param("type") Address.Type type, @Param("address") String address);
 
     @Query(value = "SELECT * FROM app_user WHERE id IN" +
             "(" +
@@ -80,11 +45,11 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "		   SELECT * FROM" +
             "		   (" +
             "			SELECT u.id AS user_id," +
-            "			 latitude as lat1," +
-            "			 longitude as lon1" +
+            "			 latitude AS lat1," +
+            "			 longitude AS lon1" +
             "			FROM app_user u, ADDRESS a" +
-            "			WHERE a.type = 'HOME' and a.id = u.home_id and u.id != ?#{ principal?.id } and u.office_id = ?2" +
-            "		   ) as l1" +
+            "			WHERE a.type = 'HOME' AND a.id = u.home_id AND u.id != ?#{ principal?.id } AND u.office_id = ?2" +
+            "		   ) AS l1" +
             "		   JOIN" +
             "		   (" +
             "			SELECT longitude AS lon2," +
@@ -92,13 +57,52 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "			FROM app_user" +
             "			JOIN address a ON a.id = app_user.home_id" +
             "			WHERE app_user.id = ?#{ principal?.id }" +
-            "		   ) as l2 ON lon1 != lon2 AND lat1 != lat2" +
-            "		  ) as l" +
-            "		 ) as ll" +
-            "		) as lll" +
+            "		   ) AS l2 ON lon1 != lon2 AND lat1 != lat2" +
+            "		  ) AS l" +
+            "		 ) AS ll" +
+            "		) AS lll" +
             "	) res" +
             "	WHERE res.distance < ?1" +
             ")",
             nativeQuery = true)
     List<User> findByDistanceFromHomeAndOffice(@Param("distanceKm") double distanceKm, @Param("officeId") long officeId);
+
+
+    // OVERRIDEN METHODS //
+
+    @Override
+    @RolesAllowed("ADMIN")
+    // fetches relations in one query instead of n+1
+    @EntityGraph(attributePaths = {"home", "office", "car"})
+    Page<User> findAll(Pageable pageable);
+
+    @Override
+    @Transactional
+    @PreAuthorize("(#user?.email == principal.username and hasRole('USER')) or hasRole('ADMIN')")
+    <U extends User> U save(@Param("user") U user);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    <U extends User> Iterable<U> save(Iterable<U> users);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(Long aLong);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(@Param("user") User user);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(Iterable<? extends User> entities);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    void deleteAll();
 }
