@@ -3,9 +3,7 @@ package com.epam.ridesharing.config;
 import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.Car;
 import com.epam.ridesharing.data.model.User;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
@@ -18,13 +16,5 @@ public class SpringConfiguration extends RepositoryRestMvcConfiguration {
     @Override
     public RepositoryRestConfiguration config() {
         return super.config().exposeIdsFor(Address.class, User.class, Car.class).setBasePath("/api");
-    }
-
-    /**
-     * Proxy factory to be able to create projections manually.
-     */
-    @Bean
-    public SpelAwareProxyProjectionFactory projectionFactory() {
-        return new SpelAwareProxyProjectionFactory();
     }
 }

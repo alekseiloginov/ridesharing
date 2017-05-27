@@ -2,6 +2,7 @@ package com.epam.ridesharing.data.repo;
 
 import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.User;
+import com.epam.ridesharing.data.projections.AuthProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -24,6 +25,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     Page<User> findAll(Pageable pageable);
 
     User findByEmailIgnoreCaseAndDisabledIsFalse(@Param("email") String email);
+
+    AuthProjection findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
 
     List<User> findByDriver(@Param("driver") boolean driver);
 
