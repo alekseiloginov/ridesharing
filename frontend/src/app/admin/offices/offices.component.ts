@@ -31,7 +31,7 @@ export class OfficesComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result: boolean) => {
             if (result) {
                 this.officesService.remove(office).subscribe(res => {
-                    this.snackBar.open('User has been removed.', 'OK');
+                    this.snackBar.open('Office has been removed.', 'OK');
                     this.listTable.reloadData();
                 });
             }
@@ -39,6 +39,29 @@ export class OfficesComponent implements OnInit {
     }
 
     openCreateOfficeDialog() {
+        var office: Office =  {
+             id: null,
+             address: 'Nevskiy prospekt',
+             latitude: 59.9325367,
+             longitude: 30.3475981,
+             type: 'OFFICE'
+            };
+        const dialogRef = this.dialog.open(OfficeDetailComponent, {
+            width: '800px',
+            data: {
+                office,
+                primaryButtonLabel: 'Create',
+                title: 'Create Office'
+            }
+        });
+        dialogRef.afterClosed().subscribe((office: Office) => {
+            if (office) {
+                this.officesService.create(office).subscribe(res => {
+                    this.snackBar.open('Office has been created.', 'OK');
+                    this.listTable.reloadData();
+                });
+            }
+        });
     }
 
     openEditOfficeDialog(office: Office) {

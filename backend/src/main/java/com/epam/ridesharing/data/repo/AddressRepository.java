@@ -20,6 +20,10 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
     @Override
     @PreAuthorize("hasRole('ADMIN')")
+    Address save(@Param("address") Address address);
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
     void delete(Long aLong);
 
     @Override

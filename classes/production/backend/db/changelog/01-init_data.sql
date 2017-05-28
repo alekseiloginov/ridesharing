@@ -13,12 +13,9 @@ INSERT INTO address (id, type, address, latitude, longitude)
 VALUES (5, 'HOME', 'Petergofskoe av, 45', 59.849097, 30.152099);
 INSERT INTO address (id, type, address, latitude, longitude)
 VALUES (6, 'HOME', 'Kommunarov, 114, SPB, RU', 59.78433, 30.147422);
-INSERT INTO address (id, type, address, latitude, longitude)
-VALUES (7, 'HOME', 'Voronezhskaya, 5, SPB, RU', 59.918165, 30.348719);
 
 --changeset aloginov:2
 INSERT INTO car (id, free_seats) VALUES (1, 3);
-INSERT INTO car (id, free_seats) VALUES (2, 2);
 
 --changeset aloginov:3
 INSERT INTO app_user (
@@ -41,11 +38,4 @@ VALUES (
   3, FALSE, 'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', TRUE, '+7 963 328-06-36', TRUE, 10, 20, 1, 6,
   1,
   now(), '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
-
-  INSERT INTO app_user (
-    id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
-  VALUES (
-    4, FALSE, 'Oksana Kurilkina', 'Oksana_Kurilkina@epam.com', 'ADMIN', TRUE, '+7 911 962-05-01', TRUE, 11, 19, 1, 7,
-    2,
-    now(), '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm');
 

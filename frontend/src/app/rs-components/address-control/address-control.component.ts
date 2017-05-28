@@ -23,6 +23,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     addressForm: FormGroup;
     lat: number;
     lng: number;
+    type: string;
 
     propagateChange: (_: Address) => void;
 
@@ -39,7 +40,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             id: '',
             address: '',
             latitude: '',
-            longitude: ''
+            longitude: '',
+            type: ''
         });
         this.addressForm.valueChanges.subscribe(() => {
             this.propagateChange(this.addressForm.value);
@@ -102,4 +104,5 @@ export interface Address {
     latitude: number;
     longitude: number;
     address: string;
+    type: string;
 }

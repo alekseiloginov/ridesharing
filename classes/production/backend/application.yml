@@ -1,0 +1,54 @@
+# You can specify multiple profile-specific YAML documents in a single file by using a spring.profiles key
+# to indicate when the document applies.
+
+spring.profiles:
+    active: DEV, H2, LIQUIBASE
+#    active: DEV, POSTGRES, DDL-AUTO
+---
+spring:
+    profiles: DEV
+    jpa.properties.hibernate.format_sql: true
+server:
+    address: 127.0.0.1
+    port: 5000
+debug: true
+logging.level.org.hibernate: DEBUG
+logging.level.org.hibernate.type: TRACE
+management.security.roles: ADMIN
+---
+spring:
+    profiles: POSTGRES
+    datasource:
+        url: jdbc:postgresql://localhost/ridesharing
+---
+spring:
+    profiles: H2
+# comment this 4 lines to use default in-mem DB, uncomment to use disc-based DB
+#    datasource:
+#        url: jdbc:h2:/opt/h2/ridesharing
+#        username: SA
+#        password: SA
+---
+spring:
+    profiles: LIQUIBASE
+#    Spring Boot chooses a default value for you based on whether it thinks your
+#    database is embedded (h2: default create-drop) or not (postgresql: default none).
+    jpa.hibernate.ddl-auto: none
+liquibase.drop-first: true # Drop the database schema first
+#liquibase.change-log: classpath:/db/changelog/db.changelog-master.yaml # default value
+---
+spring:
+    profiles: DDL-AUTO
+    jpa.hibernate.ddl-auto: create # to create schema on-the-fly from annotations
+liquibase.enabled: false
+
+---
+spring:
+    profiles: PROD
+server:
+    address: http://sample-env-2.ucqmtaxisy.eu-central-1.elasticbeanstalk.com
+    port: 5000 # default port for aws beanstalk (if not provided, it's 8080)
+logging: # spring boot considers either file or path property, not both.
+    file: rsa-spring.log
+#    path: logs/spring-boot/
+

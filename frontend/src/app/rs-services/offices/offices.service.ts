@@ -29,6 +29,11 @@ export class OfficesService {
         return this.http.get(`api/users/${userId}/office`)
             .map(resp => resp.json().id);
     }
+
+    create(office: Office): Observable<Response> {
+        return this.http.post(`api/addresses`, office)
+            .map(resp => resp.json());
+    }
 }
 
 export interface Office {
@@ -36,4 +41,5 @@ export interface Office {
     address: string;
     latitude: number;
     longitude: number;
+    type: string;
 }
