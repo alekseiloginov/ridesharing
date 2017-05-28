@@ -89,7 +89,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    void delete(Long aLong);
+    void delete(Long id);
 
     @Override
     @Transactional
@@ -99,7 +99,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    void delete(Iterable<? extends User> entities);
+    void delete(Iterable<? extends User> users);
 
     @Override
     @Transactional

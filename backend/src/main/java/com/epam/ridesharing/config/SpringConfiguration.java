@@ -6,6 +6,7 @@ import com.epam.ridesharing.data.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
@@ -13,6 +14,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
  * Custom Spring configuration.
  */
 @Configuration
+@EnableJpaAuditing
 public class SpringConfiguration extends RepositoryRestMvcConfiguration {
 
     @Override

@@ -22,26 +22,27 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    <S extends Address> Iterable<S> save(Iterable<S> entities);
+    <A extends Address> A save(@Param("address") A address);
 
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    Address save(@Param("address") Address address);
-
-    @Override
-    @PreAuthorize("hasRole('ADMIN')")
-    void delete(Long aLong);
+    <A extends Address> Iterable<A> save(Iterable<A> addresses);
 
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    void delete(Address entity);
+    void delete(Long id);
 
     @Override
     @Transactional
     @PreAuthorize("hasRole('ADMIN')")
-    void delete(Iterable<? extends Address> entities);
+    void delete(Address address);
+
+    @Override
+    @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
+    void delete(Iterable<? extends Address> addresses);
 
     @Override
     @Transactional
