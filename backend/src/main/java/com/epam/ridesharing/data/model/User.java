@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity(name = "app_user")
 @Getter
@@ -32,7 +31,6 @@ public class User extends AbstractEntity {
     private boolean driver;
     private boolean active;
     private boolean disabled;
-    private Date created;
 
     @Column(name = "in_office_hour") // explicitly state the column name
     private Integer inOfficeHour;
@@ -51,10 +49,6 @@ public class User extends AbstractEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
-
-    public void setCreated(Date created) {
-        this.created = created != null ? created : new Date();
-    }
 
     public enum Role {
         ADMIN, MANAGER, USER

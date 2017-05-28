@@ -2,38 +2,43 @@
 
 --changeset aloginov:1
 CREATE TABLE address (
-  id        BIGSERIAL    NOT NULL,
-  type      VARCHAR(255) NOT NULL,
+  id        BIGSERIAL                                 NOT NULL,
+  type      VARCHAR(255)                              NOT NULL,
   address   VARCHAR(255),
-  latitude  FLOAT8       NOT NULL,
-  longitude FLOAT8       NOT NULL,
+  latitude  FLOAT8                                    NOT NULL,
+  longitude FLOAT8                                    NOT NULL,
+  created   TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+  modified  TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT address_pkey PRIMARY KEY (id)
 );
 
 --changeset aloginov:2
 CREATE TABLE app_user (
-  id               BIGSERIAL    NOT NULL,
-  disabled         BOOLEAN      NOT NULL,
+  id               BIGSERIAL                                 NOT NULL,
+  disabled         BOOLEAN                                   NOT NULL,
   name             VARCHAR(255),
-  email            VARCHAR(255) NOT NULL,
+  email            VARCHAR(255)                              NOT NULL,
   role             VARCHAR(255),
-  active           BOOLEAN      NOT NULL,
+  active           BOOLEAN                                   NOT NULL,
   phone            VARCHAR(255),
-  driver           BOOLEAN      NOT NULL,
+  driver           BOOLEAN                                   NOT NULL,
   in_office_hour   INT,
   from_office_hour INT,
   office_id        BIGINT,
   home_id          BIGINT,
   car_id           BIGINT,
-  created          TIMESTAMP WITHOUT TIME ZONE,
-  password         VARCHAR(255) NOT NULL,
+  password         VARCHAR(255)                              NOT NULL,
+  created          TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+  modified         TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT app_user_pkey PRIMARY KEY (id)
 );
 
 --changeset aloginov:3
 CREATE TABLE car (
-  id         BIGSERIAL NOT NULL,
+  id         BIGSERIAL                                 NOT NULL,
   free_seats INT,
+  created    TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
+  modified   TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT car_pkey PRIMARY KEY (id)
 );
 
