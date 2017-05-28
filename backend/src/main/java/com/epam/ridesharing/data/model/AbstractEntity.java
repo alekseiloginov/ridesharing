@@ -22,7 +22,7 @@ class AbstractEntity {
     private Long id;
 
     @CreatedDate
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private Date created;
 
     @LastModifiedDate
