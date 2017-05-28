@@ -18,6 +18,9 @@
         <app-address-control [formControl]="profileForm.get('home')"></app-address-control>
     </div>
     <div class="formRow">
+        <md-checkbox [formControl]="profileForm.get('driver')">Is Driver</md-checkbox>
+    </div>
+    <div class="formRow">
         <button md-raised-button [disabled]="profileForm.invalid" (click)="updateProfile()">Update</button>
     </div>
 </div>

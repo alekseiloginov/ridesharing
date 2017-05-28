@@ -14,6 +14,7 @@ public interface ProfileProjection {
     String getName();
     String getPhone();
     Address getHome();
+    boolean isDriver();
 
     @Value("api/addresses/#{target.office.id}")
     String getOffice();

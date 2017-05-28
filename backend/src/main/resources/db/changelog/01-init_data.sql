@@ -42,10 +42,10 @@ VALUES (
   1,
   now(), '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
-  INSERT INTO app_user (
-    id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
-  VALUES (
-    4, FALSE, 'Oksana Kurilkina', 'Oksana_Kurilkina@epam.com', 'ADMIN', TRUE, '+7 911 962-05-01', TRUE, 11, 19, 1, 7,
-    2,
-    now(), '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm');
+INSERT INTO app_user (
+  id, disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, created, password)
+VALUES (
+  4, FALSE, 'Oksana Kurilkina', 'Oksana_Kurilkina@epam.com', 'ADMIN', TRUE, '+7 911 962-05-01', TRUE, 11, 19, 1, 7,
+  2,
+  now(), '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm');
 
