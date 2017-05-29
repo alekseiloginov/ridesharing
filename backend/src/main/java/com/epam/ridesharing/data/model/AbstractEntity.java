@@ -13,7 +13,7 @@ import java.util.Date;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-@ToString
+@ToString(exclude = {"created", "modified"})
 @EqualsAndHashCode
 class AbstractEntity {
 
