@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 /**
- * Projection interface to render User office and home addresses instead of REST links.
+ * Projection interface to expose user profile-specific attributes of User entity.
  */
 @Projection(name = "profile", types = User.class)
 public interface ProfileProjection {
