@@ -25,7 +25,8 @@ export class ProfileComponent implements OnInit {
             phone: '',
             office: '',
             home: '',
-            driver: [false]
+            driver: [false],
+            active: [false]
         });
     }
 

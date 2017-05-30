@@ -31,4 +31,6 @@ export interface Profile {
     phone: string;
     home: Address;
     office: string;
+    driver: boolean;
+    active: boolean;
 }
