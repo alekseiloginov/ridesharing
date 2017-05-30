@@ -1,9 +1,11 @@
 # You can specify multiple profile-specific YAML documents in a single file by using a spring.profiles key
 # to indicate when the document applies.
 
-spring.profiles: # ! changing the DB don't forget to change it in 'db.changelog-master.yaml' too !
-    active: DEV, H2, LIQUIBASE
-#    active: DEV, POSTGRES, DDL-AUTO
+# common settings:
+spring: # ! changing the DB don't forget to change it in 'db.changelog-master.yaml' too !
+    profiles.active: DEV, H2, LIQUIBASE
+#    profiles.active: DEV, POSTGRES, DDL-AUTO
+    data.rest.basePath: /api
 ---
 spring:
     profiles: DEV
