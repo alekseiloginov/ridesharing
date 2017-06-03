@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,8 @@ import java.util.Optional;
 @Transactional(readOnly = true) // override it for modifying methods
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
+    @RestResource(exported = false)
+    Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email); // for login/security purposes only
 
     @Query(value = "SELECT * FROM app_user WHERE id IN" +
             "(" +
