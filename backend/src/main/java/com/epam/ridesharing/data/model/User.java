@@ -41,13 +41,14 @@ public class User extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL) // CascadeType.ALL cause based on unique coordinates rater than on address
+    // CascadeType.ALL because home is based on unique coordinates rater than on address name
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Address home;
 
     @ManyToOne(cascade = CascadeType.MERGE) // CascadeType.MERGE to avoid duplicates in db
     private Address office;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Car car;
 
     public enum Role {
