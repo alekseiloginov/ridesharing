@@ -1,4 +1,4 @@
-package com.epam.ridesharing.data.model.web;
+package com.epam.ridesharing.data.model.projection;
 
 import com.epam.ridesharing.data.model.Address;
 import com.epam.ridesharing.data.model.User;
