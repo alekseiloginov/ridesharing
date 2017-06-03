@@ -1,5 +1,6 @@
 package com.epam.ridesharing.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -23,9 +24,11 @@ class AbstractEntity {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
+    @JsonIgnore
     private Date created;
 
     @LastModifiedDate
     @Column(nullable = false)
+    @JsonIgnore
     private Date modified;
 }
