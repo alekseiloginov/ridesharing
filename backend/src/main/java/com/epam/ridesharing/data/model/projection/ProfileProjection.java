@@ -18,7 +18,7 @@ public interface ProfileProjection {
     boolean isActive();
 
     @Value("api/addresses/#{target.office.id}")
-    String getOffice();
+    String getOfficeUri();
 
     @Value("#{target.office.id}")
     String getOfficeId();
