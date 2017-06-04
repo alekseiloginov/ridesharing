@@ -18,7 +18,11 @@ export class ProfileService {
 
     updatePrifle(profile: Profile): Observable<Response[]> {
         return Observable.zip(
-            this.http.patch('api/users/' + this.authStateService.getUser().id, { ...profile, home: undefined })
+            this.http.patch('api/users/' + this.authStateService.getUser().id, {
+                ...profile,
+                office: profile.officeUri,
+                home: undefined
+            })
                 .map(resp => resp.json()),
             this.http.patch('api/addresses/' + profile.home.id, profile.home)
                 .map(resp => resp.json())
