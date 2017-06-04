@@ -14,9 +14,9 @@ export class OfficeDetailComponent implements OnInit {
     mainForm: FormGroup;
 
     constructor(public dialogRef: MdDialogRef<OfficeDetailComponent>,
-                @Inject(MD_DIALOG_DATA) public data: { officeUri?: Office, primaryButtonLabel: string, title: string },
+                @Inject(MD_DIALOG_DATA) public data: { office?: Office, primaryButtonLabel: string, title: string },
                 fb: FormBuilder) {
-        this.setupForm(fb, data.officeUri);
+        this.setupForm(fb, data.office);
     }
 
     ngOnInit() { }
