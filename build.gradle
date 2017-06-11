@@ -15,9 +15,9 @@ task cleanWebapp(type: Delete) {
 	delete targetFrontendDir
 }
 
-task buildProd {}
+task stage {}
 
-buildProd.dependsOn([cleanWebapp, ':frontend:buildProd', copyFrontend, ':backend:build'])
+stage.dependsOn([cleanWebapp, ':frontend:buildProd', copyFrontend, ':backend:build'])
 tasks.getByPath(':frontend:buildProd').shouldRunAfter cleanWebapp
 copyFrontend.shouldRunAfter ':frontend:buildProd'
 tasks.getByPath(':backend:build').shouldRunAfter copyFrontend
