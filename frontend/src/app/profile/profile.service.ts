@@ -1,9 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
-import {Observable} from "rxjs/Rx";
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
-import {AuthStateService} from "../auth";
-import {Address} from "../rs-components/address-control";
+import { AuthStateService } from '../auth';
+import { Address } from '../rs-components/address-control';
 
 @Injectable()
 export class ProfileService {

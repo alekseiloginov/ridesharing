@@ -27,6 +27,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     type: string;
     public searchControl: FormControl;
     public zoom: number;
+    public map: GoogleMap;
 
     @ViewChild('search')
     public searchElementRef: ElementRef;
@@ -39,7 +40,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
     ngOnInit() {
         this.propagateChange = () => { };
-        
+
         // create search FormControl
         this.searchControl = new FormControl();
 
@@ -60,9 +61,10 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
                 }
 
                 // set latitude, longitude and zoom
-                this.lat = place.geometry.location.lat();
-                this.lng = place.geometry.location.lng();
-                this.zoom = 12;
+                this.setCoords(this.lng = place.geometry.location.lng(), this.lat = place.geometry.location.lat());
+                this.updateFormCoords();
+                this.setZoom(12);
+                this.setCenter();
                 });
             });
         });
@@ -97,6 +99,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         this.setCoords(this.lng, this.lat);
         map.setCenter(coords);
         // map.data;
+        this.map = map;
     }
 
     mapClick($event: MouseEvent) {
@@ -111,6 +114,17 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         this.lng = +lng;
         this.lat = +lat;
         console.log('new coords: ', this.lng, this.lat);
+    }
+
+    updateFormCoords() {
+        this.addressForm.get('latitude').setValue(this.lat);
+        this.addressForm.get('longitude').setValue(this.lng);
+    }
+
+    setZoom(zoom) {
+        if (!!zoom) {
+            this.zoom = zoom;
+        }
     }
 
     writeValue(obj: Address): void {
@@ -129,6 +143,15 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
     setDisabledState(isDisabled: boolean): void {
         throw new Error('Method not implemented.');
+    }
+
+    setCenter() {
+        if (!this.map) {
+            return;
+        }
+
+        const coords: LatLngLiteral = { lat: +this.lat, lng: +this.lng };
+        this.map.setCenter(coords);
     }
 }
 
