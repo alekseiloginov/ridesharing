@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MdInputModule, MdButtonModule, MdSnackBarModule, MdSelectModule, MdSlideToggleModule} from '@angular/material';
+import {
+    MdInputModule, MdButtonModule, MdSnackBarModule, MdSelectModule, MdSlideToggleModule
+} from '@angular/material';
 
 import { ProfileResolver } from './profile.resolver';
 import { AddressControlModule } from '../rs-components/address-control';

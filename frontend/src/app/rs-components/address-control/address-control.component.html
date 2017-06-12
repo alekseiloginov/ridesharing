@@ -5,7 +5,7 @@
 <div [formGroup]="addressForm">
     <div class="formRow">
         <md-input-container>
-            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')">
+            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')" #search autocorrect="off" autocapitalize="off" spellcheck="off">
         </md-input-container>
     </div>
     <div class="formRow">

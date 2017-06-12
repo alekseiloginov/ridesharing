@@ -1,10 +1,11 @@
-import { Component, OnInit, forwardRef, ElementRef, Self, Renderer } from '@angular/core';
+import { Component, OnInit, forwardRef, ElementRef, Self, Renderer, NgZone, ViewChild } from '@angular/core';
 import {
-    ControlValueAccessor, FormBuilder, FormGroup, DefaultValueAccessor, NgControl, NG_VALUE_ACCESSOR
+    ControlValueAccessor, FormBuilder, FormGroup, DefaultValueAccessor, NgControl, NG_VALUE_ACCESSOR, FormControl
 } from '@angular/forms';
 
-import { LatLngLiteral, MouseEvent } from '@agm/core';
+import { LatLngLiteral, MouseEvent, MapsAPILoader } from '@agm/core';
 import { GoogleMap } from '@agm/core/services/google-maps-types';
+import {  } from '@types/googlemaps';
 
 @Component({
     selector: 'app-address-control',
@@ -24,15 +25,47 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     lat: number;
     lng: number;
     type: string;
+    public searchControl: FormControl;
+    public zoom: number;
+
+    @ViewChild('search')
+    public searchElementRef: ElementRef;
 
     propagateChange: (_: Address) => void;
 
-    constructor(fb: FormBuilder) {
+    constructor(fb: FormBuilder, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
         this.setupForm(fb);
     }
 
     ngOnInit() {
         this.propagateChange = () => { };
+        
+        // create search FormControl
+        this.searchControl = new FormControl();
+
+        // load Places Autocomplete
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+                types: ['address']
+            });
+
+            autocomplete.addListener('place_changed', () => {
+                this.ngZone.run(() => {
+                // get the place result
+                let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+                // verify result
+                if (place.geometry === undefined || place.geometry === null) {
+                   return;
+                }
+
+                // set latitude, longitude and zoom
+                this.lat = place.geometry.location.lat();
+                this.lng = place.geometry.location.lng();
+                this.zoom = 12;
+                });
+            });
+        });
     }
 
     setupForm(fb: FormBuilder) {

@@ -80,7 +80,7 @@ type StoreType = {
         ProfileModule,
         AdminModule,
         RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
-        AgmCoreModule.forRoot({ apiKey: 'AIzaSyDJTnsuCu4wGQ8TVAsUQLVwrdHREkriQn8' })
+        AgmCoreModule.forRoot({ apiKey: 'AIzaSyDJTnsuCu4wGQ8TVAsUQLVwrdHREkriQn8', libraries: ['places'] })
     ],
     providers: [ // expose our Services and Providers into Angular's dependency injection
         ENV_PROVIDERS,

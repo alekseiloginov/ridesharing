@@ -39,7 +39,7 @@ export class OfficesComponent implements OnInit {
     }
 
     openCreateOfficeDialog() {
-        var office: Office =  {
+        let office: Office =  {
              id: null,
              address: 'Nevskiy prospekt',
              latitude: 59.9325367,

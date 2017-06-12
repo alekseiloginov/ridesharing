@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {MD_DIALOG_DATA, MdDialogRef} from "@angular/material";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MD_DIALOG_DATA, MdDialogRef } from '@angular/material';
 
-import {Office} from "../../../rs-services/offices";
+import { Office } from '../../../rs-services/offices';
 
 @Component({
     selector: 'app-office-detail',
