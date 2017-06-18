@@ -60,11 +60,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
                    return;
                 }
 
-                // set latitude, longitude and zoom
-                this.setCoords(this.lng = place.geometry.location.lng(), this.lat = place.geometry.location.lat());
-                this.updateFormCoords();
-                this.setZoom(12);
-                this.setCenter();
+                // save and show
+                this.updateLocation({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()});
                 });
             });
         });
@@ -152,6 +149,36 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
         const coords: LatLngLiteral = { lat: +this.lat, lng: +this.lng };
         this.map.setCenter(coords);
+    }
+
+    onChange(event) {
+        this.getLocationByAddress(this.searchElementRef.nativeElement.value).then(
+            result => this.updateLocation(result),
+            error => {}
+        );
+    }
+
+    updateLocation(location: any) {
+        const coords: LatLngLiteral = <any>location;
+        this.map.setCenter(coords);
+        this.setCoords(coords.lng, coords.lat);
+        this.updateFormCoords();
+        this.setZoom(12);
+        this.setCenter();
+    }
+
+    getLocationByAddress(address: string): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address': address }, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    const location = results[0].geometry.location;
+                    resolve({ lat: +location.lat(), lng: +location.lng() });
+                } else {
+                    reject();
+                }
+            });
+        });
     }
 }
 
