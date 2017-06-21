@@ -9,6 +9,7 @@ import { ProfileResolver } from './profile.resolver';
 import { AddressControlModule } from '../rs-components/address-control';
 import { ProfileService } from './profile.service';
 import { ProfileComponent } from './profile.component';
+import { AddressControlComponent } from "../rs-components/address-control/address-control.component";
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { ProfileComponent } from './profile.component';
     ],
     providers: [
         ProfileService,
-        ProfileResolver
+        ProfileResolver,
+        AddressControlComponent
     ],
 })
 export class ProfileModule { }
