@@ -1,11 +1,12 @@
 <agm-map (mapClick)="mapClick($event)" [usePanning]="true" (mapReady)="mapReady($event)" [zoom]="15">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'\/img\/bighouse.png'"></agm-marker>
+    <agm-marker [latitude]="officeLat" [longitude]="officeLng" [iconUrl]="'\/img\/apartment-3.png'"></agm-marker>
 </agm-map>
 
 <div [formGroup]="addressForm">
     <div class="formRow">
         <md-input-container>
-            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')" #search autocorrect="off" autocapitalize="off" spellcheck="off"
+            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')" #userAddress autocorrect="off" autocapitalize="off" spellcheck="off"
             (change)="onChange($event)" (keyup)="onChange($event)">
         </md-input-container>
     </div>
