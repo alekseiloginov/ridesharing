@@ -7,6 +7,7 @@ CREATE TABLE address (
   address   VARCHAR,
   latitude  FLOAT8                                    NOT NULL,
   longitude FLOAT8                                    NOT NULL,
+  version   BIGINT DEFAULT 0                          NOT NULL,
   created   TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   modified  TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT address_pkey PRIMARY KEY (id)
@@ -28,6 +29,7 @@ CREATE TABLE app_user (
   home_id          BIGINT,
   car_id           BIGINT,
   password         VARCHAR                                   NOT NULL,
+  version          BIGINT DEFAULT 0                          NOT NULL,
   created          TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   modified         TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT app_user_pkey PRIMARY KEY (id)
@@ -37,6 +39,7 @@ CREATE TABLE app_user (
 CREATE TABLE car (
   id         BIGSERIAL                                 NOT NULL,
   free_seats INT,
+  version    BIGINT DEFAULT 0                          NOT NULL,
   created    TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   modified   TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
   CONSTRAINT car_pkey PRIMARY KEY (id)

@@ -14,13 +14,17 @@ import java.util.Date;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-@ToString(exclude = {"created", "modified"})
+@ToString(exclude = {"version", "created", "modified"})
 @EqualsAndHashCode
 class AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Version
+    @Column(nullable = false)
+    private Long version;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
