@@ -27,7 +27,7 @@ CREATE TABLE app_user (
   from_office_hour INT,
   office_id        BIGINT,
   home_id          BIGINT,
-  car_id           BIGINT,
+  free_car_seats   INT,
   password         VARCHAR                                   NOT NULL,
   version          BIGINT DEFAULT 0                          NOT NULL,
   created          TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
@@ -36,40 +36,22 @@ CREATE TABLE app_user (
 );
 
 --changeset aloginov:3
-CREATE TABLE car (
-  id         BIGSERIAL                                 NOT NULL,
-  free_seats INT,
-  version    BIGINT DEFAULT 0                          NOT NULL,
-  created    TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-  modified   TIMESTAMP WITHOUT TIME ZONE DEFAULT now() NOT NULL,
-  CONSTRAINT car_pkey PRIMARY KEY (id)
-);
-
---changeset aloginov:4
 ALTER TABLE app_user
   ADD CONSTRAINT uk_user_email UNIQUE (email);
 
---changeset aloginov:5
-CREATE INDEX fk_user_car_index
-  ON app_user (car_id);
-
---changeset aloginov:6
+--changeset aloginov:4
 CREATE INDEX fk_user_home_address_index
   ON app_user (home_id);
 
---changeset aloginov:7
+--changeset aloginov:5
 CREATE INDEX fk_user_office_address_index
   ON app_user (office_id);
 
---changeset aloginov:8
-ALTER TABLE app_user
-  ADD CONSTRAINT fk_user_car FOREIGN KEY (car_id) REFERENCES car (id) ON UPDATE CASCADE ON DELETE SET NULL;
-
---changeset aloginov:9
+--changeset aloginov:6
 ALTER TABLE app_user
   ADD CONSTRAINT fk_user_home_address FOREIGN KEY (home_id) REFERENCES address (id) ON UPDATE CASCADE ON DELETE SET NULL;
 
---changeset aloginov:10
+--changeset aloginov:7
 ALTER TABLE app_user
   ADD CONSTRAINT fk_user_office_address FOREIGN KEY (office_id) REFERENCES address (id) ON UPDATE CASCADE ON DELETE SET NULL;
 

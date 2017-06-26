@@ -17,30 +17,26 @@ INSERT INTO address (type, address, latitude, longitude)
 VALUES ('HOME', 'Voronezhskaya, 5, SPB, RU', 59.918165, 30.348719); -- 7
 
 --changeset aloginov:2
-INSERT INTO car (free_seats) VALUES (3); -- 1
-INSERT INTO car (free_seats) VALUES (2); -- 2
-
---changeset aloginov:3
 INSERT INTO app_user (
-  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, password)
+  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, free_car_seats, password)
 VALUES (
   FALSE, 'Aleksei Loginov', 'Aleksei_Loginov@epam.com', 'ADMIN', TRUE, '+7 904 556-82-17', FALSE, 12, 20, 1, 4, NULL,
   '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
 INSERT INTO app_user (
-  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, password)
+  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, free_car_seats, password)
 VALUES (
   FALSE, 'Aleksei Egorov', 'Aleksei_Egorov@epam.com', 'ADMIN', TRUE, '+7 921 111-11-11', FALSE, 10, 19, 1, 5, NULL,
   '$2a$10$POJ9JbGRLTQaKoktySlD9.ZOLgBPYzRjD/WBEIfpNgwFdjog/1hv6');
 
 INSERT INTO app_user (
-  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, password)
+  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, free_car_seats, password)
 VALUES (
-  FALSE, 'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', TRUE, '+7 963 328-06-36', TRUE, 10, 20, 1, 6, 1,
+  FALSE, 'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', TRUE, '+7 963 328-06-36', TRUE, 10, 20, 1, 6, 3,
   '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
 INSERT INTO app_user (
-  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, car_id, password)
+  disabled, name, email, role, active, phone, driver, in_office_hour, from_office_hour, office_id, home_id, free_car_seats, password)
 VALUES (
   FALSE, 'Oksana Kurilkina', 'Oksana_Kurilkina@epam.com', 'ADMIN', TRUE, '+7 911 962-05-01', TRUE, 11, 19, 1, 7, 2,
   '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm');

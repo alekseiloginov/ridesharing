@@ -1,7 +1,6 @@
 package com.epam.ridesharing.config;
 
 import com.epam.ridesharing.data.model.Address;
-import com.epam.ridesharing.data.model.Car;
 import com.epam.ridesharing.data.model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +24,7 @@ public class SpringConfiguration {
 
             @Override
             public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-                config.exposeIdsFor(Address.class, User.class, Car.class);
+                config.exposeIdsFor(Address.class, User.class);
             }
         };
     }

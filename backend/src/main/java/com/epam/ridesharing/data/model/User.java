@@ -32,10 +32,10 @@ public class User extends AbstractEntity {
     private boolean active;
     private boolean disabled;
 
-    @Column(name = "in_office_hour") // explicitly state the column name
+    @Column(name = "in_office_hour")
     private Integer inOfficeHour;
 
-    @Column(name = "from_office_hour") // explicitly state the column name
+    @Column(name = "from_office_hour")
     private Integer fromOfficeHour;
 
     @Enumerated(EnumType.STRING)
@@ -48,8 +48,8 @@ public class User extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.MERGE) // CascadeType.MERGE to avoid duplicates in db
     private Address office;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Car car;
+    @Column(name = "free_car_seats")
+    private Integer freeCarSeats;
 
     public enum Role {
         ADMIN, MANAGER, USER
