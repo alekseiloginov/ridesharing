@@ -235,8 +235,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             destination: this.officeAddress.value,
             waypoints: waypoints,
             optimizeWaypoints: true,
-            travelMode: 'DRIVING',
-            region: 'SPB'
+            travelMode: 'DRIVING'
         };
     }
 }
