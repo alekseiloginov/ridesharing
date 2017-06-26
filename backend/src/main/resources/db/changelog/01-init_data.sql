@@ -38,7 +38,7 @@ INSERT INTO app_user (
 VALUES (
   'Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', '+7 963 328-06-36', TRUE, 10, 20,
   (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Kommunarov, 114),
+  (SELECT id FROM address WHERE address = 'Kommunarov, 114'),
   3, '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
 INSERT INTO app_user (
