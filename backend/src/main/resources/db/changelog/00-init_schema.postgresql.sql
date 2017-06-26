@@ -16,11 +16,11 @@ CREATE TABLE address (
 --changeset aloginov:2
 CREATE TABLE app_user (
   id               BIGSERIAL                                 NOT NULL,
-  disabled         BOOLEAN                                   NOT NULL,
+  disabled         BOOLEAN DEFAULT FALSE                     NOT NULL,
   name             VARCHAR,
   email            VARCHAR                                   NOT NULL,
   role             VARCHAR,
-  active           BOOLEAN                                   NOT NULL,
+  active           BOOLEAN DEFAULT TRUE                      NOT NULL,
   phone            VARCHAR,
   driver           BOOLEAN                                   NOT NULL,
   in_office_hour   INT,
