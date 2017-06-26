@@ -75,7 +75,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     @Override
     @RolesAllowed("ADMIN")
     // fetches relations in one query instead of n+1
-    @EntityGraph(attributePaths = {"home", "office", "car"})
+    @EntityGraph(attributePaths = {"home", "office"})
     Page<User> findAll(Pageable pageable);
 
     @Override
