@@ -68,7 +68,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
                 });
             });
 
-            this.obtainOfficeLocation();
+            this.obtainOfficeLocationAndRedrawRoute();
         });
     }
 
@@ -102,7 +102,6 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         map.setCenter(coords);
         // map.data;
         this.map = map;
-        this.drawRoute();
     }
 
     mapClick($event: MouseEvent) {
@@ -162,8 +161,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             result => this.updateLocation(result),
             error => {}
         );
-        // this.obtainOfficeLocation();
-        // this.drawRoute(); // not working yet
+        // this.obtainOfficeLocationAndRedrawRoute(); not working yet
     }
 
     updateLocation(location: any) {
@@ -180,6 +178,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             const geocoder = new google.maps.Geocoder();
 
             geocoder.geocode( { address: address}, function(results, status) {
+                console.log('status. result', status, results);
                 if (status === google.maps.GeocoderStatus.OK) {
                     const location = results[0].geometry.location;
                     resolve({ lat: +location.lat(), lng: +location.lng() });
@@ -190,7 +189,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         });
     }
 
-    obtainOfficeLocation() {
+    obtainOfficeLocationAndRedrawRoute() {
+        console.log('obtainOfficeLocation',this.officeAddress.value);
         if (!this.officeAddress) {
             return;
         }
@@ -199,9 +199,11 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             result => {
                 this.officeLat = (<any>result).lat;
                 this.officeLng = (<any>result).lng;
+                this.drawRoute();
             },
             error => {}
         );
+        console.log('this office latlng:', this.officeLat, this.officeLng);
     }
 
     drawRoute(waypoints?: Array<object>) {
@@ -219,6 +221,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     calculateAndDisplayRoute(directionsService, directionsDisplay, routeSettings) {
+        console.log(routeSettings);
         directionsService.route(routeSettings, function(response, status) {
            if (status === 'OK') {
               console.log('route status OK', response);
@@ -230,9 +233,10 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     getRouteSettings(waypoints?: Array<object>) {
+        console.log('getRouteSettings:', this.lat, this.lng, this.officeLat, this.officeLng);
         return {
-            origin: this.addressForm.get('address').value,
-            destination: this.officeAddress.value,
+            origin: new google.maps.LatLng(this.lat, this.lng),
+            destination: new google.maps.LatLng(this.officeLat, this.officeLng),
             waypoints: waypoints,
             optimizeWaypoints: true,
             travelMode: 'DRIVING'
