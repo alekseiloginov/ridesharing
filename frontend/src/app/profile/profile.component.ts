@@ -27,13 +27,13 @@ export class ProfileComponent implements OnInit {
             home: '',
             driver: [false],
             active: [false],
-            officeAddress: ''
+            office: ''
         });
     }
 
     ngOnInit() {
         this.activatedRoute.data.forEach((data: { profile: Profile, offices: Office[] }) => {
-            data.profile.officeAddress = this.getOfficeAddress(data.offices, data.profile.officeUri);
+            data.profile.office = this.getOffice(data.offices, data.profile.officeUri);
             this.profileForm.patchValue(data.profile);
             this.offices = data.offices;
         });
@@ -46,10 +46,10 @@ export class ProfileComponent implements OnInit {
             });
     }
 
-    getOfficeAddress(offices: Office[], officeUri: string): string {
+    getOffice(offices: Office[], officeUri: string): Office {
         const office = offices.filter(x => 'api/addresses/'.concat(x.id) === officeUri);
         if (!!office && office.length > 0 ) {
-            return office[0].address;
+            return office[0];
         }
 
         throw new Error('user\'s office not found');

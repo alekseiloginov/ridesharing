@@ -36,5 +36,5 @@ export interface Profile {
     officeUri: string;
     driver: boolean;
     active: boolean;
-    officeAddress: string;
+    office: any;
 }

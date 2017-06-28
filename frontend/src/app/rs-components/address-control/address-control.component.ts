@@ -33,7 +33,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     @ViewChild('userAddress')
     public userAddressElementRef: ElementRef;
 
-    @Input('officeAddress') officeAddress: FormControl;
+    @Input('office') office: FormControl;
 
     propagateChange: (_: Address) => void;
 
@@ -67,8 +67,6 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
                     this.updateLocation({lng: place.geometry.location.lng(), lat: place.geometry.location.lat()});
                 });
             });
-
-            this.obtainOfficeLocationAndRedrawRoute();
         });
     }
 
@@ -102,6 +100,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         map.setCenter(coords);
         // map.data;
         this.map = map;
+        this.obtainOfficeLocation();
+        this.drawRoute();
     }
 
     mapClick($event: MouseEvent) {
@@ -161,7 +161,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             result => this.updateLocation(result),
             error => {}
         );
-        // this.obtainOfficeLocationAndRedrawRoute(); not working yet
+        // this.obtainOfficeLocation(); not working yet
+        // this.drawRoute;
     }
 
     updateLocation(location: any) {
@@ -189,25 +190,20 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         });
     }
 
-    obtainOfficeLocationAndRedrawRoute() {
-        console.log('obtainOfficeLocation',this.officeAddress.value);
-        if (!this.officeAddress) {
+    obtainOfficeLocation() {
+        console.log('obtainOfficeLocation',this.office.value);
+        if (!this.office.value) {
             return;
         }
 
-        this.getLocationByAddress(this.officeAddress.value).then(
-            result => {
-                this.officeLat = (<any>result).lat;
-                this.officeLng = (<any>result).lng;
-                this.drawRoute();
-            },
-            error => {}
-        );
+        this.officeLat = this.office.value.latitude;
+        this.officeLng = this.office.value.longitude;
         console.log('this office latlng:', this.officeLat, this.officeLng);
     }
 
     drawRoute(waypoints?: Array<object>) {
-        if (!this.map || !this.officeAddress || !this.addressForm.get('address')) {
+        console.log('drawRoute', this.map, this.officeLat);
+        if (!this.map || !this.lat || !this.lng || !this.officeLat || !this.officeLng) {
             return;
         }
 
