@@ -152,7 +152,10 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             return;
         }
 
-        const coords: LatLngLiteral = { lat: +this.lat, lng: +this.lng };
+        const coords: LatLngLiteral = {
+            lat: (+this.lat + (this.officeLat || 0))/2,
+            lng: (+this.lng + (this.officeLng || 0))/2
+        };
         this.map.setCenter(coords);
     }
 
@@ -178,7 +181,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         return new Promise((resolve, reject) => {
             const geocoder = new google.maps.Geocoder();
 
-            geocoder.geocode( { address: address}, function(results, status) {
+            geocoder.geocode( { address: address }, function(results, status) {
                 console.log('status. result', status, results);
                 if (status === google.maps.GeocoderStatus.OK) {
                     const location = results[0].geometry.location;
@@ -202,7 +205,6 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     drawRoute(waypoints?: Array<object>) {
-        console.log('drawRoute', this.map, this.officeLat);
         if (!this.map || !this.lat || !this.lng || !this.officeLat || !this.officeLng) {
             return;
         }
