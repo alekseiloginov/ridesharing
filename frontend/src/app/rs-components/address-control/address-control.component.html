@@ -1,5 +1,6 @@
 <agm-map (mapClick)="mapClick($event)" [usePanning]="true" (mapReady)="mapReady($event)" [zoom]="15">
-    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'\/img\/bighouse.png'"></agm-marker>
+    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'\/img\/bighouse.png'" [markerDraggable]="true"
+    (dragEnd)="markerDragEnd($event)"></agm-marker>
     <agm-marker [latitude]="officeLat" [longitude]="officeLng" [iconUrl]="'\/img\/apartment-3.png'"></agm-marker>
 </agm-map>
 

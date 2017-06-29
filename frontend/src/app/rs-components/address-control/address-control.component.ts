@@ -176,6 +176,19 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         );
     }
 
+    markerDragEnd(event) {
+        console.log("marker dragged", event);
+        this.setCoords(event.coords.lng, event.coords.lat);
+        this.updateFormCoords();
+        this.setCenter();
+        this.drawRoute();
+        const latlng = <LatLngLiteral>{lat: this.lat, lng: this.lng};
+        this.getAddressByCoords(latlng).then(
+            result => this.addressForm.get('address').setValue(result),
+            error => console.error('address not found')
+        );
+    }
+
     updateLocation(location: any) {
         const coords: LatLngLiteral = <any>location;
         this.map.setCenter(coords);
@@ -193,6 +206,20 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
                 if (status === google.maps.GeocoderStatus.OK) {
                     const location = results[0].geometry.location;
                     resolve({ lat: +location.lat(), lng: +location.lng() });
+                } else {
+                    reject();
+                }
+            });
+        });
+    }
+
+    getAddressByCoords(latlng: LatLngLiteral): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode( { location: latlng }, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    resolve(results[0].formatted_address);
                 } else {
                     reject();
                 }
