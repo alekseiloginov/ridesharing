@@ -29,6 +29,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     public searchControl: FormControl;
     public zoom: number;
     public map: google.maps.Map;
+    directionsDisplay: google.maps.DirectionsRenderer;
 
     @ViewChild('userAddress')
     public userAddressElementRef: ElementRef;
@@ -97,11 +98,17 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         console.log(map);
         const coords: LatLngLiteral = { lat: +this.lat, lng: +this.lng };
         this.setCoords(this.lng, this.lat);
-        map.setCenter(coords);
+
         // map.data;
         this.map = map;
         this.obtainOfficeLocation();
+
+        this.directionsDisplay = new google.maps.DirectionsRenderer(
+            { suppressMarkers: true }
+        );
+        this.directionsDisplay.setMap(this.map);
         this.drawRoute();
+        map.setCenter(coords);
     }
 
     mapClick($event: MouseEvent) {
@@ -161,11 +168,12 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
     onChange(event) {
         this.getLocationByAddress(this.userAddressElementRef.nativeElement.value).then(
-            result => this.updateLocation(result),
+            result => {
+                this.updateLocation(result);
+                this.drawRoute();
+            },
             error => {}
         );
-        // this.obtainOfficeLocation(); not working yet
-        // this.drawRoute;
     }
 
     updateLocation(location: any) {
@@ -182,7 +190,6 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
             const geocoder = new google.maps.Geocoder();
 
             geocoder.geocode( { address: address }, function(results, status) {
-                console.log('status. result', status, results);
                 if (status === google.maps.GeocoderStatus.OK) {
                     const location = results[0].geometry.location;
                     resolve({ lat: +location.lat(), lng: +location.lng() });
@@ -210,22 +217,17 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         }
 
         let directionsService = new google.maps.DirectionsService();
-        let directionsDisplay = new google.maps.DirectionsRenderer(
-            { suppressMarkers: true}
-        );
-
-        directionsDisplay.setMap(this.map);
-        this.calculateAndDisplayRoute(directionsService, directionsDisplay, this.getRouteSettings());
+        this.calculateAndDisplayRoute(directionsService, this.directionsDisplay, this.getRouteSettings());
     }
 
     calculateAndDisplayRoute(directionsService, directionsDisplay, routeSettings) {
         console.log(routeSettings);
         directionsService.route(routeSettings, function(response, status) {
-           if (status === 'OK') {
+           if (status === google.maps.DirectionsStatus.OK) {
               console.log('route status OK', response);
               directionsDisplay.setDirections(response);
            } else {
-             window.alert('Directions request failed due to ' + status);
+              console.log('Directions request failed due to ' + status);
            }
         });
     }
