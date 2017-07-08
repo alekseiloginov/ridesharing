@@ -49,9 +49,9 @@ CREATE INDEX fk_user_office_address_index
 
 --changeset aloginov:6
 ALTER TABLE app_user
-  ADD CONSTRAINT fk_user_home_address FOREIGN KEY (home_id) REFERENCES address (id) ON UPDATE CASCADE ON DELETE SET NULL;
+  ADD CONSTRAINT fk_user_home_address FOREIGN KEY (home_id) REFERENCES address (id) ON DELETE SET NULL;
 
 --changeset aloginov:7
 ALTER TABLE app_user
-  ADD CONSTRAINT fk_user_office_address FOREIGN KEY (office_id) REFERENCES address (id) ON UPDATE CASCADE ON DELETE SET NULL;
+  ADD CONSTRAINT fk_user_office_address FOREIGN KEY (office_id) REFERENCES address (id) ON DELETE SET NULL;
 
