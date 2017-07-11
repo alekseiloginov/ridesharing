@@ -15,6 +15,8 @@ INSERT INTO address (type, address, latitude, longitude)
 VALUES ('HOME', 'Kommunarov, 114', 59.78433, 30.147422);
 INSERT INTO address (type, address, latitude, longitude)
 VALUES ('HOME', 'Voronezhskaya, 5, Saint Petersburg', 59.918165, 30.348719);
+INSERT INTO address (type, address, latitude, longitude)
+VALUES ('HOME', 'Koroleva, 28', 60.012747, 30.266812);
 
 --changeset aloginov:2
 INSERT INTO app_user (
@@ -48,4 +50,12 @@ VALUES (
   (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
   (SELECT id FROM address WHERE address = 'Voronezhskaya, 5, Saint Petersburg'),
   2, '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm');
+
+INSERT INTO app_user (
+  name, email, role, phone, driver, in_office_hour, from_office_hour, office_id, home_id, free_car_seats, password)
+VALUES (
+  'Maxim Ivanov', 'Maxim_Ivanov2@epam.com', 'USER', '+7 921 556-77-45', TRUE, 12, 20,
+  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
+  (SELECT id FROM address WHERE address = 'Koroleva, 28'),
+  3, '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
