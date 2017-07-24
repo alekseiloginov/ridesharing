@@ -1,5 +1,10 @@
 <h1 md-dialog-title>I am departing at</h1>
-<div md-dialog-content><p>123</p><md-slider vertical></md-slider></div>
+<div md-dialog-content>
+    <md-slider vertical [min]=0 [max]=23 [(ngModel)]="hour" displayValue></md-slider>
+    <md-input-container>
+        <input mdInput type="number" [min]=0 [max]=23 [(ngModel)]="hour">
+    </md-input-container>
+</div>
 <div md-dialog-actions>
     <button md-raised-button color="warn">Notify passengers</button>
 </div>
