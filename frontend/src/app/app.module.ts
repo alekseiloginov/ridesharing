@@ -38,6 +38,8 @@ import { LoginModule } from './login';
 import { AgmCoreModule } from '@agm/core';
 import { OfficesResolver, OfficesService, CurrentUserOfficeResolver } from './rs-services/offices';
 
+import 'hammerjs';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 

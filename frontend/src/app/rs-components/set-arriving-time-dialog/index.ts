@@ -1,2 +1,2 @@
-export * from './delete-confirm-dialog.module';
-export * from './delete-confirm-dialog.component';
+export * from './set-arriving-time-dialog.module';
+export * from './set-arriving-time-dialog.component';

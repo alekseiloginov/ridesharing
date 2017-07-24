@@ -1,5 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { MdButtonModule } from '@angular/material';
+
+import 'hammerjs';
 
 import { SetArrivingTimeDialogComponent } from './set-arriving-time-dialog.component';
 
