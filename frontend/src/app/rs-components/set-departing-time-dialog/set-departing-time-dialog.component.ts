@@ -2,14 +2,14 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
-    selector: 'app-set-arriving-time',
-    templateUrl: 'set-arriving-time-dialog.html'
+    selector: 'app-set-departing-time',
+    templateUrl: 'set-departing-time-dialog.html'
 })
-export class SetArrivingTimeDialogComponent implements OnInit {
+export class SetDepartingTimeDialogComponent implements OnInit {
     private hour: number = 12;
     private minute: number = 26;
 
-    constructor(public dialogRef: MdDialogRef<SetArrivingTimeDialogComponent>,
+    constructor(public dialogRef: MdDialogRef<SetDepartingTimeDialogComponent>,
         @Inject(MD_DIALOG_DATA) public data: { label: string }) { }
 
     ngOnInit() { }

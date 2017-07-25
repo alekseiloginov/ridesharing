@@ -9,7 +9,8 @@ import { ProfileResolver } from './profile.resolver';
 import { AddressControlModule } from '../rs-components/address-control';
 import { ProfileService } from './profile.service';
 import { ProfileComponent } from './profile.component';
-import {SetArrivingTimeDialogModule} from '../rs-components/set-arriving-time-dialog/set-arriving-time-dialog.module';
+import { NotifyService } from '../rs-services/notify';
+import {SetDepartingTimeDialogModule} from '../rs-components/set-departing-time-dialog/set-departing-time-dialog.module';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import {SetArrivingTimeDialogModule} from '../rs-components/set-arriving-time-di
         MdSelectModule,
         AddressControlModule,
         MdSlideToggleModule,
-        SetArrivingTimeDialogModule
+        SetDepartingTimeDialogModule
     ],
     exports: [],
     declarations: [
@@ -31,7 +32,8 @@ import {SetArrivingTimeDialogModule} from '../rs-components/set-arriving-time-di
     ],
     providers: [
         ProfileService,
-        ProfileResolver
+        ProfileResolver,
+        NotifyService
     ],
 })
 export class ProfileModule { }

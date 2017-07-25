@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { MdDialog, MdSnackBar } from '@angular/material';
 
 import { Office } from '../rs-services/offices';
+import { NotifyService } from '../rs-services/notify';
 import { Profile, ProfileService } from './profile.service';
 
-import {SetArrivingTimeDialogComponent} from '../rs-components/set-arriving-time-dialog/set-arriving-time-dialog.component'
+import {SetDepartingTimeDialogComponent} from '../rs-components/set-departing-time-dialog/set-departing-time-dialog.component'
 
 @Component({
     selector: 'profile',
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
         private profileService: ProfileService,
         private dialog: MdDialog,
         private snackBar: MdSnackBar,
+        private notifyService: NotifyService,
         private activatedRoute: ActivatedRoute) {
         this.profileForm = fb.group({
             name: '',
@@ -58,19 +60,18 @@ export class ProfileComponent implements OnInit {
         throw new Error('user\'s office not found');
     }
 
-    openSetArrivingTime() {
-        const dialogRef = this.dialog.open(SetArrivingTimeDialogComponent, {
+    openSetDepartingTime() {
+        const dialogRef = this.dialog.open(SetDepartingTimeDialogComponent, {
             width: '400px',
             data: {
                 primaryButtonLabel: 'Update',
                 title: 'Update Existing User'
             }
         });
-        dialogRef.afterClosed().subscribe((result: User) => {
+        dialogRef.afterClosed().subscribe((result: string) => {
             if (result) {
-                this.usersService.updateUser(result).subscribe(res => {
-                    this.snackBar.open('User has been updated.', 'OK');
-                    this.usersListTable.reloadData();
+                this.notifyService.notifyAboutDeparting(result).subscribe(res => {
+                    this.snackBar.open('Passengers was notified.', 'OK');
                 });
             }
         });

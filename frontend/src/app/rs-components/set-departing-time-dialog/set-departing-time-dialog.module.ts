@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MdButtonModule, MdSliderModule, MdInputModule } from '@angular/material';
 import 'hammerjs';
 
-import { SetArrivingTimeDialogComponent } from './set-arriving-time-dialog.component';
+import { SetDepartingTimeDialogComponent } from './set-departing-time-dialog.component';
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -16,11 +16,11 @@ import {FormsModule} from "@angular/forms";
     ],
     exports: [],
     declarations: [
-        SetArrivingTimeDialogComponent
+        SetDepartingTimeDialogComponent
     ],
     providers: [],
     entryComponents: [
-        SetArrivingTimeDialogComponent
+        SetDepartingTimeDialogComponent
     ]
 })
-export class SetArrivingTimeDialogModule { }
+export class SetDepartingTimeDialogModule { }
