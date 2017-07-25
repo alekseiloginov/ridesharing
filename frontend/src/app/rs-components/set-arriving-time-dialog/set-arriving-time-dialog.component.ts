@@ -13,4 +13,21 @@ export class SetArrivingTimeDialogComponent implements OnInit {
         @Inject(MD_DIALOG_DATA) public data: { label: string }) { }
 
     ngOnInit() { }
+
+    changeHour() {
+        if (this.hour>23) {
+            this.hour = 23;
+        }
+        if (this.hour<0) {
+            this.hour = 0;
+        }
+    }
+    changeMinute() {
+        if (this.minute>59) {
+            this.minute = 59;
+        }
+        if (this.minute<0) {
+            this.minute = 0;
+        }
+    }
 }
