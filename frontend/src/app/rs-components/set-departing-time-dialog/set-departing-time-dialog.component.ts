@@ -1,13 +1,13 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
 
 @Component({
     selector: 'app-set-departing-time',
     templateUrl: 'set-departing-time-dialog.html'
 })
 export class SetDepartingTimeDialogComponent implements OnInit {
-    private hour: number = 12;
-    private minute: number = 26;
+    private hour: number = 11;
+    private minute: number = 0;
 
     constructor(public dialogRef: MdDialogRef<SetDepartingTimeDialogComponent>,
         @Inject(MD_DIALOG_DATA) public data: { label: string }) { }
