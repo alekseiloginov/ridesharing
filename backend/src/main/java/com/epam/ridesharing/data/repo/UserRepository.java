@@ -22,7 +22,7 @@ import java.util.Optional;
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     @RestResource(exported = false)
-    Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email); // for login/security purposes only
+    Optional<User> findByEmailIgnoreCaseAndDisabledFalse(@Param("email") String email);
 
     @Query(value = "SELECT * FROM app_user WHERE id IN" +
             "(" +
