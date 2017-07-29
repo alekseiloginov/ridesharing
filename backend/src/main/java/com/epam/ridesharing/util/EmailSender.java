@@ -19,7 +19,7 @@ public class EmailSender {
     private static final Session SESSION;
     private static final String SUBJECT = "Whoa! %s is riding to work at %s.";
     private static final String TEXT = "Hey %s,\n" +
-            "Good news − %s just decided to get to work by car today starting at %s.";
+            "Good news - %s just decided to get to work by car today starting at %s.";
 
     static {
         Properties props = new Properties();
