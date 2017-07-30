@@ -65,6 +65,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "		) AS lll" +
             "	) res" +
             "	WHERE res.distance < :distanceKm" +
+            "   ORDER BY res.distance" +
             ")",
             nativeQuery = true)
     List<User> findByDistanceFromHomeAndOffice(@Param("distanceKm") double distanceKm, @Param("officeId") long officeId);
