@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { MdSnackBar } from '@angular/material';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {MdDialog, MdSnackBar} from '@angular/material';
 
-import { Office } from '../rs-services/offices';
-import { Profile, ProfileService } from './profile.service';
+import {Office} from '../rs-services/offices';
+import {NotifyService} from '../rs-services/notify';
+import {Profile, ProfileService} from './profile.service';
+
+import {SetDepartingTimeDialogComponent} from '../rs-components/set-departing-time-dialog/set-departing-time-dialog.component'
 
 @Component({
     selector: 'profile',
@@ -18,7 +21,9 @@ export class ProfileComponent implements OnInit {
 
     constructor(fb: FormBuilder,
         private profileService: ProfileService,
+        private dialog: MdDialog,
         private snackBar: MdSnackBar,
+        private notifyService: NotifyService,
         private activatedRoute: ActivatedRoute) {
         this.profileForm = fb.group({
             name: '',
@@ -53,5 +58,22 @@ export class ProfileComponent implements OnInit {
         }
 
         throw new Error('user\'s office not found');
+    }
+
+    openSetDepartingTime() {
+        const dialogRef = this.dialog.open(SetDepartingTimeDialogComponent, {
+            width: '400px',
+            data: {
+                primaryButtonLabel: 'Update',
+                title: 'Update Existing User'
+            }
+        });
+        dialogRef.afterClosed().subscribe((result: string) => {
+            if (result) {
+                this.notifyService.notifyAboutDeparting(result).subscribe(res => {
+                    this.snackBar.open('Passengers are successfully notified.', 'OK');
+                });
+            }
+        });
     }
 }

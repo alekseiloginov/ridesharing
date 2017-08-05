@@ -25,5 +25,6 @@
     </div>
     <div class="formRow">
         <button md-raised-button [disabled]="profileForm.invalid" (click)="updateProfile()">Update</button>
+        <button md-raised-button (click)="openSetDepartingTime()" [disabled]="!(profileForm.get('active').value && profileForm.get('driver').value)"><md-icon>Notify about departing</md-icon></button>
     </div>
 </div>
