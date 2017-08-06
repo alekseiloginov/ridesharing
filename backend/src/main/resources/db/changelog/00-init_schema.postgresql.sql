@@ -22,7 +22,7 @@ CREATE TABLE app_user (
   role             VARCHAR,
   active           BOOLEAN DEFAULT TRUE                      NOT NULL,
   phone            VARCHAR,
-  driver           BOOLEAN                                   NOT NULL,
+  driver           BOOLEAN DEFAULT FALSE                     NOT NULL,
   in_office_hour   INT,
   from_office_hour INT,
   office_id        BIGINT,
