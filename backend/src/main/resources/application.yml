@@ -2,7 +2,7 @@
 # to indicate when the document applies.
 
 # common settings:
-spring: # ! changing the DB don't forget to change it in 'db.changelog-master.yaml' too !
+spring:
     profiles.active: DEV, H2, LIQUIBASE
 #    profiles.active: DEV, POSTGRES, DDL-AUTO
     data.rest.basePath: /api
