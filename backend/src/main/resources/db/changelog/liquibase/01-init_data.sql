@@ -21,27 +21,27 @@ INSERT INTO app_user (
 VALUES
 
   ('Aleksei Loginov', 'Aleksei_Loginov@epam.com', 'ADMIN', '+7 904 556-82-17', FALSE, 12, 20,
-  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Koroleva, 34k1'),
+  (SELECT id FROM address WHERE address = 'Zastavskaya 22/2'),
+  (SELECT id FROM address WHERE address = 'Koroleva 34k1'),
   NULL, '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C'),
 
   ('Aleksei Egorov', 'Aleksei_Egorov@epam.com', 'ADMIN', '+7 921 111-11-11', FALSE, 10, 19,
-  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Petergofskoe av, 45'),
+  (SELECT id FROM address WHERE address = 'Zastavskaya 22/2'),
+  (SELECT id FROM address WHERE address = 'Petergofskoe av. 45'),
   NULL, '$2a$10$POJ9JbGRLTQaKoktySlD9.ZOLgBPYzRjD/WBEIfpNgwFdjog/1hv6'),
 
   ('Maksim Zagorodskii', 'Maksim_Zagorodskii@epam.com', 'USER', '+7 963 328-06-36', TRUE, 10, 20,
-  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Kommunarov, 114'),
+  (SELECT id FROM address WHERE address = 'Zastavskaya 22/2'),
+  (SELECT id FROM address WHERE address = 'Kommunarov 114'),
   3, '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C'),
 
   ('Oksana Kurilkina', 'Oksana_Kurilkina@epam.com', 'ADMIN', '+7 911 962-05-01', TRUE, 11, 19,
-  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Voronezhskaya, 5, Saint Petersburg'),
+  (SELECT id FROM address WHERE address = 'Zastavskaya 22/2'),
+  (SELECT id FROM address WHERE address = 'Voronezhskaya 5'),
   2, '$2a$10$ujMViPrKxGOCt311hvmTROKEjPajABM2/Rfsn/mKkfyEZBwUPkcQm'),
 
   ('Maxim Ivanov', 'Maxim_Ivanov2@epam.com', 'USER', '+7 921 556-77-45', TRUE, 12, 20,
-  (SELECT id FROM address WHERE address = 'Zastavskaya, 22'),
-  (SELECT id FROM address WHERE address = 'Koroleva, 28'),
+  (SELECT id FROM address WHERE address = 'Zastavskaya 22/2'),
+  (SELECT id FROM address WHERE address = 'Koroleva 28'),
   3, '$2a$10$P5Fx4JbwaXC.NaLNfnM3/O78WRKNKuk8ECxALmL440XBOQxzbSs8C');
 
