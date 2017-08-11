@@ -21,7 +21,7 @@ public interface AddressRepository extends PagingAndSortingRepository<Address, L
 
     @Override
     @Transactional
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     <A extends Address> A save(@Param("address") A address);
 
     @Override
