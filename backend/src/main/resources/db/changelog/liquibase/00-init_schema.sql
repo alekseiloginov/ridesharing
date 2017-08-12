@@ -8,8 +8,8 @@ CREATE TABLE address (
   latitude  DOUBLE PRECISION        NOT NULL,
   longitude DOUBLE PRECISION        NOT NULL,
   version   BIGINT DEFAULT 0        NOT NULL,
-  created   TIMESTAMP DEFAULT now() NOT NULL,
-  modified  TIMESTAMP DEFAULT now() NOT NULL
+  created   TIMESTAMPtz DEFAULT now() NOT NULL,
+  modified  TIMESTAMPtz DEFAULT now() NOT NULL
 );
 
 --changeset aloginov:2
@@ -29,8 +29,8 @@ CREATE TABLE app_user (
   free_car_seats   SMALLINT,
   password         VARCHAR                 NOT NULL,
   version          BIGINT DEFAULT 0        NOT NULL,
-  created          TIMESTAMP DEFAULT now() NOT NULL,
-  modified         TIMESTAMP DEFAULT now() NOT NULL
+  created          TIMESTAMPtz DEFAULT now() NOT NULL,
+  modified         TIMESTAMPtz DEFAULT now() NOT NULL
 );
 
 --changeset aloginov:3
