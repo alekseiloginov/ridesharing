@@ -1,19 +1,20 @@
 package com.epam.ridesharing.data.repo;
 
+import javax.annotation.security.RolesAllowed;
+import java.util.List;
+import java.util.Optional;
+
 import com.epam.ridesharing.data.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.annotation.security.RolesAllowed;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Custom Spring Data repository for User entity.
@@ -69,6 +70,13 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             ")",
             nativeQuery = true)
     List<User> findByDistanceFromHomeAndOffice(@Param("distanceKm") double distanceKm, @Param("officeId") long officeId);
+
+    @Transactional
+    @RestResource(exported = false)
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Modifying
+    @Query("update User u set u.telegramId = :chatId where u.id = :userId")
+    void saveTelegramId(@Param("userId") Long userId, @Param("chatId") String chatId);
 
 
     // OVERRIDEN METHODS //
