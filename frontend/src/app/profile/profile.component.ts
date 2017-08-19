@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result: string) => {
             if (result) {
                 this.notifyService.notifyAboutDeparting(result).subscribe(res => {
-                    this.snackBar.open('Passengers are successfully notified.', 'OK');
+                    this.snackBar.open(String(res), 'OK');
                 });
             }
         });
