@@ -1,12 +1,16 @@
 package com.epam.ridesharing.util;
 
-import com.epam.ridesharing.data.model.User;
-
-import javax.mail.*;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.List;
 import java.util.Properties;
+
+import com.epam.ridesharing.data.model.User;
 
 /**
  * Sends email notifications from 'epamtaxi@gmail.com' address.
@@ -17,7 +21,7 @@ public class EmailSender {
     private static final String APP_MAIL_PASSWORD = "h=;tW8GVa;7t>82N";
     private static final String ANONYMOUS_USER = "Anonymous User";
     private static final Session SESSION;
-    private static final String SUBJECT = "Whoa! %s is riding to work at %s.";
+    public static final String SUBJECT = "Whoa! %s is riding to work at %s.";
     private static final String TEXT = "Hey %s,\n" +
             "Good news - %s just decided to get to work by car today starting at %s.";
 
@@ -36,25 +40,23 @@ public class EmailSender {
                 });
     }
 
-    public static void sendEmail(User user, List<User> candidates, String time) throws MessagingException {
+    public static void sendEmail(User driver, User passenger, String time) throws MessagingException {
 
         Message message = new MimeMessage(SESSION);
 
-        String userName = getName(user);
+        String userName = getName(driver);
         String subject = String.format(SUBJECT, userName, time);
         message.setSubject(subject);
 
-        for (User candidate : candidates) {
-            String candidateEmail = candidate.getEmail();
-            candidateEmail = "Aleksei_Loginov@epam.com"; // temporary precaution for spam emails
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(candidateEmail));
+        String passengerEmail = passenger.getEmail();
+        passengerEmail = "Aleksei_Loginov@epam.com"; // todo temporary precaution for spam emails
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(passengerEmail));
 
-            String candidateName = getName(candidate);
-            String text = String.format(TEXT, candidateName, userName, time);
-            message.setText(text);
+        String passengerName = getName(passenger);
+        String text = String.format(TEXT, passengerName, userName, time);
+        message.setText(text);
 
-            Transport.send(message);
-        }
+        Transport.send(message);
     }
 
     private static String getName(User user) {

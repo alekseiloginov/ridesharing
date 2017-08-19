@@ -1,6 +1,6 @@
 package com.epam.ridesharing.service;
 
-import javax.mail.MessagingException;
+import com.epam.ridesharing.data.model.User;
 
 /**
  * Interface for users notifications.
@@ -8,11 +8,11 @@ import javax.mail.MessagingException;
 public interface NotificationService {
 
     /**
-     * Notifies companions.
+     * Notify an active passenger in a range.
      *
-     * @param time       the departure time from home
-     * @param distanceKm the distance in km to search for companions, optional
-     * @throws MessagingException the messaging exception
+     * @param driver    the driver initiated the ride
+     * @param passenger the passenger found in a range
+     * @param time      the time or driver's departure
      */
-    void notifyCompanions(String time, Integer distanceKm) throws MessagingException;
+    void notifyPassenger(User driver, User passenger, String time) throws Exception;
 }
