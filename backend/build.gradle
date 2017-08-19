@@ -58,7 +58,9 @@ dependencies {
 			'org.springframework.boot:spring-boot-starter-web',
 			'org.springframework.boot:spring-boot-starter-actuator',
 			'org.modelmapper:modelmapper:0.7.8',
-			'com.sun.mail:javax.mail:1.5.6'
+			'com.sun.mail:javax.mail:1.5.6',
+            'org.telegram:telegrambots:3.2', // todo check if later versions fix that pesky static bot initialization
+			'org.apache.commons:commons-lang3:3.6'
 
 	runtime 'org.springframework.boot:spring-boot-devtools',
 			'com.h2database:h2',
