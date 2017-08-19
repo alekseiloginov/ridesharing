@@ -21,6 +21,7 @@ CREATE TABLE app_user (
   role             VARCHAR,
   active           BOOLEAN DEFAULT TRUE    NOT NULL,
   phone            VARCHAR,
+  telegram_id      VARCHAR,
   driver           BOOLEAN DEFAULT FALSE   NOT NULL,
   in_office_hour   SMALLINT,
   from_office_hour SMALLINT,

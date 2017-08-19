@@ -1,16 +1,25 @@
 package com.epam.ridesharing.data.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import com.epam.ridesharing.auth.uimodel.BCryptPasswordDeserializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.*;
-
-@Entity(name = "app_user")
+@Entity()
+@Table(name = "app_user")
 @Getter
 @ToString(exclude = "password", callSuper = true)
 public class User extends AbstractEntity {
@@ -31,6 +40,10 @@ public class User extends AbstractEntity {
     private boolean driver;
     private boolean active;
     private boolean disabled;
+
+    @Column(name = "telegram_id")
+    @Setter
+    private String telegramId;
 
     @Column(name = "in_office_hour")
     private Integer inOfficeHour;
