@@ -13,7 +13,6 @@ import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import static com.epam.ridesharing.service.UserServiceImpl.DEFAULT_DISTANCE_KM;
 
@@ -22,6 +21,8 @@ import static com.epam.ridesharing.service.UserServiceImpl.DEFAULT_DISTANCE_KM;
 public class NotificationController {
 
     private static final Logger LOG = LoggerFactory.getLogger(NotificationController.class);
+    private static final String FAILED = "Notification failed.";
+    private static final String SUCCESS = "Successfully notified!";
     private final TelegramNotificationService telegramService;
     private final EmailNotificationService emailService;
     private final UserService userService;
@@ -54,14 +55,11 @@ public class NotificationController {
                 }
             }
 
-        } catch (TelegramApiRequestException e) {
-            LOG.error(e.getApiResponse(), e);
-
         } catch (Exception e) {
-            LOG.error("Error in NotificationController.notifyPassengers: ", e);
-            return "Notification failed.";
+            LOG.error(e.toString(), e);
+            return FAILED;
         }
 
-        return "Successfully notified!";
+        return SUCCESS;
     }
 }

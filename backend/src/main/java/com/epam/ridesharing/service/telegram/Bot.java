@@ -19,7 +19,6 @@ import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_END;
 import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_START;
@@ -54,7 +53,7 @@ public class Bot extends TelegramLongPollingBot {
             new TelegramBotsApi().registerBot(this);
 
         } catch (TelegramApiException e) {
-            LOG.error("Error in Bot.bootBot: ", e);
+            LOG.error(e.toString(), e);
         }
     }
 
@@ -103,11 +102,8 @@ public class Bot extends TelegramLongPollingBot {
                 echoMessage(update.getMessage()); // any other message/command to bot
             }
 
-        } catch (TelegramApiRequestException e) {
-            LOG.error(e.getApiResponse(), e);
-
         } catch (TelegramApiException e) {
-            LOG.error("Error in Bot.onUpdateReceived: ", e);
+            LOG.error(e.toString(), e);
         }
     }
 
