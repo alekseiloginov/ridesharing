@@ -1,5 +1,6 @@
 # Default file that is looked up by Spring Boot for Liquibase change log configuration
 databaseChangeLog:
-  - includeAll:
-      path: liquibase/
-      relativeToChangelogFile: true
+  - include:
+      file: classpath:/db/changelog/liquibase/00-init_schema.sql
+  - include:
+      file: classpath:/db/changelog/liquibase/01-init_data.sql
