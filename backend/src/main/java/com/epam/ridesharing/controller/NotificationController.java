@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.epam.ridesharing.data.model.User;
 import com.epam.ridesharing.service.EmailNotificationService;
-import com.epam.ridesharing.service.TelegramNotificationService;
 import com.epam.ridesharing.service.UserService;
+import com.epam.ridesharing.service.telegram.TelegramNotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

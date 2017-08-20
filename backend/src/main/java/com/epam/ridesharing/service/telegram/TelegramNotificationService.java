@@ -1,11 +1,12 @@
-package com.epam.ridesharing.service;
+package com.epam.ridesharing.service.telegram;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.epam.ridesharing.data.model.User;
-import com.epam.ridesharing.service.telegram.Bot;
+import com.epam.ridesharing.service.NotificationService;
+import com.epam.ridesharing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.api.methods.send.SendMessage;

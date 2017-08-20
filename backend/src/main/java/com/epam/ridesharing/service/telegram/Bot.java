@@ -20,8 +20,8 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_END;
-import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_START;
+import static com.epam.ridesharing.service.telegram.TelegramNotificationService.EMAIL_END;
+import static com.epam.ridesharing.service.telegram.TelegramNotificationService.EMAIL_START;
 
 /**
  * Ridesharing telegram bot for notifying and getting feedback from users.
