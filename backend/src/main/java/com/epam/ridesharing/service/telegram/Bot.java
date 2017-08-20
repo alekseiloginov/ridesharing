@@ -24,14 +24,21 @@ import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_END
 import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_START;
 
 /**
- * Ridesharing telegram bot for notifying and getting feedback from users, available at: t.me/ridesharing_test_bot.
+ * Ridesharing telegram bot for notifying and getting feedback from users.
+ * Prod bot is available at: t.me/EpamRideSharingBot.
+ * Test bot is available at: t.me/ridesharing_test_bot.
+ * Only ONE bot can be instantiated at a time.
  */
 @Component
 public class Bot extends TelegramLongPollingBot {
 
+    private static final String PROD_TOKEN = "335478500:AAEcsglxf_bjUCE8S8Tm1lzrC04UVzfZ4zU";
+    private static final String PROD_USERNAME = "EpamRideSharingBot";
+
+    private static final String TEST_TOKEN = "365067214:AAEEa7B66tj9a7-GHmpiCcRb9T9YjL-GFUg";
+    private static final String TEST_USERNAME = "ridesharing_test_bot";
+
     private static final Logger LOG = LoggerFactory.getLogger(Bot.class);
-    private static final String TOKEN = "365067214:AAEEa7B66tj9a7-GHmpiCcRb9T9YjL-GFUg";
-    private static final String USERNAME = "ridesharing_test_bot";
     private static final String ECHO = "you said: ";
     private static final String CONTACT_WITHOUT_NAME = "contact without name";
     private final UserService userService;
@@ -145,11 +152,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return USERNAME;
+        return PROD_USERNAME;
     }
 
     @Override
     public String getBotToken() {
-        return TOKEN;
+        return PROD_TOKEN;
     }
 }

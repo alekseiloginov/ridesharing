@@ -17,7 +17,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import static com.epam.ridesharing.util.EmailSender.SUBJECT;
 
 /**
- * Notifies users via Telegram bot, which is available at: t.me/ridesharing_test_bot.
+ * Notifies users via Telegram bot.
  */
 @Service
 public class TelegramNotificationService implements NotificationService {
