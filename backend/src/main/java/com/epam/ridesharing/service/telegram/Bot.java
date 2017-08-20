@@ -1,40 +1,51 @@
 package com.epam.ridesharing.service.telegram;
 
 import javax.annotation.PostConstruct;
+import java.util.Optional;
 
+import com.epam.ridesharing.data.model.User;
+import com.epam.ridesharing.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
+import org.telegram.telegrambots.api.methods.send.SendContact;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
-import static com.epam.ridesharing.service.TelegramNotificationService.CHAT_ID_END;
-import static com.epam.ridesharing.service.TelegramNotificationService.CHAT_ID_START;
-import static com.epam.ridesharing.service.TelegramNotificationService.MY_CHAT_ID;
-import static com.epam.ridesharing.service.TelegramNotificationService.TOKEN;
-import static com.epam.ridesharing.service.TelegramNotificationService.USERNAME;
+import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_END;
+import static com.epam.ridesharing.service.TelegramNotificationService.EMAIL_START;
 
 /**
- * Ridesharing telegram bot for notifying and getting feedback from users.
+ * Ridesharing telegram bot for notifying and getting feedback from users, available at: t.me/ridesharing_test_bot.
  */
 @Component
 public class Bot extends TelegramLongPollingBot {
+
     private static final Logger LOG = LoggerFactory.getLogger(Bot.class);
+    private static final String TOKEN = "365067214:AAEEa7B66tj9a7-GHmpiCcRb9T9YjL-GFUg";
+    private static final String USERNAME = "ridesharing_test_bot";
     private static final String ECHO = "you said: ";
-    private static final String SPACE = " ";
-    private static final String COLON = ":";
+    private static final String CONTACT_WITHOUT_NAME = "contact without name";
+    private final UserService userService;
 
     // Bot initialization //
 
     static {
         ApiContextInitializer.init(); // must be initialized before a bot's constructor
+    }
+
+    @Autowired
+    public Bot(UserService userService) {
+        this.userService = userService;
     }
 
     @PostConstruct
@@ -49,6 +60,37 @@ public class Bot extends TelegramLongPollingBot {
 
     // Bot logic //
 
+    public void sendMessageWithContact(User to, User from, String message) throws TelegramApiException {
+
+        String toChatId = to.getTelegramId(); // if we are happen to be here, then chat id is not null
+
+        // sender's contact first
+        sendContact(toChatId, from);
+
+        // then sender's message
+        sendMessage(toChatId, message);
+    }
+
+    public Optional<Message> sendContact(String toChatId, User contact) throws TelegramApiException {
+        Optional<Message> response = Optional.empty();
+
+        if (contact.getPhone() != null) { // phone and name cannot be empty
+
+            String name = contact.getName() != null ? contact.getName() : CONTACT_WITHOUT_NAME;
+
+            response = Optional.of(execute(new SendContact()
+                    .setChatId(toChatId)
+                    .setPhoneNumber(contact.getPhone()).setFirstName(name)));
+        }
+
+        return response;
+    }
+
+    public void sendMessage(String chatId, String text) throws TelegramApiException {
+
+        execute(new SendMessage(chatId, text));
+    }
+
     @Override
     public void onUpdateReceived(Update update) { // processes incoming message from a user
 
@@ -58,8 +100,11 @@ public class Bot extends TelegramLongPollingBot {
                 replyToDriver(update);
 
             } else if (update.hasMessage()) {
-                processMessage(update); // any other message/command to bot
+                echoMessage(update.getMessage()); // any other message/command to bot
             }
+
+        } catch (TelegramApiRequestException e) {
+            LOG.error(e.getApiResponse(), e);
 
         } catch (TelegramApiException e) {
             LOG.error("Error in Bot.onUpdateReceived: ", e);
@@ -68,36 +113,38 @@ public class Bot extends TelegramLongPollingBot {
 
     private void replyToDriver(Update update) throws TelegramApiException {
         CallbackQuery response = update.getCallbackQuery();
-        String responseText = response.getData();
+        String passengerResponse = response.getData();
 
-        if (responseText != null) { // notify the driver back
+        if (passengerResponse != null) { // notify the driver back
 
             String driversMessage = response.getMessage().getText();
 
-            String chatId = StringUtils.substringBetween(driversMessage, CHAT_ID_START, CHAT_ID_END);
-            chatId = MY_CHAT_ID; // TODO temporary precaution for spamming users
+            String driverEmail = parseEmail(driversMessage);
+            String passengerEmail = parseEmail(passengerResponse);
 
-            String firstName = response.getFrom().getFirstName();
-            String lastName = response.getFrom().getLastName();
+            Optional<User> driver = userService.findUserByEmail(driverEmail);
+            Optional<User> passenger = userService.findUserByEmail(passengerEmail);
 
-            sendText(chatId, firstName + SPACE + lastName + COLON + SPACE + responseText);
+            if (driver.isPresent() && passenger.isPresent()) {
+
+                sendMessageWithContact(driver.get(), passenger.get(), passengerResponse);
+            }
+
         }
     }
 
-    private void processMessage(Update update) throws TelegramApiException {
-        Message message = update.getMessage();
+    private String parseEmail(String text) {
+        return StringUtils.substringBetween(text, EMAIL_START, EMAIL_END);
+    }
+
+    private void echoMessage(Message message) throws TelegramApiException {
 
         if (message.hasText()) {
             String userText = message.getText();
             String chatId = message.getChatId().toString();
 
-            sendText(chatId, ECHO + userText);
+            sendMessage(chatId, ECHO + userText);
         }
-    }
-
-    private void sendText(String chatId, String text) throws TelegramApiException {
-
-        execute(new SendMessage(chatId, text));
     }
 
     @Override

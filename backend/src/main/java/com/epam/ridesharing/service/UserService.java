@@ -1,6 +1,7 @@
 package com.epam.ridesharing.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.epam.ridesharing.data.model.User;
 
@@ -15,6 +16,14 @@ public interface UserService {
      * @return the user
      */
     User findCurrentUser();
+
+    /**
+     * Find a user by ID.
+     *
+     * @param email the user's unique email
+     * @return the user
+     */
+    Optional<User> findUserByEmail(String email);
 
     /**
      * Find companions list using range in km and office id.

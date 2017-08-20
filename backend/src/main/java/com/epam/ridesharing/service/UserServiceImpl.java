@@ -1,6 +1,7 @@
 package com.epam.ridesharing.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.epam.ridesharing.data.model.User;
@@ -33,6 +34,11 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException(email));
 
         return user;
+    }
+
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        return repo.findByEmailIgnoreCaseAndDisabledFalse(email);
     }
 
     @Override

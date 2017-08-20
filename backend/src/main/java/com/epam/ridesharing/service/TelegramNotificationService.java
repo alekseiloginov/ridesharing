@@ -8,7 +8,6 @@ import com.epam.ridesharing.data.model.User;
 import com.epam.ridesharing.service.telegram.Bot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.api.methods.send.SendContact;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -23,14 +22,12 @@ import static com.epam.ridesharing.util.EmailSender.SUBJECT;
 @Service
 public class TelegramNotificationService implements NotificationService {
 
-    public static final String TOKEN = "365067214:AAEEa7B66tj9a7-GHmpiCcRb9T9YjL-GFUg";
-    public static final String USERNAME = "ridesharing_test_bot";
-    public static final String CHAT_ID_START = "[id#";
-    public static final String CHAT_ID_END = "]";
+    public static final String EMAIL_START = "[email: ";
+    public static final String EMAIL_END = "]";
     public static final String MY_CHAT_ID = "242329350";
     public static final String BOT_MOTHER_CHAT_ID = "392656771";
-    private static final String RS_BOT_CHAT_ID = "365067214";
     private static final String SPACE = " ";
+    private static final String COLON = ":";
     private static final String YES = "I'm ready!";
     private static final String NO = "Next time!";
     private static final String WANNA_JOIN = "Wanna join?";
@@ -46,14 +43,17 @@ public class TelegramNotificationService implements NotificationService {
     @Override
     public void notifyPassenger(User driver, User passenger, String time) throws Exception {
 
-        String passengerId = getTelegramId(passenger); // if we use this service then passenger's chat id is not null
-        passengerId = MY_CHAT_ID; // todo temporary precaution for spamming users
+        String passengerId = passenger.getTelegramId(); // if we use this service then chat id is not null
 
         String text = getDriverMessage(driver, time);
         SendMessage message = new SendMessage(passengerId, text);
 
-        addYesNoInlineKeyboard(message);
+        addYesNoInlineKeyboard(message, passenger);
 
+        // send driver's contact first
+        bot.sendContact(passengerId, driver);
+
+        // then send the actual message
         bot.execute(message);
     }
 
@@ -65,36 +65,39 @@ public class TelegramNotificationService implements NotificationService {
 
     private String getDriverName(User driver) throws TelegramApiException {
 
-        String driverId = getTelegramId(driver); // may be null
-        driverId = MY_CHAT_ID; // todo temporary precaution for spamming users
-
-        // if not null, pass driver chat id to reply to
-        return driverId == null ? driver.getName() : driver.getName() + SPACE + CHAT_ID_START + driverId + CHAT_ID_END;
+        // if not null, pass driver's email to fetch later from database and reply to
+        return driver.getName() + SPACE + EMAIL_START + driver.getEmail() + EMAIL_END;
     }
 
-    private void addYesNoInlineKeyboard(SendMessage message) {
+    private void addYesNoInlineKeyboard(SendMessage message, User passenger) {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
-        markup.setKeyboard(addYesNoButtons());
+        markup.setKeyboard(addYesNoButtons(passenger));
         message.setReplyMarkup(markup);
     }
 
-    private List<List<InlineKeyboardButton>> addYesNoButtons() {
+    private List<List<InlineKeyboardButton>> addYesNoButtons(User passenger) {
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
         List<InlineKeyboardButton> rowInline = new ArrayList<>();
 
-        rowInline.add(new InlineKeyboardButton().setText(YES).setCallbackData(YES));
-        rowInline.add(new InlineKeyboardButton().setText(NO).setCallbackData(NO));
+        rowInline.add(getResponseButton(passenger, YES));
+        rowInline.add(getResponseButton(passenger, NO));
 
         rowsInline.add(rowInline);
         return rowsInline;
     }
 
-
-    public boolean hasTelegramId(User user) throws TelegramApiException {
-        return getTelegramId(user) != null;
+    private InlineKeyboardButton getResponseButton(User user, String resp) {
+        return new InlineKeyboardButton()
+                .setText(resp)
+                .setCallbackData(user.getName() + SPACE + EMAIL_START + user.getEmail() + EMAIL_END + COLON + SPACE + resp);
     }
 
-    public String getTelegramId(User user) throws TelegramApiException {
+
+    public boolean hasTelegramId(User user) throws TelegramApiException {
+        return tryGetTelegramId(user).isPresent();
+    }
+
+    public Optional<String> tryGetTelegramId(User user) throws TelegramApiException {
         Optional<String> chatId = Optional.ofNullable(user.getTelegramId());
 
         if (!chatId.isPresent()) {
@@ -104,21 +107,17 @@ public class TelegramNotificationService implements NotificationService {
             chatId.ifPresent(telegramId -> userService.saveTelegramId(user, telegramId));
         }
 
-        return chatId.orElse(null);
+        return chatId;
     }
 
     private Optional<String> tryGetFromTelegram(User user) throws TelegramApiException {
-        // workaround to get telegram chat id of an unknown user, found here: https://stackoverflow.com/a/42647172/4624001
+        // workaround to get telegram chat id of an unknown user, found here: stackoverflow.com/a/42647172/4624001
 
-        String proxyChatId = BOT_MOTHER_CHAT_ID; // maybe send as contacts to companions later (but can't use bots here)
+        Optional<Message> resp = bot.sendContact(BOT_MOTHER_CHAT_ID, user);
 
-        Message resp =
-                bot.execute(new SendContact().setChatId(proxyChatId).setPhoneNumber(user.getPhone()).setFirstName(user.getName()));
+        Integer chatId = resp.isPresent() ? resp.get().getContact().getUserID() : null;
 
-        Optional<String> userChatId =
-                Optional.ofNullable(resp.getContact().getUserID() == null ? null : resp.getContact().getUserID().toString());
-
-        return userChatId;
+        return Optional.ofNullable(chatId == null ? null : chatId.toString());
     }
 
 }

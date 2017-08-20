@@ -13,6 +13,7 @@ import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import static com.epam.ridesharing.service.UserServiceImpl.DEFAULT_DISTANCE_KM;
 
@@ -45,13 +46,16 @@ public class NotificationController {
 
             for (User passenger : activePassengers) {
 
-                if (telegramService.hasTelegramId(passenger)) {
+                if (telegramService.hasTelegramId(passenger) && telegramService.hasTelegramId(driver)) {
                     telegramService.notifyPassenger(driver, passenger, time);
 
                 } else {
                     emailService.notifyPassenger(driver, passenger, time);
                 }
             }
+
+        } catch (TelegramApiRequestException e) {
+            LOG.error(e.getApiResponse(), e);
 
         } catch (Exception e) {
             LOG.error("Error in NotificationController.notifyPassengers: ", e);
