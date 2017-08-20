@@ -152,11 +152,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return PROD_USERNAME;
+        return TEST_USERNAME;
     }
 
     @Override
     public String getBotToken() {
-        return PROD_TOKEN;
+        return TEST_TOKEN;
     }
 }
