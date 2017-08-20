@@ -25,8 +25,7 @@ public class TelegramNotificationService implements NotificationService {
 
     public static final String EMAIL_START = "[email: ";
     public static final String EMAIL_END = "]";
-    public static final String MY_CHAT_ID = "242329350";
-    public static final String BOT_MOTHER_CHAT_ID = "392656771";
+    private static final String BOT_FATHER_CHAT_ID = "396175631";
     private static final String SPACE = " ";
     private static final String COLON = ":";
     private static final String YES = "I'm ready!";
@@ -114,7 +113,7 @@ public class TelegramNotificationService implements NotificationService {
     private Optional<String> tryGetFromTelegram(User user) throws TelegramApiException {
         // workaround to get telegram chat id of an unknown user, found here: stackoverflow.com/a/42647172/4624001
 
-        Optional<Message> resp = bot.sendContact(BOT_MOTHER_CHAT_ID, user);
+        Optional<Message> resp = bot.sendContact(BOT_FATHER_CHAT_ID, user);
 
         Integer chatId = resp.isPresent() ? resp.get().getContact().getUserID() : null;
 
