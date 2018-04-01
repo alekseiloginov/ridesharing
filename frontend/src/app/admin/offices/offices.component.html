@@ -1,5 +1,5 @@
 <md-toolbar>
-    <button md-raised-button color="primary" (click)="openCreateOfficeDialog()"><md-icon>add</md-icon> New Office</button>
+    <button md-raised-button color="primary" (click)="createOfficeDialog()"><md-icon>add</md-icon> New Office</button>
 </md-toolbar>
 
 <table class="table table-striped" [rtList]="getOffices" #list="rtList">
@@ -15,7 +15,7 @@
             <td>{{office.address}}</td>
             <td>{{office.latitude}}, {{office.longitude}}</td>
             <td>
-                <button md-icon-button (click)="openEditOfficeDialog(office)"><md-icon>mode_edit</md-icon></button>
+                <button md-icon-button (click)="editOfficeDialog(office)"><md-icon>mode_edit</md-icon></button>
                 <button md-icon-button color="warn" (click)="openDeleteConfirm(office)"><md-icon>delete</md-icon></button>
             </td>
         </tr>

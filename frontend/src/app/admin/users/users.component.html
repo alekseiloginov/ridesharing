@@ -27,7 +27,7 @@
                 <md-icon *ngIf="!user.active">check_box_outline_blank</md-icon>
             </td>
             <td>
-                <a md-icon-button>
+                <a md-icon-button (click)="editAddressDialog(user.address)">
                     <md-icon>person_pin_circle</md-icon>
                 </a>
                 <button md-icon-button (click)="openEditUserDialog(user)"><md-icon>mode_edit</md-icon></button>

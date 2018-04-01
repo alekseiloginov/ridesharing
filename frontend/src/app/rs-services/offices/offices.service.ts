@@ -2,6 +2,7 @@ import { AuthStateService } from '../../auth';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import {Address} from "../../admin/address/address";
 
 @Injectable()
 export class OfficesService {

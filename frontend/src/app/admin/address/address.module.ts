@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MdButtonModule, MdInputModule } from '@angular/material';
 
-import { AddressControlModule } from '../../../rs-components/address-control';
-import { OfficeDetailComponent } from './office-detail.component';
+import { AddressControlModule } from '../../rs-components/address-control/index';
+import { AddressComponent } from './address.component';
 
 @NgModule({
     imports: [
@@ -15,10 +15,10 @@ import { OfficeDetailComponent } from './office-detail.component';
         AddressControlModule
     ],
     declarations: [
-        OfficeDetailComponent
+        AddressComponent
     ],
     entryComponents: [
-        OfficeDetailComponent
+        AddressComponent
     ]
 })
 export class OfficeDetailModule { }

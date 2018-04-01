@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
-import { OfficeDetailComponent } from './office-detail';
+import { AddressComponent } from '../address';
 import { DeleteConfirmDialogComponent } from '../../rs-components/delete-confirm-dialog';
 import { OfficesService, Office } from '../../rs-services/offices';
+import { Address } from "../address/address";
 
 @Component({
     selector: 'app-offices',
@@ -38,15 +39,15 @@ export class OfficesComponent implements OnInit {
         });
     }
 
-    openCreateOfficeDialog() {
-        let office: Office =  {
+    createOfficeDialog() {
+        let office: Address =  {
              id: null,
              address: 'Nevskiy prospekt',
              latitude: 59.9325367,
              longitude: 30.3475981,
              type: 'OFFICE'
             };
-        const dialogRef = this.dialog.open(OfficeDetailComponent, {
+        const dialogRef = this.dialog.open(AddressComponent, {
             width: '800px',
             data: {
                 office,
@@ -64,8 +65,8 @@ export class OfficesComponent implements OnInit {
         });
     }
 
-    openEditOfficeDialog(office: Office) {
-        const dialogRef = this.dialog.open(OfficeDetailComponent, {
+    editOfficeDialog(office: Address) {
+        const dialogRef = this.dialog.open(AddressComponent, {
             width: '800px',
             data: {
                 office,

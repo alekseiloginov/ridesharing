@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MdIconModule, MdButtonModule, MdDialogModule, MdToolbarModule, MdSnackBarModule } from '@angular/material';
+import {
+    MdIconModule, MdButtonModule, MdDialogModule, MdToolbarModule, MdSnackBarModule
+} from '@angular/material';
 
 import { RTListsModule } from 'right-angled';
 

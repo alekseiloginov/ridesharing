@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MdButtonModule, MdInputModule, MdSelectModule } from '@angular/material';
+import { AddressControlModule } from '../rs-components/address-control';
 
 import { RTListsModule } from 'right-angled';
 
@@ -15,7 +16,8 @@ import { CompanionsComponent } from './companions.component';
         MdInputModule,
         MdSelectModule,
         ReactiveFormsModule,
-        RTListsModule
+        RTListsModule,
+        AddressControlModule
     ],
     exports: [
         CompanionsComponent

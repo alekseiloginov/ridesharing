@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { Address } from "../address/address";
 
 @Injectable()
 export class UsersService {
@@ -35,6 +36,7 @@ export interface User {
     email: string;
     active: boolean;
     driver: boolean;
+    address: Address;
 }
 
 export const ROLES = [

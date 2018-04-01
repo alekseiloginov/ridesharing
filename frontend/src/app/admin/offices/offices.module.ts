@@ -4,7 +4,7 @@ import { MdIconModule, MdButtonModule, MdDialogModule, MdToolbarModule, MdSnackB
 
 import { RTListsModule } from 'right-angled';
 
-import { OfficeDetailModule } from './office-detail';
+import { OfficeDetailModule } from '../address';
 import { OfficesComponent } from './offices.component';
 
 @NgModule({

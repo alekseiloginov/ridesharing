@@ -228,8 +228,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     obtainOfficeLocation() {
-        console.log('obtainOfficeLocation',this.office.value);
-        if (!this.office.value) {
+        console.log('obtainOfficeLocation',this.office);
+        if (!this.office ||!this.office.value) {
             return;
         }
 
