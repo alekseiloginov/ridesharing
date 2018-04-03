@@ -1,22 +1,22 @@
 <agm-map (mapClick)="mapClick($event)" [usePanning]="true" (mapReady)="mapReady($event)" [zoom]="15">
     <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="'\/img\/bighouse.png'" [markerDraggable]="true"
     (dragEnd)="markerDragEnd($event)"></agm-marker>
-    <agm-marker [latitude]="officeLat" [longitude]="officeLng" [iconUrl]="'\/img\/apartment-3.png'"></agm-marker>
+    <agm-marker [latitude]="draggableLat" [longitude]="draggableLng" [iconUrl]="'\/img\/apartment-3.png'"></agm-marker>
 </agm-map>
 
-<div [formGroup]="addressForm">
+<div [formGroup]="mainForm">
     <div class="formRow">
         <md-input-container>
-            <input mdInput placeholder="Address" [formControl]="addressForm.get('address')" #userAddress autocorrect="off" autocapitalize="off" spellcheck="off"
+            <input mdInput placeholder="Address" [formControl]="mainForm.get('address')" #addressSearch autocorrect="off" autocapitalize="off" spellcheck="off"
             (change)="onChange($event)" (keyup)="onChange($event)">
         </md-input-container>
     </div>
     <div class="formRow">
         <md-input-container>
-            <input mdInput placeholder="Latitude" [formControl]="addressForm.get('latitude')">
+            <input mdInput placeholder="Latitude" [formControl]="mainForm.get('latitude')">
         </md-input-container>
         <md-input-container>
-            <input mdInput placeholder="Longitude" [formControl]="addressForm.get('longitude')">
+            <input mdInput placeholder="Longitude" [formControl]="mainForm.get('longitude')">
         </md-input-container>
     </div>
 </div>

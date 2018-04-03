@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
+import { MdDialog, MdSnackBar} from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 
 import { AddressComponent } from '../address';
 import { DeleteConfirmDialogComponent } from '../../rs-components/delete-confirm-dialog';
 import { OfficesService, Office } from '../../rs-services/offices';
-import { Address } from "../address/address";
+import { Address } from '../address/address';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-offices',
@@ -17,11 +18,32 @@ export class OfficesComponent implements OnInit {
     @ViewChild('list')
     listTable;
 
+    mainForm: FormGroup;
+
     constructor(private officesService: OfficesService,
         private dialog: MdDialog,
-        private snackBar: MdSnackBar) { }
+        private snackBar: MdSnackBar,
+        private fb: FormBuilder) {
 
-    ngOnInit() { }
+        this.mainForm = fb.group({
+            id: null,
+            address: [null],
+            latitude: [null],
+            longitude: [null],
+            type: 'OFFICE'
+        });
+    }
+
+    ngOnInit() {
+        let office: Address =  {
+            id: null,
+            address: 'Nevskiy prospekt',
+            latitude: 59.9325367,
+            longitude: 30.3475981,
+            type: 'OFFICE'
+        };
+        this.mainForm.patchValue(office);
+    }
 
     getOffices = (): Observable<Office[]> => {
         return this.officesService.getOffices();
@@ -40,17 +62,10 @@ export class OfficesComponent implements OnInit {
     }
 
     createOfficeDialog() {
-        let office: Address =  {
-             id: null,
-             address: 'Nevskiy prospekt',
-             latitude: 59.9325367,
-             longitude: 30.3475981,
-             type: 'OFFICE'
-            };
         const dialogRef = this.dialog.open(AddressComponent, {
             width: '800px',
             data: {
-                office,
+                office: this.mainForm.value,
                 primaryButtonLabel: 'Create',
                 title: 'Create Office'
             }

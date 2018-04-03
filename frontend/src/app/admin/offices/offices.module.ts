@@ -6,6 +6,7 @@ import { RTListsModule } from 'right-angled';
 
 import { OfficeDetailModule } from '../address';
 import { OfficesComponent } from './offices.component';
+import { AddressControlComponent } from "../../rs-components/address-control";
 
 @NgModule({
     imports: [
@@ -23,6 +24,9 @@ import { OfficesComponent } from './offices.component';
     ],
     declarations: [
         OfficesComponent
+    ],
+    entryComponents: [
+        AddressControlComponent
     ]
 })
 export class OfficesModule { }

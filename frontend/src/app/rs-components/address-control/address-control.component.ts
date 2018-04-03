@@ -20,21 +20,21 @@ import {  } from '@types/googlemaps';
 })
 export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
-    addressForm: FormGroup;
+    mainForm: FormGroup;
     lat: number;
     lng: number;
-    officeLat: number;
-    officeLng: number;
+    draggableLat: number;
+    draggableLng: number;
     type: string;
     public searchControl: FormControl;
     public zoom: number;
     public map: google.maps.Map;
     directionsDisplay: google.maps.DirectionsRenderer;
 
-    @ViewChild('userAddress')
-    public userAddressElementRef: ElementRef;
+    @ViewChild('addressSearch')
+    public addressTextElementRef: ElementRef;
 
-    @Input('office') office: FormControl;
+    @Input('target') draggableLocation: FormControl;
 
     propagateChange: (_: Address) => void;
 
@@ -50,7 +50,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
         // load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
-            let autocomplete = new google.maps.places.Autocomplete(this.userAddressElementRef.nativeElement, {
+            let autocomplete = new google.maps.places.Autocomplete(this.addressTextElementRef.nativeElement, {
                 types: ['address']
             });
 
@@ -72,22 +72,26 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     setupForm(fb: FormBuilder) {
-        this.addressForm = fb.group({
+        this.mainForm = fb.group({
             id: '',
             address: '',
             latitude: '',
             longitude: '',
             type: ''
         });
-        this.addressForm.valueChanges.subscribe(() => {
-            this.propagateChange(this.addressForm.value);
+        this.subscribeOnValueChange();
+    }
+
+    subscribeOnValueChange() {
+        this.mainForm.valueChanges.subscribe(() => {
+            this.propagateChange(this.mainForm.value);
         });
-        this.addressForm.get('latitude').valueChanges.subscribe(newLat => {
+        this.mainForm.get('latitude').valueChanges.subscribe(newLat => {
             if (newLat) {
                 this.setCoords(this.lng, newLat);
             }
         });
-        this.addressForm.get('longitude').valueChanges.subscribe(newLng => {
+        this.mainForm.get('longitude').valueChanges.subscribe(newLng => {
             if (newLng) {
                 this.setCoords(newLng, this.lat);
             }
@@ -101,7 +105,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
         // map.data;
         this.map = map;
-        this.obtainOfficeLocation();
+        this.obtainCenterLocation();
 
         this.directionsDisplay = new google.maps.DirectionsRenderer(
             { suppressMarkers: true }
@@ -113,9 +117,9 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
     mapClick($event: MouseEvent) {
         this.setCoords($event.coords.lng, $event.coords.lat);
-        this.addressForm.get('latitude').setValue(this.lat);
-        this.addressForm.get('longitude').setValue(this.lng);
-        this.propagateChange(this.addressForm.value);
+        this.mainForm.get('latitude').setValue(this.lat);
+        this.mainForm.get('longitude').setValue(this.lng);
+        this.propagateChange(this.mainForm.value);
     }
 
     setCoords(lng, lat) {
@@ -126,8 +130,8 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     updateFormCoords() {
-        this.addressForm.get('latitude').setValue(this.lat);
-        this.addressForm.get('longitude').setValue(this.lng);
+        this.mainForm.get('latitude').setValue(this.lat);
+        this.mainForm.get('longitude').setValue(this.lng);
     }
 
     setZoom(zoom) {
@@ -138,7 +142,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
 
     writeValue(obj: Address): void {
         if (obj) {
-            this.addressForm.patchValue(obj);
+            this.mainForm.patchValue(obj);
         }
     }
 
@@ -155,19 +159,19 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     setCenter() {
-        if (!this.map) {
+        if (!this.map || !this.draggableLat) {
             return;
         }
 
         const coords: LatLngLiteral = {
-            lat: (+this.lat + (this.officeLat || 0))/2,
-            lng: (+this.lng + (this.officeLng || 0))/2
+            lat: (+this.lat + (this.draggableLat || 0))/2,
+            lng: (+this.lng + (this.draggableLng || 0))/2
         };
         this.map.setCenter(coords);
     }
 
     onChange(event) {
-        this.getLocationByAddress(this.userAddressElementRef.nativeElement.value).then(
+        this.getLocationByAddress(this.addressTextElementRef.nativeElement.value).then(
             result => {
                 this.updateLocation(result);
                 this.drawRoute();
@@ -184,7 +188,7 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         this.drawRoute();
         const latlng = <LatLngLiteral>{lat: this.lat, lng: this.lng};
         this.getAddressByCoords(latlng).then(
-            result => this.addressForm.get('address').setValue(result),
+            result => this.mainForm.get('address').setValue(result),
             error => console.error('address not found')
         );
     }
@@ -227,19 +231,19 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
         });
     }
 
-    obtainOfficeLocation() {
-        console.log('obtainOfficeLocation',this.office);
-        if (!this.office ||!this.office.value) {
+    obtainCenterLocation() {
+        console.log('obtainOfficeLocation',this.draggableLocation);
+        if (!this.draggableLocation ||!this.draggableLocation.value) {
             return;
         }
 
-        this.officeLat = this.office.value.latitude;
-        this.officeLng = this.office.value.longitude;
-        console.log('this office latlng:', this.officeLat, this.officeLng);
+        this.draggableLat = this.draggableLocation.value.latitude;
+        this.draggableLng = this.draggableLocation.value.longitude;
+        console.log('this office latlng:', this.draggableLat, this.draggableLng);
     }
 
     drawRoute(waypoints?: Array<object>) {
-        if (!this.map || !this.lat || !this.lng || !this.officeLat || !this.officeLng) {
+        if (!this.map || !this.lat || !this.lng || !this.draggableLat || !this.draggableLng) {
             return;
         }
 
@@ -260,10 +264,10 @@ export class AddressControlComponent implements OnInit, ControlValueAccessor {
     }
 
     getRouteSettings(waypoints?: Array<object>) {
-        console.log('getRouteSettings:', this.lat, this.lng, this.officeLat, this.officeLng);
+        console.log('getRouteSettings:', this.lat, this.lng, this.draggableLat, this.draggableLng);
         return {
             origin: new google.maps.LatLng(this.lat, this.lng),
-            destination: new google.maps.LatLng(this.officeLat, this.officeLng),
+            destination: new google.maps.LatLng(this.draggableLat, this.draggableLng),
             waypoints: waypoints,
             optimizeWaypoints: true,
             travelMode: 'DRIVING'
@@ -277,6 +281,6 @@ export interface Address {
     longitude: number;
     address: string;
     type: string;
-    officeLat: number;
-    officeLng: number;
+    draggableLat: number;
+    draggableLng: number;
 }
